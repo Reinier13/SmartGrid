@@ -1,5 +1,3 @@
-import csv
-
 class Battery:
     def __init__(self, position, capacity):
         self.postition = postition
@@ -16,6 +14,3 @@ def main():
     x = list(range(0, 51))
     y = list(range(0, 51))
     grid = [x, y]
-
-    for coord in grid:
-            print coord
