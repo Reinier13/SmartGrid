@@ -3,3 +3,4 @@ class Grid:
         self.x = x
         self.y = y
         self.cap = capacity
+        self.test = test
