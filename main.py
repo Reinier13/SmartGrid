@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import csv
 
 class House:
@@ -19,15 +20,23 @@ with open('wijk1_huizen.csv', newline='') as csv_file:
 
         house_list.append(House(x, y, out))
 
+=======
+from import import import_file
+>>>>>>> af15ee299d8d007d99ad2baae357c9b9116c5617
 
 class Battery:
-    def __init__(self, x, y, cap):
-        self.x = x
-        self.y = y
-        self.cap = capacity
-        self.price = price
+    def __init__(self, position, capacity):
+        self.postition = postition
+        self.capacity = capacity
+        self.houses = houses
+
+class Houses:
+    def __init__(self, position, cables):
+        self.position = position
+        self.cables = cables
 
 def main():
+    import_file('input/wijk1_huizen.csv')
     x = list(range(0, 50))
     y = list(range(0, 50))
     grid = [x, y]
