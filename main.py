@@ -13,8 +13,8 @@ class Houses:
 
 def main():
     print(import_file('input/wijk1_huizen.csv'))
-    x = list(range(0, 50))
-    y = list(range(0, 50))
+    x = list(range(0, 51))
+    y = list(range(0, 51))
     grid = [x, y]
 
     for coord in grid:
