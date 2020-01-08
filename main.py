@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import csv
 
 class House:
@@ -23,6 +24,9 @@ with open('wijk1_huizen.csv', newline='') as csv_file:
 =======
 from import import import_file
 >>>>>>> af15ee299d8d007d99ad2baae357c9b9116c5617
+=======
+from import_houses import import_file
+>>>>>>> fcf6acb38c0d2ade615a8e2a20bd929195ca483a
 
 class Battery:
     def __init__(self, position, capacity):
@@ -36,10 +40,12 @@ class Houses:
         self.cables = cables
 
 def main():
-    import_file('input/wijk1_huizen.csv')
+    print(import_file('input/wijk1_huizen.csv'))
     x = list(range(0, 50))
     y = list(range(0, 50))
     grid = [x, y]
 
     for coord in grid:
-            print coord
+        print(coord)
+
+main()
