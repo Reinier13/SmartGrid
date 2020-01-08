@@ -3,3 +3,6 @@ class Grid:
         self.x = x
         self.y = y
         self.cap = capacity
+
+    def test(self):
+        print('hallo')
