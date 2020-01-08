@@ -9,3 +9,4 @@ class Grid:
 
     def test(self):
         print('hallo')
+        self.hallo = hallo
