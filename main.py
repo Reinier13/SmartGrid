@@ -10,3 +10,10 @@ class Grid:
     def test(self):
         print('hallo')
         self.hallo = hallo
+
+class Battery:
+    def __init__(self, x, y, cap):
+        self.x = x
+        self.y = y 
+        self.cap = capacity
+        self.price = price
