@@ -30,13 +30,14 @@ from import_houses import import_file
 
 class Battery:
     def __init__(self, position, capacity):
-        self.postition = postition
+        self.postition = position
         self.capacity = capacity
         self.houses = houses
 
 class Houses:
-    def __init__(self, position, cables):
+    def __init__(self, position, output, cables):
         self.position = position
+        self.output = output
         self.cables = cables
 
 def main():
