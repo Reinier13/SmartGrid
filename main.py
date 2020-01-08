@@ -20,21 +20,17 @@ with open('wijk1_huizen.csv', newline='') as csv_file:
         house_list.append(House(x, y, out))
 
 
-class Grid:
-
-    def __init__(self, x, y):
-        self.x = list(range(0, 50))
-        self.y = list(range(0, 50))
-        self.grid = [self.x, self.y]
-
-
-    def populate(self):
-        for coord in self.grid:
-            print coord
-
 class Battery:
     def __init__(self, x, y, cap):
         self.x = x
         self.y = y
         self.cap = capacity
         self.price = price
+
+def main():
+    x = list(range(0, 50))
+    y = list(range(0, 50))
+    grid = [x, y]
+
+    for coord in grid:
+            print coord
