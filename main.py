@@ -5,6 +5,7 @@ class Grid:
         self.cap = capacity
         self.test = test
         self.ruft = ruft
+        self.tjak = tjak
 
     def test(self):
         print('hallo')
