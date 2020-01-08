@@ -4,7 +4,6 @@ class Grid(object):
         self.y = [0:50]
         self.grid = [self.x, self.y]
 
-<<<<<<< HEAD
     def test(self):
         print('hallo')
         self.hallo = hallo
@@ -15,8 +14,3 @@ class Battery:
         self.y = y 
         self.cap = capacity
         self.price = price
-=======
-    def populate(self):
-        for coord in self.grid:
-            print coord
->>>>>>> cf2ed24ad4547bd08b7e17a0b377a7b406d2e65c
