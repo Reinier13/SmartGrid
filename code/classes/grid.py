@@ -8,8 +8,8 @@ class Grid:
         self.batteries = self.load_batteries(batteries_file)
 
     def load_houses(self, houses_file):
-        with open(houses_file, 'r') as houses_file:
-            houses = csv.DictReader(houses_file)
+        with open(houses_file, 'r') as in_file:
+            houses = csv.DictReader(in_file)
             houses_list = []
             for row in houses:
                 houses_list.append(House(row['x'], row[' y'], row[' max output']))

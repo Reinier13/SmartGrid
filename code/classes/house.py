@@ -3,6 +3,8 @@ class House:
         self.x = x
         self.y = y
         self.output = float(output)
+        self.cables = {}
+
 
     def __repr__(self):
         return f"({self.x}, {self.y}) - output:{self.output}"
