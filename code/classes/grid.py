@@ -9,7 +9,7 @@ import numpy as np
 class Grid:
     def __init__(self, houses_file, batteries_file):
         self.houses = self.load_houses(houses_file)
-        # self.batteries = self.load_batteries(batteries_file)
+        self.batteries = self.load_batteries(batteries_file)
         self.plot()
 
 
@@ -19,26 +19,26 @@ class Grid:
             houses = []
             for row in reader:
                 houses.append(House(row['x'], row[' y'], row[' max output']))
-        print(houses)
-        houses_file.close()
         return houses
 
-    # def load_batteries(self, batteries_file):
-    #     with open(batteries_file, 'r') as in_file:
-    #         batteries = csv.DictReader(in_file)
-    #         battery_dict = {}
-    #         for row in batteries:
-    #             battery_dict[row['positie']] = Battery(row['positie'], row[' capaciteit'])
-    #
-    #         print(battery_dict)
-    #
-    #     return battery_dict
+    def load_batteries(self, batteries_file):
+        with open(batteries_file, 'r') as in_file:
+            reader = csv.DictReader(in_file)
+            batteries = []
+            for row in reader:
+                batteries.append(Battery(row['positie'].strip('[]'), row[' capaciteit']))
+        return batteries
 
     def plot(self):
-        fig, ax = plt.subplots()
+        fig = plt.figure()
+        ax = plt.axes()
+
         for house in self.houses:
-            ax.plot(house.x, house.y, 'ro')
+            ax.scatter(house.x, house.y, c='r', marker='o')
+
+        for battery in self.batteries:
+            ax.scatter(battery.x, battery.y, c='b', marker='*')
 
         ax.set(xlabel='X-axis', ylabel='Y-axis', title='Grid')
-        plt.grid()
+        ax.grid()
         plt.show()
