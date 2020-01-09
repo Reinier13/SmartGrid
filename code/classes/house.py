@@ -1,8 +1,8 @@
 class House(object):
     def __init__(self, x, y, output):
-        self.x = x
-        self.y = y.strip(' ')
-        self.output = output.strip(' ')
+        self.x = int(x)
+        self.y = int(y.strip(' '))
+        self.output = float(output.strip(' '))
 
     def add_cable(self):
         pass

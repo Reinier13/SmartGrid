@@ -37,11 +37,8 @@ class Grid:
     def plot(self):
         fig, ax = plt.subplots()
         for house in self.houses:
-            # print(house.x)
-            # print(house.y)
-            ax.plot(house.x, house.y)
+            ax.plot(house.x, house.y, 'ro')
 
         ax.set(xlabel='X-axis', ylabel='Y-axis', title='Grid')
-        ax.grid()
-        fig.savefig("test.png")
+        plt.grid()
         plt.show()
