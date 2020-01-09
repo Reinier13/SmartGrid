@@ -22,11 +22,7 @@ class Grid:
         print(houses)
         houses_file.close()
         return houses
-<<<<<<< HEAD
-    #
-=======
 
->>>>>>> c64532e308a74ba9050f00fc2c299961818ca13c
     # def load_batteries(self, batteries_file):
     #     with open(batteries_file, 'r') as in_file:
     #         batteries = csv.DictReader(in_file)
