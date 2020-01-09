@@ -14,15 +14,6 @@ class Grid:
 
 
     def load_houses(self, houses_file):
-<<<<<<< HEAD
-        with open(houses_file, 'r') as in_file:
-            houses = csv.DictReader(in_file)
-            houses_list = []
-            for row in houses:
-                houses_list.append(House(row['x'], row[' y'], row[' max output']))
-
-        return houses_list
-=======
         with open(houses_file, 'r') as houses_file:
             reader = csv.DictReader(houses_file)
             houses = []
@@ -31,7 +22,6 @@ class Grid:
         print(houses)
         houses_file.close()
         return houses
->>>>>>> e1e2b4301f66039ef79b5b10621d17c3994a8a45
 
     # def load_batteries(self, batteries_file):
     #     with open(batteries_file, 'r') as in_file:
