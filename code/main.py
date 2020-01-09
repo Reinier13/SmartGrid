@@ -6,4 +6,6 @@ if __name__ == '__main__':
 
     random.random_connection(test_grid)
 
-    print(test_grid.batteries.houses)
+    for battery in test_grid.batteries.values():
+        print(battery.houses)
+        print(len(battery.houses))
