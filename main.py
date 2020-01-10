@@ -14,4 +14,7 @@ if __name__ == '__main__':
 
     greedy.greedy(test_grid)
 
-    print(battery.houses)
+    for battery in test_grid.batteries:
+        print(battery.houses)
+        print(battery.capacity_used())
+        print(len(battery.houses))
