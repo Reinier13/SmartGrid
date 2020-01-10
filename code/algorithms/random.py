@@ -3,5 +3,5 @@ import random
 
 def random_connection(grid):
     for house in grid.houses:
-        key = random.choice(list(grid.batteries))
-        grid.batteries[key].add_house(house)
+        assigned_battery = random.choice(list(grid.batteries))
+        assigned_battery.add_house(house)
