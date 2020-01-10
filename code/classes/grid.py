@@ -32,8 +32,6 @@ class Grid:
 
 
     def plot(self):
-        cablex = []
-        cabley = []
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
@@ -55,6 +53,8 @@ class Grid:
 
         # plot houses
         for house in self.houses:
+            cablex = []
+            cabley = []
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
             # plot cables
