@@ -9,11 +9,10 @@ class Battery:
         self.houses.append(house)
 
     def capacity_used(self):
-        used_capacity = 0
+        used_capacity = 0.0
         for house in self.houses:
             used_capacity += house.output
-
-        return float(used_capacity)
+        return used_capacity
 
     # def is_valid(self):
     #     if self.capacity_used < self.capacity:
