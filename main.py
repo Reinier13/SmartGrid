@@ -1,19 +1,9 @@
-class Battery:
-    def __init__(self, position, capacity):
-        self.postition = postition
-        self.capacity = capacity
-        self.houses = houses
+from code.classes import grid
+from code.algorithms import random
 
-class House:
-    def __init__(self, position, cables):
-        self.position = position
-        self.cables = cables
+if __name__ == '__main__':
+    test_grid = grid.Grid('input/wijk1_huizen.csv', 'input/wijk1_batterijen.csv')
 
-def main():
-    print(import_file('input/wijk1_huizen.csv'))
-    x = list(range(0, 51))
-    y = list(range(0, 51))
-    grid = [x, y]
+    random.random_connection(test_grid)
 
-    for coord in grid:
-            print coord
+    print(test_grid.batteries.houses)
