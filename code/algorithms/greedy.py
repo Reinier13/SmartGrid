@@ -13,9 +13,10 @@ def greedy(grid):
                 house.connected = True
         num_houses += len(battery.houses)
     print(num_houses)
-    if num_houses != len(grid.houses):
-        for house in grid.houses:
-            house.connected = False
-        greedy(grid)
+
+    # if num_houses != len(grid.houses):
+    #     for house in grid.houses:
+    #         house.connected = False
+    #     greedy(grid)
 
     # K-HOLE PROBLEEM!!! ALS NIET IN 1 KEER GOED, DAN SHUFFLED LIJST ELKE KEER ZELFDE VOLGORDE
