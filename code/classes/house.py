@@ -4,7 +4,15 @@ class House:
         self.y = int(y.strip(' '))
         self.output = float(output.strip(' '))
         self.connected = False
+<<<<<<< HEAD
         self.cables = [(30, 40), (31,40), (32,40), (32,41)]
+=======
+<<<<<<< HEAD
+        self.cables = []
+=======
+        self.cables = [(30, 40), (31,40), (32,40), (32,41)]
+>>>>>>> e13fb4318f8887cbaa9880287c4b7887f3b2462e
+>>>>>>> 0c2a726bdeb74b8abb7e3101ec511f26f59aae99
 
     def add_cable(self):
         pass
