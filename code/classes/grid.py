@@ -21,6 +21,7 @@ class Grid:
                 houses.append(House(row['x'], row[' y'], row[' max output']))
         return houses
 
+
     def load_batteries(self, batteries_file):
         with open(batteries_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
@@ -28,6 +29,7 @@ class Grid:
             for row in reader:
                 batteries.append(Battery(row['positie'].strip('[]'), row[' capaciteit']))
         return batteries
+
 
     def plot(self):
         fig = plt.figure()
