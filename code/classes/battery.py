@@ -13,7 +13,7 @@ class Battery:
         for house in self.houses:
             used_capacity += house.output
 
-        return used_capacity
+        return float(used_capacity)
 
     # def is_valid(self):
     #     if self.capacity_used < self.capacity:
