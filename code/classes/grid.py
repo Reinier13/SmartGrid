@@ -47,11 +47,15 @@ class Grid:
         # And a corresponding grid
         ax.grid(which='both')
 
+        # Or if you want different settings for the grids:
+        ax.grid(which='minor', alpha=0.2)
+        ax.grid(which='major', alpha=0.5)
+
         for house in self.houses:
-            ax.scatter(house.x, house.y, c='r', marker='o')
+            ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
         for battery in self.batteries:
-            ax.scatter(battery.x, battery.y, c='b', marker='*')
+            ax.scatter(battery.x, battery.y, c='b', marker='*', zorder=2)
 
         ax.set(xlabel='X-axis', ylabel='Y-axis', title='Grid')
         plt.show()
