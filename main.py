@@ -15,6 +15,6 @@ if __name__ == '__main__':
     greedy.greedy(test_grid)
 
     for battery in test_grid.batteries:
-        print(battery.houses)
-        print(battery.capacity_used())
-        print(len(battery.houses))
+        for house in test_grid.houses:
+            house.add_cable()
+            print(house.cables)

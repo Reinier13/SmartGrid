@@ -11,6 +11,7 @@ def greedy(grid):
             if cap > (used_capacity + house.output) and house.connected == False:
                 battery.add_house(house)
                 house.connected = True
+                house.battery = battery
         num_houses += len(battery.houses)
     print(num_houses)
 
