@@ -17,3 +17,4 @@ if __name__ == '__main__':
     for battery in test_grid.batteries:
         print(battery.houses)
         print(battery.capacity_used())
+        print(len(battery.houses))
