@@ -3,6 +3,7 @@ class House(object):
         self.x = int(x)
         self.y = int(y.strip(' '))
         self.output = float(output.strip(' '))
+        self.connected = False
 
     def add_cable(self):
         pass
