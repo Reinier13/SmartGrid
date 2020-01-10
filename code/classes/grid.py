@@ -32,10 +32,12 @@ class Grid:
 
 
     def plot(self):
+        cablex = []
+        cabley = []
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
-        # Major ticks every 20, minor ticks every 5
+        # major ticks every 10, minor ticks every 1
         major_ticks = np.arange(0, 51, 10)
         minor_ticks = np.arange(0, 51, 1)
 
@@ -44,18 +46,27 @@ class Grid:
         ax.set_yticks(major_ticks)
         ax.set_yticks(minor_ticks, minor=True)
 
-        # And a corresponding grid
+        # a corresponding grid
         ax.grid(which='both')
 
-        # Or if you want different settings for the grids:
+        # settings for the grids
         ax.grid(which='minor', alpha=0.2)
         ax.grid(which='major', alpha=0.5)
 
+        # plot houses
         for house in self.houses:
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
+            # plot cables
+            for cable in house.cables:
+                cablex.append(cable[0])
+                cabley.append(cable[1])
+            ax.plot(cablex, cabley, '-')
+
+        # plot batteries
         for battery in self.batteries:
             ax.scatter(battery.x, battery.y, c='b', marker='*', zorder=2)
 
+        # set labels and show plot
         ax.set(xlabel='X-axis', ylabel='Y-axis', title='Grid')
         plt.show()
