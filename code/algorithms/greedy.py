@@ -12,7 +12,6 @@ def greedy(grid):
                 house.add_cable()
         num_houses += len(battery.houses)
 
-
     if num_houses != len(grid.houses):
         for battery in grid.batteries:
             battery.houses = []
