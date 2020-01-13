@@ -18,3 +18,5 @@ if __name__ == '__main__':
         for house in test_grid.houses:
             house.add_cable()
             print(house.cables)
+
+    greedy.greedy(test_grid)
