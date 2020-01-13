@@ -10,8 +10,14 @@ class House:
         self.cables = []
 
     def add_cable(self):
-        delta_x = list(range(self.x, self.battery.x))
-        delta_y = list(range(self.y, self.battery.y))
+        if self.x <= self.battery.x:
+            delta_x = list(range(self.x, self.battery.x + 1))
+        if self.x > self.battery.x:
+            delta_x = list(range(self.x, self.battery.x - 1, -1))
+        if self.y <= self.battery.y:
+            delta_y = list(range(self.y, self.battery.y + 1))
+        if self.y > self.battery.y:
+            delta_y = list(range(self.y, self.battery.y - 1, -1))
 
         for x in delta_x:
             self.cables.append('(%i,%i)' % (x,self.y))
