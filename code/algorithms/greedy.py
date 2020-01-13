@@ -12,6 +12,7 @@ def greedy(grid):
                 battery.add_house(house)
                 house.connected = True
                 house.battery = battery
+                house.add_cable()
         num_houses += len(battery.houses)
     print(num_houses)
 
