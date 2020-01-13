@@ -1,5 +1,5 @@
 from code.classes import grid
-from code.algorithms import random, greedy, algo
+from code.algorithms import random, greedy, algo, master
 import numpy as np
 
 if __name__ == '__main__':
