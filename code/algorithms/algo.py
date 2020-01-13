@@ -1,10 +1,13 @@
-import random
+import random, math
 
 def greedy(grid):
     num_houses = 0
-    random.shuffle(grid.houses)
-    for battery in grid.batteries:
-        for house in grid.houses:
+    for house in grid.houses:
+        for battery in grid.batteries:
+            delta_x = house.x - battery.x
+            delta_y = house.y - battery.y
+            delta = delta_x + delta_y
+
             capacity_used = battery.capacity_used()
             if battery.capacity > (capacity_used + house.output) and house.battery == None:
                 battery.add_house(house)
