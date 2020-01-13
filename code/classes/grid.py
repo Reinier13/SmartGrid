@@ -1,6 +1,5 @@
 from .house import House
 from .battery import Battery
-from .greedy import greedy
 import csv
 import matplotlib
 import matplotlib.pyplot as plt
