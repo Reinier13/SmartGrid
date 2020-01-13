@@ -7,7 +7,6 @@ if __name__ == '__main__':
 
     algo.greedy(test_grid)
 
-
     test_grid.plot()
 
     print(test_grid.calculate_cost())
