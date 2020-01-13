@@ -60,7 +60,7 @@ class Grid:
             for cable in house.cables:
                 cablex.append(cable[0])
                 cabley.append(cable[1])
-            ax.plot(cablex, cabley, '-')
+            ax.plot(cablex, cabley, '-', color='green')
 
         # plot batteries
         for battery in self.batteries:
