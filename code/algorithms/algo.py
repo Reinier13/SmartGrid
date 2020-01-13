@@ -7,3 +7,6 @@ def greedy(grid):
             delta_x = house.x - battery.x
             delta_y = house.y - battery.y
             delta = delta_x + delta_y
+
+             for battery in battery.distances:
+                 min
