@@ -8,3 +8,5 @@ if __name__ == '__main__':
 
 
     test_grid.plot()
+
+    print(test_grid.calculate_cost())

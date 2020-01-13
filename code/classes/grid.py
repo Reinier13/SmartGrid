@@ -1,5 +1,6 @@
 from .house import House
 from .battery import Battery
+from .greedy import greedy
 import csv
 import matplotlib
 import matplotlib.pyplot as plt
@@ -10,7 +11,6 @@ class Grid:
     def __init__(self, houses_file, batteries_file):
         self.batteries = self.load_batteries(batteries_file)
         self.houses = self.load_houses(houses_file)
-
 
     def load_batteries(self, batteries_file):
         with open(batteries_file, 'r') as in_file:
@@ -28,6 +28,16 @@ class Grid:
             for row in reader:
                 houses.append(House(row['x'], row[' y'], row[' max output']))
         return houses
+
+
+    def calculate_cost(self):
+        total = 0
+        for battery in self.batteries:
+            total += 5000
+        for house in self.houses:
+            for cable in house.cables:
+                total += 9
+        return total
 
 
     def plot(self):

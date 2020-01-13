@@ -14,6 +14,5 @@ class Battery:
             used_capacity += house.output
         return used_capacity
 
-
     def __repr__(self):
         return f"[{self.x}, {self.y}, {self.capacity}]"
