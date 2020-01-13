@@ -6,7 +6,6 @@ class House:
         self.y = int(y.strip(' '))
         self.output = float(output.strip(' '))
         self.connected = False
-        # self.cables = [(30, 40), (31,40), (32,40), (32,41)]
         self.battery = None
         self.cables = []
 
