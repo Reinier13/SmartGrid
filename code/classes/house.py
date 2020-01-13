@@ -7,6 +7,7 @@ class House:
         self.output = float(output.strip(' '))
         self.battery = None
         self.cables = []
+        self.distances = []
 
     def add_cable(self):
         if self.x <= self.battery.x:
