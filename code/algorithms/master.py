@@ -34,13 +34,6 @@ def find_houses(battery, houses, grid):
         counter += 1
 
 
-
-
-
-
-
-
-
     # if battery.capacity_used() >= battery.capacity:
     #     if counter == 149:
     #         for battery in grid.batteries:
