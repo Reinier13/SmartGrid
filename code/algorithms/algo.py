@@ -1,7 +1,7 @@
 import random
 import numpy as np
-# import sys
-# sys.setrecursionlimit(5000)
+import sys
+sys.setrecursionlimit(15000)
 
 
 def greedy(grid):
@@ -11,7 +11,6 @@ def greedy(grid):
         counter = 0
         for battery in grid.batteries:
             house.distances.append(distance(house, battery))
-
         find_battery(house, grid.batteries, grid)
 
 
