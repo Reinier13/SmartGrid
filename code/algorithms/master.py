@@ -34,19 +34,19 @@ def find_houses(battery, houses, grid):
         counter += 1
 
 
-    # if battery.capacity_used() >= battery.capacity:
-    #     if counter == 149:
-    #         for battery in grid.batteries:
-    #             battery.houses = []
-    #         for house in houses:
-    #             house.battery = None
-    #             house.cables = []
-    #         greedy(grid)
-    #     house.cables = []
-    #     battery.houses.remove(house)
-    #     house.battery = None
-    #     find_houses(battery, houses, grid)
-    # find_houses(battery, houses, grid)
+    if battery.capacity_used() >= battery.capacity:
+        if counter == 149:
+            for battery in grid.batteries:
+                battery.houses = []
+            for house in houses:
+                house.battery = None
+                house.cables = []
+            greedy(grid)
+        house.cables = []
+        battery.houses.remove(house)
+        house.battery = None
+        find_houses(battery, houses, grid)
+    find_houses(battery, houses, grid)
 
 
 def distance(house, battery):
