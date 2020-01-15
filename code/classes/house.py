@@ -25,6 +25,7 @@ class House:
             self.cables.append('(%i,%i)' % (self.battery.x,y))
 
         self.cables = [make_tuple(cable.strip()) for cable in self.cables]
+        self.cables = list(dict.fromkeys(self.cables))
 
     def __repr__(self):
         return f"House at ({self.x}, {self.y})"
