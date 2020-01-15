@@ -24,7 +24,7 @@ def find_battery(house, batteries, grid):
     house.battery.add_house(house)
     house.add_cable()
 
-    if house.battery.capacity_used() >= 1700:
+    if house.battery.capacity_used() >= battery.capacity:
         if counter < 4:
             counter += 1
         if counter == 4:
