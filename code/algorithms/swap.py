@@ -1,12 +1,8 @@
 import random
 
 def hill_climb(grid):
-<<<<<<< HEAD
-
-=======
     for i in range(1000):
         swap(grid)
->>>>>>> b346ed088ba27f6c1b149daac05a01fa78961d6a
 
 def swap(grid):
     swap_house_1 = random.choice(grid.houses)
@@ -34,10 +30,6 @@ def capacity_fit(swap_house_1, swap_house_2):
 
 
 def choose_battery(grid):
-<<<<<<< HEAD
-    battery = random.choice(grid.batteries)
-    return battery
-=======
     other_battery = random.choice(grid.batteries)
     return other_battery
 
@@ -47,4 +39,3 @@ def distance(house, battery):
     delta_y = house.y - battery.y
     delta = abs(delta_x) + abs(delta_y)
     return delta
->>>>>>> b346ed088ba27f6c1b149daac05a01fa78961d6a
