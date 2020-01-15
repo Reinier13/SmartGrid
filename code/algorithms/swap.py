@@ -1,5 +1,8 @@
 import random
 
+def hill_climb(grid):
+    
+
 def swap(grid):
     swap_house = random.choice(grid.houses)
     new_battery = choose_battery(grid)
@@ -11,7 +14,6 @@ def swap(grid):
     swapped_house.battery = swap_house.battery
     swap_house.battery = new_battery
 
-    if
 
 def choose_battery(grid):
     other_battery = random.choice(grid.batteries)
