@@ -26,12 +26,5 @@ class House:
 
         self.cables = [make_tuple(cable.strip()) for cable in self.cables]
 
-
-    def __hash__(self):
-        return hash((self.name, self.location))
-
-    def __eq__(self, other):
-        return (self.name, self.location) == (other.name, other.location)
-
     def __repr__(self):
         return f"House at ({self.x}, {self.y})"

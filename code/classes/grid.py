@@ -34,8 +34,7 @@ class Grid:
         for battery in self.batteries:
             total += 5000
         for house in self.houses:
-            for cable in house.cables:
-                total += 9
+            total += (len(house.cables) - 2) * 9
         return total
 
 
