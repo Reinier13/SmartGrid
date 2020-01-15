@@ -11,6 +11,7 @@ class Grid:
         self.batteries = self.load_batteries(batteries_file)
         self.houses = self.load_houses(houses_file)
 
+
     def load_batteries(self, batteries_file):
         with open(batteries_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
@@ -34,8 +35,7 @@ class Grid:
         for battery in self.batteries:
             total += 5000
         for house in self.houses:
-            for cable in house.cables:
-                total += 9
+            total += (len(house.cables) - 1) * 9
         return total
 
 

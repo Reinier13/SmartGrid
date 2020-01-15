@@ -1,7 +1,7 @@
 import random
 
 def hill_climb(grid):
-    for i in range(1000):
+    for i in range(100000):
         swap(grid)
 
 def swap(grid):
@@ -16,10 +16,14 @@ def swap(grid):
     old_distance = distance(swap_house_1, swap_house_1.battery) + distance(swap_house_2, swap_house_2.battery)
     new_distance = distance(swap_house_2, swap_house_1.battery) + distance(swap_house_1, swap_house_2.battery)
 
-    if new_distance < old_distance and capacity_fit(swap_house_1, swap_house_2):
-        print('LOOP')
+    if new_distance < old_distance:
+        swap_house_1.battery.houses.append(swap_house_2.battery.houses.pop(swap_house_2.battery.houses.index(swap_house_2)))
+        swap_house_2.battery.houses.append(swap_house_1.battery.houses.pop(swap_house_1.battery.houses.index(swap_house_1)))
         swap_house_2.battery = swap_house_1.battery
         swap_house_1.battery = swap_battery
+        for house in grid.houses:
+            house.cables = []
+            house.add_cable()
 
 
 def capacity_fit(swap_house_1, swap_house_2):
