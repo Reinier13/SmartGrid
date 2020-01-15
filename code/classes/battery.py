@@ -4,6 +4,7 @@ class Battery:
         self.y = int(positie.split(', ')[-1])
         self.capacity = float(capacity.strip(' '))
         self.houses = []
+        self.distances = []
 
     def add_house(self, house):
         self.houses.append(house)
