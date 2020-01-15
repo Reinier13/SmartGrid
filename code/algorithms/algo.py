@@ -1,7 +1,7 @@
 import random
 import numpy as np
-import sys
-sys.setrecursionlimit(30000)
+# import sys
+# sys.setrecursionlimit(15000)
 
 
 def greedy(grid):
@@ -24,7 +24,7 @@ def find_battery(house, batteries, grid):
     house.battery.add_house(house)
     house.add_cable()
 
-    if house.battery.capacity_used() >= 1700:
+    if house.battery.capacity_used() >= house.battery.capacity:
         if counter < 4:
             counter += 1
         if counter == 4:
