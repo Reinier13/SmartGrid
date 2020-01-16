@@ -2,6 +2,7 @@ from .house import House
 from .battery import Battery
 import csv
 import matplotlib
+import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -78,3 +79,9 @@ class Grid:
         # set labels and show plot
         ax.set(xlabel='X-axis', ylabel='Y-axis', title='Grid')
         plt.show()
+    
+    def histogram(self, x):
+        num_bins = 30
+        plt.hist(x, num_bins, facecolor='blue')
+        plt.show()
+        

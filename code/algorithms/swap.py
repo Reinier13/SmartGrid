@@ -1,7 +1,11 @@
 import random
 
 def hill_climb(grid):
+<<<<<<< HEAD
     for i in range(15000):
+=======
+    for i in range(10000):
+>>>>>>> f425cf1b3bca9049e8805e8a5b10a137575720c5
         swap(grid)
 
 def swap(grid):
