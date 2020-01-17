@@ -3,6 +3,7 @@ class Battery:
         self.x = int(positie.split(', ')[0])
         self.y = int(positie.split(', ')[-1])
         self.capacity = float(capacity.strip(' '))
+        self.cost = 5000
         self.houses = []
         self.distances = []
 
