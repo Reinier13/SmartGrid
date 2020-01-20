@@ -5,29 +5,30 @@ import numpy as np
 MAX_DIST = 10000
 
 def greedy(grid):
+    # init
+    num_houses = 0
+
+    # get distances of batteries to houses
     create_distances(grid)
+
+    # create connection between houses and batteries
     for battery in grid.batteries:
+
+        # keep making connections until capacity is reached
         while check_cap(battery):
+
+            # get index of closest house to battery
             closest_index = pick(battery)
+
+            # if all houses are connected break out of loop
+            if battery.distances[closest_index] == MAX_DIST:
+                break
+
             remove_house(grid, closest_index)
             battery.houses.append(grid.houses[closest_index])
-            
-    draw(grid)
+        num_houses += len(battery.houses)
 
-# def draft(grid):
-#     create_distances(grid)
-#     house_available = True
-#     while house_available:
-#         for battery in grid.batteries:
-#             closest_index = pick(battery)
-#             if check_cap(battery):
-#                 if battery.distances[closest_index] == MAX_DIST:
-#                     house_available = False
-#                     break
-#
-#                 remove_house(grid, closest_index)
-#                 battery.houses.append(grid.houses[closest_index])
-#     draw(grid)
+    draw(grid)
 
 
 def distance(house, battery):
@@ -59,6 +60,9 @@ def remove_house(grid, closest_index):
 
 
 def draw(grid):
+    # for house in grid.houses:
+    #     house.battery = None
+    #     house.cables = []
     for battery in grid.batteries:
         for house in battery.houses:
             house.battery = battery
