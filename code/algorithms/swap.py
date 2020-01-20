@@ -1,29 +1,70 @@
 import random
 
 def hill_climb(grid):
-    for i in range(100000):
+    # create list to store improved grid costs
+    costs = []
+
+    # iterate over desired number of improverments
+    for i in range(80):
         swap(grid)
+        costs.append(grid.calculate_cost())
+
+        # testing print statement
+        print(costs[i-1])
+
+        # break if the improvements don't exceed 10
+        if i > 1 and costs[i] > costs[i-1] - 10:
+            break
+
+    # test print the number of iterations performed
+    print(i)
 
 def swap(grid):
-    swap_house_1 = random.choice(grid.houses)
-    swap_battery = choose_battery(grid)
+    # boolean true until cost is decreased
+    NoLowerCost = True
 
-    while swap_battery == swap_house_1.battery:
+    while NoLowerCost:
+        # take random house and battery
+        swap_house_1 = random.choice(grid.houses)
         swap_battery = choose_battery(grid)
 
-    swap_house_2 = random.choice(swap_battery.houses)
+        # make sure house and battery aren't connected
+        while swap_battery == swap_house_1.battery:
+            swap_battery = choose_battery(grid)
 
-    old_distance = distance(swap_house_1, swap_house_1.battery) + distance(swap_house_2, swap_house_2.battery)
-    new_distance = distance(swap_house_2, swap_house_1.battery) + distance(swap_house_1, swap_house_2.battery)
+        # iterate over all houses of all batteries 
+        # expect the battery that house 1 is connected to 
+        for swap_battery in grid.batteries:
+            if swap_battery == swap_house_1.battery:
+                continue
+            else:
+                for house in swap_battery.houses:
+                    swap_house_2 = house
 
-    if new_distance < old_distance:
-        swap_house_1.battery.houses.append(swap_house_2.battery.houses.pop(swap_house_2.battery.houses.index(swap_house_2)))
-        swap_house_2.battery.houses.append(swap_house_1.battery.houses.pop(swap_house_1.battery.houses.index(swap_house_1)))
-        swap_house_2.battery = swap_house_1.battery
-        swap_house_1.battery = swap_battery
-        for house in grid.houses:
-            house.cables = []
-            house.add_cable()
+                    # calculate distances
+                    old_distance = distance(swap_house_1, swap_house_1.battery) + distance(swap_house_2, swap_house_2.battery)
+                    new_distance = distance(swap_house_2, swap_house_1.battery) + distance(swap_house_1, swap_house_2.battery)
+
+                    # check if distance is improved and fits the capacity
+                    if new_distance < old_distance and capacity_fit(swap_house_1, swap_house_2):
+
+                        # swap the houses
+                        house_swap(swap_house_1, swap_house_2, swap_battery)
+
+                        # recable the houses
+                        for house in grid.houses:
+                            house.cables = []
+                            house.add_cable()
+
+                        # lower cost is found
+                        NoLowerCost = False
+
+
+def house_swap(swap_house_1, swap_house_2, swap_battery):
+    swap_house_1.battery.houses.append(swap_house_2.battery.houses.pop(swap_house_2.battery.houses.index(swap_house_2)))
+    swap_house_2.battery.houses.append(swap_house_1.battery.houses.pop(swap_house_1.battery.houses.index(swap_house_1)))
+    swap_house_2.battery = swap_house_1.battery
+    swap_house_1.battery = swap_battery
 
 
 def capacity_fit(swap_house_1, swap_house_2):

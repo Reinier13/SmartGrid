@@ -1,7 +1,9 @@
+from copy import deepcopy
 from .house import House
 from .battery import Battery
 import csv
 import matplotlib
+import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -10,6 +12,8 @@ class Grid:
     def __init__(self, houses_file, batteries_file):
         self.batteries = self.load_batteries(batteries_file)
         self.houses = self.load_houses(houses_file)
+        self.cost = set()
+        # self.compare = set()
 
 
     def load_batteries(self, batteries_file):
@@ -31,12 +35,16 @@ class Grid:
 
 
     def calculate_cost(self):
-        total = 0
+        self.cost = 0
         for battery in self.batteries:
-            total += 5000
+            self.cost += battery.cost
         for house in self.houses:
-            total += (len(house.cables) - 1) * 9
-        return total
+            self.cost += (len(house.cables) - 1) * 9
+        return self.cost
+
+    # def compare(self):
+    #     if self.cost < self.compare.cost:
+    #         self.compare = deepcopy(self)
 
 
     def plot(self):
@@ -78,3 +86,9 @@ class Grid:
         # set labels and show plot
         ax.set(xlabel='X-axis', ylabel='Y-axis', title='Grid')
         plt.show()
+    
+    def histogram(self, x, iterations):
+        plt.hist(x, bins=iterations, edgecolor='black', facecolor='blue')
+        plt.show()
+        #  range=(50000,70000),
+        
