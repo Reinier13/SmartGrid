@@ -1,5 +1,5 @@
 from code.classes import grid
-from code.algorithms import random, greedy, algo, master, draft, swap
+from code.algorithms import random, draft, swap
 import numpy as np
 
 if __name__ == '__main__':
@@ -7,16 +7,18 @@ if __name__ == '__main__':
 
     # initialize
     costs = []
-    iterations = 5
+    iterations = 100
 
     # generate multiple grids and apply hillclimb algorithm
     for i in range(iterations):
-        greedy.greedy(test_grid)
+        random.random(test_grid)
         swap.hill_climb(test_grid)
         costs.append(test_grid.calculate_cost())
 
     # display lowest cost
     print(min(costs))
+    print(max(costs))
+    print(sum(costs)/len(costs))
 
     # plot
     test_grid.histogram(costs, iterations)
