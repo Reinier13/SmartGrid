@@ -10,14 +10,14 @@ def draft(grid):
     house_available = True
     while house_available:
         for battery in grid.batteries:
-            closest_index = pick(battery)
-            if check_cap(battery):
-                if battery.distances[closest_index] == MAX_DIST:
+            closest_house_index = pick(battery)
+            if check_cap(battery, grid.houses[closest_house_index]):
+                if battery.distances[closest_house_index] == MAX_DIST:
                     house_available = False
                     break
 
-                remove_house(grid, closest_index)
-                battery.houses.append(grid.houses[closest_index])
+                remove_house(grid, closest_house_index)
+                battery.houses.append(grid.houses[closest_house_index])
     draw(grid)
 
 
@@ -35,18 +35,18 @@ def create_distances(grid):
 
 
 def pick(battery):
-    closest_index = battery.distances.index(min(battery.distances))
-    return closest_index
+    closest_house_index = battery.distances.index(min(battery.distances))
+    return closest_house_index
 
 
-def check_cap(battery):
-    if battery.capacity_used() <= battery.capacity:
+def check_cap(battery, house):
+    if battery.capacity_used() + house.output <= battery.capacity:
         return True
 
 
 def remove_house(grid, closest_index):
     for battery in grid.batteries:
-        battery.distances[closest_index] = MAX_DIST
+        battery.distances[closest_house_index] = MAX_DIST
 
 
 def draw(grid):
