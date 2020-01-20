@@ -9,13 +9,13 @@ if __name__ == '__main__':
     costs = []
     iterations = 1
 
-    greedy.greedy(test_grid)
-
-    print(test_grid.calculate_cost())
-
-    # draft.draft(test_grid)
+    # greedy.greedy(test_grid)
     #
     # print(test_grid.calculate_cost())
+
+    draft.draft(test_grid)
+
+    print(test_grid.calculate_cost())
 
     # generate multiple grids and apply hillclimb algorithm
     # for i in range(iterations):

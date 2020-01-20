@@ -13,7 +13,6 @@ class Grid:
         self.batteries = self.load_batteries(batteries_file)
         self.houses = self.load_houses(houses_file)
         self.cost = set()
-        # self.compare = set()
 
 
     def load_batteries(self, batteries_file):
@@ -41,10 +40,6 @@ class Grid:
         for house in self.houses:
             self.cost += (len(house.cables) - 1) * 9
         return self.cost
-
-    # def compare(self):
-    #     if self.cost < self.compare.cost:
-    #         self.compare = deepcopy(self)
 
 
     def plot(self):
@@ -86,9 +81,9 @@ class Grid:
         # set labels and show plot
         ax.set(xlabel='X-axis', ylabel='Y-axis', title='Grid')
         plt.show()
-    
+
+
     def histogram(self, x, iterations):
         plt.hist(x, bins=iterations, edgecolor='black', facecolor='blue')
         plt.show()
         #  range=(50000,70000),
-        
