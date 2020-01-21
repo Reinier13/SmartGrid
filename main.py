@@ -1,5 +1,5 @@
 from code.classes import grid
-from code.algorithms import random, draft, swap, greedy
+from code.algorithms import random, draft, swap, greedy, mst
 import numpy as np
 import networkx as nx
 
@@ -13,8 +13,8 @@ if __name__ == '__main__':
     # generate multiple grids and apply hillclimb algorithm
     for i in range(iterations):
         greedy.greedy(test_grid)
-        # swap.hill_climb(test_grid)
-        mst.mst(test_grid)
+        swap.hill_climb(test_grid)
+        tree = mst.mst(test_grid)
         costs.append(test_grid.calculate_cost())
 
     # display lowest cost
@@ -24,4 +24,4 @@ if __name__ == '__main__':
 
     # plot
     test_grid.histogram(costs, iterations)
-    test_grid.plot()
+    test_grid.plot(tree)

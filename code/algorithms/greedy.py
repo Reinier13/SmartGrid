@@ -27,15 +27,10 @@ def greedy(grid):
 
             remove_house(grid, closest_index)
             battery.houses.append(grid.houses[closest_index])
-<<<<<<< HEAD
-    mst(grid)
+
+    # mst(grid)
 
     # draw(grid)
-=======
-        num_houses += len(battery.houses)
-
-    draw(grid)
->>>>>>> 94754e690ba85a9b39b50394d085f67f8d2cd80a
 
 
 def distance(house, battery):
@@ -66,13 +61,7 @@ def remove_house(grid, closest_index):
         battery.distances[closest_index] = MAX_DIST
 
 
-<<<<<<< HEAD
-# def draw(grid):
-#     for battery in grid.batteries:
-#         for house in battery.houses:
-#             house.battery = battery
-#             house.add_cable()
-=======
+
 def draw(grid):
     # for house in grid.houses:
     #     house.battery = None
@@ -81,4 +70,3 @@ def draw(grid):
         for house in battery.houses:
             house.battery = battery
             house.add_cable()
->>>>>>> 94754e690ba85a9b39b50394d085f67f8d2cd80a

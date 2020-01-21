@@ -9,6 +9,7 @@ class House:
         self.cables = []
         self.distances = []
 
+
     def add_cable(self):
         if self.x <= self.battery.x:
             delta_x = list(range(self.x, self.battery.x + 1))
@@ -20,12 +21,10 @@ class House:
             delta_y = list(range(self.y, self.battery.y - 1, -1))
 
         for x in delta_x:
-            self.cables.append('(%i,%i)' % (x,self.y))
+            self.cables.append((x,self.y))
         for y in delta_y:
-            self.cables.append('(%i,%i)' % (self.battery.x,y))
+            self.cables.append((self.battery.x,y))
 
-        self.cables = [make_tuple(cable.strip()) for cable in self.cables]
-        self.cables = list(dict.fromkeys(self.cables))
 
     def __repr__(self):
         return f"House at ({self.x}, {self.y})"

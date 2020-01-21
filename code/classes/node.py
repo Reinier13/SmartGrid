@@ -1,5 +1,6 @@
-from .algorithms import helpers
-from .branch import Branch
+from code.algorithms import helpers
+from .tree import Tree
+import numpy as np
 
 class Node:
     def __init__(self, object):
@@ -7,12 +8,17 @@ class Node:
         self.y = object.y
         self.branch = None
 
-    def get_distances(self, node):
+    def get_distances(self, nodes):
         distances = []
-        for branch in grid.branches:
-            for node in branch:
-                distances.append(helpers.distance(node, house))
+        for target in nodes:
+            distances.append(helpers.distance(self, target))
+        return distances
 
-    def get_closest_neighbour(self, node):
-        closest = min(node.get_distances(node))
-        return closest
+    def get_closest_node(self, nodes):
+        distances = self.get_distances(nodes)
+        array = np.array(distances)
+        closest= distances.index(np.partition(array, 1)[1])
+        return nodes[closest]
+
+    def __repr__(self):
+        return f"({self.x}, {self.y})"
