@@ -12,6 +12,8 @@ class Grid:
     def __init__(self, houses_file, batteries_file):
         self.batteries = self.load_batteries(batteries_file)
         self.houses = self.load_houses(houses_file)
+        self.branches = []
+        self.nodes = []
         self.cost = set()
 
 

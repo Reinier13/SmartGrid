@@ -1,5 +1,6 @@
 import random
 import numpy as np
+from .mst import mst
 
 
 MAX_DIST = 10000
@@ -11,23 +12,9 @@ def greedy(grid):
             closest_index = pick(battery)
             remove_house(grid, closest_index)
             battery.houses.append(grid.houses[closest_index])
-            
-    draw(grid)
+    mst(grid)
 
-# def draft(grid):
-#     create_distances(grid)
-#     house_available = True
-#     while house_available:
-#         for battery in grid.batteries:
-#             closest_index = pick(battery)
-#             if check_cap(battery):
-#                 if battery.distances[closest_index] == MAX_DIST:
-#                     house_available = False
-#                     break
-#
-#                 remove_house(grid, closest_index)
-#                 battery.houses.append(grid.houses[closest_index])
-#     draw(grid)
+    # draw(grid)
 
 
 def distance(house, battery):
@@ -58,8 +45,8 @@ def remove_house(grid, closest_index):
         battery.distances[closest_index] = MAX_DIST
 
 
-def draw(grid):
-    for battery in grid.batteries:
-        for house in battery.houses:
-            house.battery = battery
-            house.add_cable()
+# def draw(grid):
+#     for battery in grid.batteries:
+#         for house in battery.houses:
+#             house.battery = battery
+#             house.add_cable()

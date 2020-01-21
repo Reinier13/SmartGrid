@@ -1,11 +1,7 @@
 import random
 
 
-def random(grid):
-<<<<<<< HEAD
-
-=======
->>>>>>> 439aaffe2584c4a10d135939511822f4209c0440
+def rand(grid):
     for battery in grid.batteries:
         battery.houses = []
     for house in grid.houses:
@@ -29,4 +25,4 @@ def random(grid):
         for house in grid.houses:
             house.battery = None
             house.cables = []
-        random(grid)
+        rand(grid)

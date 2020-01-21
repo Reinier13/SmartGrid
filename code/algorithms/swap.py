@@ -53,9 +53,6 @@ def swap(grid):
                         house.cables = []
                         house.add_cable()
 
-                # else:
-                #     return True
-
 
 def house_swap(swap_house_1, swap_house_2, swap_battery):
     swap_house_1.battery.houses.append(swap_house_2.battery.houses.pop(swap_house_2.battery.houses.index(swap_house_2)))
