@@ -1,5 +1,5 @@
-from code.classes import grid, graph
-from code.algorithms import random, draft, swap
+from code.classes import grid
+from code.algorithms import random, draft, swap, greedy
 import numpy as np
 import networkx as nx
 
@@ -18,9 +18,9 @@ if __name__ == '__main__':
         costs.append(test_grid.calculate_cost())
 
     # display lowest cost
-    print(min(costs))
-    print(max(costs))
-    print(sum(costs)/len(costs))
+    # print(min(costs))
+    # print(max(costs))
+    # print(sum(costs)/len(costs))
 
     # plot
     test_grid.histogram(costs, iterations)

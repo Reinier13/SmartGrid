@@ -1,7 +1,11 @@
 import random
 
 
+<<<<<<< HEAD
 def rand(grid):
+=======
+def random(grid):
+>>>>>>> 94754e690ba85a9b39b50394d085f67f8d2cd80a
     for battery in grid.batteries:
         battery.houses = []
     for house in grid.houses:
