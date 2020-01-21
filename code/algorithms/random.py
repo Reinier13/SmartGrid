@@ -2,6 +2,7 @@ import random
 
 
 def rand(grid):
+>>>>>>> 7534af81b8caa2ef6ceee56aad332827c43fd7a8
     for battery in grid.batteries:
         battery.houses = []
     for house in grid.houses:

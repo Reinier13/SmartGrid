@@ -1,5 +1,6 @@
 import random
 import numpy as np
+from .mst import mst
 
 
 MAX_DIST = 10000
@@ -80,8 +81,8 @@ def remove_house(grid, closest_index):
         battery.distances[closest_index] = MAX_DIST
 
 
-def draw(grid):
-    for battery in grid.batteries:
-        for house in battery.houses:
-            house.battery = battery
-            house.add_cable()
+# def draw(grid):
+#     for battery in grid.batteries:
+#         for house in battery.houses:
+#             house.battery = battery
+#             house.add_cable()
