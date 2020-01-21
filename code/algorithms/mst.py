@@ -1,17 +1,15 @@
-from .classes import node, branch
+from code.classes import node, tree
 
 def mst(grid):
-    for battery in grid.batteries:
-        branches = []
-        initial = node.Node(battery)
-        distances = []
-        get_distances(initial)
+    nodes = []
+    initial = node.Node(grid.batteries[0])
+    nodes.append(initial)
+    for house in grid.batteries[0].houses:
+        house_node = node.Node(house)
+        nodes.append(house_node)
 
-        closest = node.get_closest_neighbour(initial)
-
-        branches.append(node.add_branch(initial, closest))
-
-
-        for branch in branches:
-            for node in branch.nodes:
-                node.get_closest_neighbour()
+    trees = tree.Tree()
+    for point in nodes:
+        closest_node = point.get_closest_node(nodes)
+        trees.add_nodes(point, closest_node)
+    return trees.nodes

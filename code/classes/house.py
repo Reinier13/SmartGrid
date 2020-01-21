@@ -9,6 +9,7 @@ class House:
         self.cables = []
         self.distances = []
 
+
     def add_cable(self):
         if self.x <= self.battery.x:
             delta_x = list(range(self.x, self.battery.x + 1))
