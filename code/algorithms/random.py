@@ -1,7 +1,7 @@
 import random
 
 
-def random(grid):
+def rand(grid):
     for battery in grid.batteries:
         battery.houses = []
     for house in grid.houses:
@@ -25,4 +25,4 @@ def random(grid):
         for house in grid.houses:
             house.battery = None
             house.cables = []
-        random(grid)
+        rand(grid)

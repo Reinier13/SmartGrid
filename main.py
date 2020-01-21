@@ -13,15 +13,15 @@ if __name__ == '__main__':
     #
     # print(test_grid.calculate_cost())
 
-    draft.draft(test_grid)
-
-    print(test_grid.calculate_cost())
+    # draft.draft(test_grid)
+    #
+    # print(test_grid.calculate_cost())
 
     # generate multiple grids and apply hillclimb algorithm
-    # for i in range(iterations):
-    #     greedy.greedy(test_grid)
-    #     swap.hill_climb(test_grid)
-    #     costs.append(test_grid.calculate_cost())
+    for i in range(iterations):
+        greedy.greedy(test_grid)
+        swap.hill_climb(test_grid)
+        costs.append(test_grid.calculate_cost())
 
     # display lowest cost
     # print(min(costs))
