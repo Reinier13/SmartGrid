@@ -25,4 +25,8 @@ if __name__ == '__main__':
     # print(sum(costs)/len(costs))
 
     # test_grid.histogram(costs, iterations)
+<<<<<<< HEAD
     test_grid.plot(test_grid)
+=======
+    test_grid.plot()
+>>>>>>> d6aae226cd1f4597d87901d640f27230d713f16f
