@@ -10,13 +10,11 @@ if __name__ == '__main__':
     iterations = 1
 
     greedy.greedy(test_grid)
-    print(test_grid.calculate_cost())
-
-    # swap.hill_climb(test_grid)
-    # print(test_grid.calculate_cost())
-
-    simanneal.simanneal(test_grid)
-    print(test_grid.calculate_cost())
+    # generate multiple grids and apply hillclimb algorithm
+    for i in range(iterations):
+        random.rand(test_grid)
+        multiple_swap.hill_climb(test_grid, 2)
+        costs.append(test_grid.calculate_cost())
 
 
 
