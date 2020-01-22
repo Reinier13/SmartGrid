@@ -21,7 +21,7 @@ def hill_climb(grid, num_houses):
 def multiple_swap(grid, num_houses):
     swap_battery_1 = choose_battery(grid)
     swap_houses_1 = []
-    for house in num_houses:
+    for i in range(num_houses):
         swap_house_1 = random.choice(swap_battery_1.houses)
         while swap_house_1 in swap_houses_1:
             swap_house_1 = random.choice(swap_battery_1.houses)
@@ -32,7 +32,7 @@ def multiple_swap(grid, num_houses):
         swap_battery_2 = choose_battery(grid)
 
     swap_houses_2 = []
-    for house in num_houses:
+    for i in range(num_houses):
         swap_house_2 = random.choice(swap_battery_2.houses)
         while swap_house_2 in swap_houses_2:
             swap_house_2 = random.choice(swap_battery_2.houses)
