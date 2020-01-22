@@ -1,4 +1,5 @@
 from ast import literal_eval as make_tuple
+from .node import Node
 
 class House:
     def __init__(self, x, y, output):
@@ -11,6 +12,7 @@ class House:
 
 
     def add_cable(self):
+        node_list = []
         if self.x <= self.battery.x:
             delta_x = list(range(self.x, self.battery.x + 1))
         if self.x > self.battery.x:
@@ -21,9 +23,11 @@ class House:
             delta_y = list(range(self.y, self.battery.y - 1, -1))
 
         for x in delta_x:
-            self.cables.append((x,self.y))
+            node_list.append(Node(x, self.y))
         for y in delta_y:
-            self.cables.append((self.battery.x,y))
+            node_list.append(Node(self.battery.x, y))
+
+        self.cables.append(node_list)
 
 
     def __repr__(self):
