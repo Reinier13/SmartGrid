@@ -1,12 +1,10 @@
 from code.algorithms import helpers
-from .tree import Tree
 import numpy as np
 
 class Node:
     def __init__(self, object):
         self.x = object.x
         self.y = object.y
-        self.branch = None
 
     def get_distances(self, nodes):
         distances = []

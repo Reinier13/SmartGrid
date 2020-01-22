@@ -8,7 +8,7 @@ if __name__ == '__main__':
 
     # initialize
     costs = []
-    iterations = 5
+    iterations = 1
 
     # generate multiple grids and apply hillclimb algorithm
     for i in range(iterations):

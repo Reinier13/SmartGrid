@@ -2,13 +2,12 @@ from code.classes import node, tree
 
 def mst(grid):
     for battery in grid.batteries:
-        trees = tree.Tree()
+        tree_obj = tree.Tree()
         nodes = []
-        initial = node.Node(battery)
-        nodes.append(initial)
+        nodes.append(node.Node(battery))
         for house in battery.houses:
             point = node.Node(house)
             closest_node = point.get_closest_node(nodes)
-            trees.add_nodes(point, closest_node)
+            tree_obj.add_nodes(point, closest_node)
             nodes.append(point)
-        grid.trees.append(trees.nodes)
+        grid.trees.append(tree_obj.nodes)

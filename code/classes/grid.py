@@ -70,7 +70,6 @@ class Grid:
 
         colors = itertools.cycle(["r", "b", "g", "y", "k"])
         for trees in grid.trees:
-            # color = iter(list(['red', 'black', 'yellow']))
             c = next(colors)
             for tree in trees:
                 cablex = []
