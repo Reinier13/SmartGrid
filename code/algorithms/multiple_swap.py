@@ -1,3 +1,5 @@
+import random
+
 def hill_climb(grid, num_houses):
     # create list to store improved grid costs
     costs = []
@@ -6,7 +8,7 @@ def hill_climb(grid, num_houses):
     count = 0
 
     # iterate over desired number of improverments
-    for i in range(1000):
+    for i in range(10000):
         multiple_swap(grid, num_houses)
         costs.append(grid.calculate_cost())
 
@@ -56,6 +58,8 @@ def multiple_swap(grid, num_houses):
         # swap the houses
         houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses)
 
+        print(1)
+
         # recable the houses
         for house in grid.houses:
             house.cables = []
@@ -63,11 +67,11 @@ def multiple_swap(grid, num_houses):
 
 
 def houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses):
-    for i in range(4):
+    for i in range(num_houses):
         house_1 = swap_houses_1[i]
         house_2 = swap_houses_2[i]
-        house_1.battery.houses.append(house_2.battery.houses.pop(house_2.battery.houses.index(house_2))
-        house_2.battery.houses.append(house_1.battery.houses.pop(house_1.battery.houses.index(house_1))
+        house_1.battery.houses.append(house_2.battery.houses.pop(house_2.battery.houses.index(house_2)))
+        house_2.battery.houses.append(house_1.battery.houses.pop(house_1.battery.houses.index(house_1)))
         house_2.battery = house_1.battery
         house_1.battery = swap_battery_2
 
@@ -83,8 +87,10 @@ def distance(house, battery):
     delta = abs(delta_x) + abs(delta_y)
     return delta
 
-
 def capacity_fit(swap_houses_1, swap_houses_2):
+    output_1 = 0
+    output_2 = 0
+
     for house in swap_houses_1:
         output_1 += house.output
         

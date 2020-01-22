@@ -8,8 +8,7 @@ if __name__ == '__main__':
     # initialize
     costs = []
     iterations = 1
-
-    greedy.greedy(test_grid)
+    
     # generate multiple grids and apply hillclimb algorithm
     for i in range(iterations):
         random.rand(test_grid)
