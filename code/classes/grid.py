@@ -85,8 +85,8 @@ class Grid:
                 cablex = []
                 cabley = []
                 for cable in branch:
-                    cablex.append(cable[0])
-                    cabley.append(cable[1])
+                    cablex.append(cable.x)
+                    cabley.append(cable.y)
                 ax.plot(cablex, cabley, '-', c=c)
 
         # plot batteries

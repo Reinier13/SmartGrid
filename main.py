@@ -10,24 +10,16 @@ if __name__ == '__main__':
     # costs = []
     iterations = 1
 
-    greedy.greedy(test_grid)
-    simanneal.simanneal(test_grid)
+    # greedy.greedy(test_grid)
+    # simanneal.simanneal(test_grid)
     # generate multiple grids and apply hillclimb algorithm
-<<<<<<< HEAD
     for i in range(iterations):
-        greedy.greedy(test_grid)
+        random.rand(test_grid)
         print(test_grid.calculate_cost())
         swap.hill_climb(test_grid)
         print(test_grid.calculate_cost())
         mst.mst(test_grid)
         print(test_grid.calculate_cost())
-=======
-    # for i in range(iterations):
-    #     greedy.greedy(test_grid)
-    #     swap.hill_climb(test_grid)
-    #     tree = mst.mst(test_grid)
-    #     costs.append(test_grid.calculate_cost())
->>>>>>> a4cd31d310b134b427e06ba944f6a675bf8e5758
 
     # display lowest cost
     # print(min(costs))
