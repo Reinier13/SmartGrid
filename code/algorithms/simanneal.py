@@ -1,7 +1,7 @@
 import random, math
 
 def simanneal(grid):
-    pickle_in = open("dict.pickle", "wb")
+    pickle_out = open("dict.pickle", "wb")
 
     temperature = 1000
     cooling_rate = 0.03
@@ -11,13 +11,24 @@ def simanneal(grid):
 
         swap(grid, temperature)
 
-        # if 
-        # pickle.dump(grid, pickle_in)
+
 
         # recable the houses
         for house in grid.houses:
             house.cables = []
             house.add_cable()
+            grid.trees.append(house.cables)
+
+        if i == 0:
+            min_cost = 100000
+        else:
+            pickle_in = open("dict.pickle", "rb")
+            min_cost = pickle.load(pickle_in)
+
+        if grid.calculate_cost() < min_cost.calculate_cost():
+            pickle.dump(grid, pickle_out)
+        else:
+            pickle.dump(min_cost_grid, pickle_out)
 
 
 def swap(grid, temperature):

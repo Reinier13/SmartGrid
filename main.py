@@ -1,5 +1,5 @@
 from code.classes import grid
-from code.algorithms import random, draft, swap, greedy, mst, multiple_swap
+from code.algorithms import random, draft, swap, greedy, mst, multiple_swap, simanneal
 import numpy as np
 
 if __name__ == '__main__':
@@ -12,22 +12,16 @@ if __name__ == '__main__':
     # generate multiple grids and apply hillclimb algorithm
     for i in range(iterations):
         random.rand(test_grid)
+
+        simanneal.simanneal(test_grid)
         # swap.hill_climb(test_grid)
-        multiple_swap.hill_climb(test_grid)
+        # multiple_swap.hill_climb(test_grid)
         print(test_grid.calculate_cost())
-        mst.mst(test_grid)
-        costs.append(test_grid.calculate_cost())
+        # mst.mst(test_grid)
+        # costs.append(test_grid.calculate_cost())
 
 
 
-    # swap.hill_climb(test_grid)
-    # generate multiple grids and apply hillclimb algorithm
-    # for i in range(iterations):
-    #     greedy.greedy(test_grid)
-    #
-    #     tree = mst.mst(test_grid)
-    #     costs.append(test_grid.calculate_cost())
-    # display lowest cost
     # print(min(costs))
     # print(max(costs))
     # print(sum(costs)/len(costs))
