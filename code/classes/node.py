@@ -2,9 +2,9 @@ from code.algorithms import helpers
 import numpy as np
 
 class Node:
-    def __init__(self, object):
-        self.x = object.x
-        self.y = object.y
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
 
     def get_distances(self, nodes):
         distances = []

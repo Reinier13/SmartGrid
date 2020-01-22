@@ -12,7 +12,10 @@ if __name__ == '__main__':
     # generate multiple grids and apply hillclimb algorithm
     for i in range(iterations):
         random.rand(test_grid)
-        multiple_swap.hill_climb(test_grid, 2)
+        # swap.hill_climb(test_grid)
+        multiple_swap.hill_climb(test_grid)
+        print(test_grid.calculate_cost())
+        mst.mst(test_grid)
         costs.append(test_grid.calculate_cost())
 
     # display lowest cost
@@ -22,4 +25,4 @@ if __name__ == '__main__':
 
     # plot
     # test_grid.histogram(costs, iterations)
-    test_grid.plot(test_grid)
+    # test_grid.plot(test_grid)
