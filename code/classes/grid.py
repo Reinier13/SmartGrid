@@ -12,8 +12,9 @@ class Grid:
     def __init__(self, houses_file, batteries_file):
         self.batteries = self.load_batteries(batteries_file)
         self.houses = self.load_houses(houses_file)
+        self.trees = []
+        self.nodes = []
         self.cost = set()
-        # self.compare = set()
 
 
     def load_batteries(self, batteries_file):
@@ -42,12 +43,8 @@ class Grid:
             self.cost += (len(house.cables) - 1) * 9
         return self.cost
 
-    # def compare(self):
-    #     if self.cost < self.compare.cost:
-    #         self.compare = deepcopy(self)
 
-
-    def plot(self):
+    def plot(self, trees):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
@@ -74,10 +71,13 @@ class Grid:
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
             # plot cables
-            for cable in house.cables:
-                cablex.append(cable[0])
-                cabley.append(cable[1])
-            ax.plot(cablex, cabley, '-', color='green')
+            for tree in trees:
+                cablex = []
+                cabley = []
+                for cable in tree:
+                    cablex.append(cable[0])
+                    cabley.append(cable[1])
+                ax.plot(cablex, cabley, '-', color='green')
 
         # plot batteries
         for battery in self.batteries:
@@ -86,9 +86,9 @@ class Grid:
         # set labels and show plot
         ax.set(xlabel='X-axis', ylabel='Y-axis', title='Grid')
         plt.show()
-    
+
+
     def histogram(self, x, iterations):
         plt.hist(x, bins=iterations, edgecolor='black', facecolor='blue')
         plt.show()
         #  range=(50000,70000),
-        
