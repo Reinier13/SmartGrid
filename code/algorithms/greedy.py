@@ -35,13 +35,9 @@ def greedy(grid):
             battery.houses.append(grid.houses[closest_house_index])
 
         num_houses += len(battery.houses)
-        
+
         print(battery.capacity_used())
 
-<<<<<<< HEAD
-=======
-
->>>>>>> f44a3fe41df0c25d5d691e27c495139e98fb804b
     if num_houses < len(grid.houses):
         greedy(grid)
     else:

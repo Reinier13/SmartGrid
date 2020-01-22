@@ -11,6 +11,8 @@ def simanneal(grid):
 
         swap(grid, temperature)
 
+        # if 
+        # pickle.dump(grid, pickle_in)
 
         # recable the houses
         for house in grid.houses:

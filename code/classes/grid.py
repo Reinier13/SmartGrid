@@ -80,24 +80,11 @@ class Grid:
             cabley = []
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
-<<<<<<< HEAD
             # plot cables
             for cable in house.cables:
                 cablex.append(cable[0])
                 cabley.append(cable[1])
             ax.plot(cablex, cabley, '-', color='green')
-=======
-        colors = itertools.cycle(["r", "b", "g", "y", "k"])
-        for tree in grid.trees:
-            c = next(colors)
-            for branch in tree:
-                cablex = []
-                cabley = []
-                for cable in branch:
-                    cablex.append(cable[0])
-                    cabley.append(cable[1])
-                ax.plot(cablex, cabley, '-', c=c)
->>>>>>> f44a3fe41df0c25d5d691e27c495139e98fb804b
 
         # plot batteries
         for battery in self.batteries:
