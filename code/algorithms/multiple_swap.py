@@ -1,4 +1,4 @@
-def hill_climb(grid):
+def hill_climb(grid, num_houses):
     # create list to store improved grid costs
     costs = []
 
@@ -7,7 +7,7 @@ def hill_climb(grid):
 
     # iterate over desired number of improverments
     for i in range(1000):
-        multiple_swap(grid, 2)
+        multiple_swap(grid, num_houses)
         costs.append(grid.calculate_cost())
 
         # check identical cost outputs
@@ -54,7 +54,7 @@ def multiple_swap(grid, num_houses):
     if new_distance < old_distance and capacity_fit(swap_houses_1, swap_houses_2):
 
         # swap the houses
-        houses_swap(swap_houses_1, swap_houses_2, swap_battery_2)
+        houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses)
 
         # recable the houses
         for house in grid.houses:
@@ -62,12 +62,14 @@ def multiple_swap(grid, num_houses):
             house.add_cable()
 
 
-def houses_swap(swap_houses_1, swap_houses_2, swap_battery_2):
+def houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses):
     for i in range(4):
-        swap_houses_1[i].battery.houses.append(swap_houses_2[i].battery.houses.pop(swap_houses_2[i].battery.houses.index(swap_houses_2[i]))
-        swap_houses_2[i].battery.houses.append(swap_houses_1[i].battery.houses.pop(swap_houses_1[i].battery.houses.index(swap_houses_1[i]))
-        swap_houses_2[i].battery = swap_houses_1[i].battery
-        swap_houses_1[i].battery = swap_battery_2
+        house_1 = swap_houses_1[i]
+        house_2 = swap_houses_2[i]
+        house_1.battery.houses.append(house_2.battery.houses.pop(house_2.battery.houses.index(house_2))
+        house_2.battery.houses.append(house_1.battery.houses.pop(house_1.battery.houses.index(house_1))
+        house_2.battery = house_1.battery
+        house_1.battery = swap_battery_2
 
 
 def choose_battery(grid):
