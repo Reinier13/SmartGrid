@@ -2,12 +2,6 @@ import random
 
 
 def rand(grid):
-    for battery in grid.batteries:
-        battery.houses = []
-    for house in grid.houses:
-        house.battery = None
-        house.cables = []
-
     num_houses = 0
     random.shuffle(grid.houses)
     for battery in grid.batteries:

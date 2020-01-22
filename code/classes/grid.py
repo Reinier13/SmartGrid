@@ -35,12 +35,22 @@ class Grid:
         return houses
 
 
+    # def calculate_cost(self):
+    #     self.cost = 0
+    #     for battery in self.batteries:
+    #         self.cost += battery.cost
+    #     for house in self.houses:
+    #         self.cost += (len(house.cables) - 1) * 9
+    #     return self.cost
+
     def calculate_cost(self):
         self.cost = 0
         for battery in self.batteries:
             self.cost += battery.cost
-        for house in self.houses:
-            self.cost += (len(house.cables) - 1) * 9
+        for tree in self.trees:
+            for branch in tree:
+                for node in branch:
+                    self.cost += 9
         return self.cost
 
 
@@ -70,11 +80,24 @@ class Grid:
             cabley = []
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
+<<<<<<< HEAD
             # plot cables
             for cable in house.cables:
                 cablex.append(cable[0])
                 cabley.append(cable[1])
             ax.plot(cablex, cabley, '-', color='green')
+=======
+        colors = itertools.cycle(["r", "b", "g", "y", "k"])
+        for tree in grid.trees:
+            c = next(colors)
+            for branch in tree:
+                cablex = []
+                cabley = []
+                for cable in branch:
+                    cablex.append(cable[0])
+                    cabley.append(cable[1])
+                ax.plot(cablex, cabley, '-', c=c)
+>>>>>>> f44a3fe41df0c25d5d691e27c495139e98fb804b
 
         # plot batteries
         for battery in self.batteries:
