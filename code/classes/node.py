@@ -17,7 +17,9 @@ class Node:
     def get_closest_node(self, nodes):
         distances = self.get_distances(nodes)
         array = np.array(distances)
-        closest= distances.index(np.partition(array, 1)[1])
+        closest = distances.index(np.partition(array, 0)[0])
+        if len(nodes) > 1:
+            closest = distances.index(np.partition(array, 1)[1])
         return nodes[closest]
 
     def __repr__(self):

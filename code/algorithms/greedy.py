@@ -30,7 +30,7 @@ def greedy(grid):
 
     # mst(grid)
 
-    # draw(grid)
+    draw(grid)
 
 
 def distance(house, battery):
