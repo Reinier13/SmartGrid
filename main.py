@@ -20,10 +20,10 @@ if __name__ == '__main__':
     #     costs.append(test_grid.calculate_cost())
 
     # display lowest cost
-    # print(min(costs))
+    print(min(costs))
     # print(max(costs))
     # print(sum(costs)/len(costs))
 
     # plot
     # test_grid.histogram(costs, iterations)
-    test_grid.plot(grid)
+    test_grid.plot(test_grid)
