@@ -1,4 +1,5 @@
 from ast import literal_eval as make_tuple
+from .node import Node
 
 class Tree:
     def __init__(self):
@@ -16,8 +17,8 @@ class Tree:
             delta_y = list(range(node.y, target.y - 1, -1))
 
         for x in delta_x:
-            node_list.append((x,node.y))
+            node_list.append(Node(x,node.y))
         for y in delta_y:
-            node_list.append((target.x,y))
+            node_list.append(Node(target.x,y))
 
         self.nodes.append(node_list)
