@@ -8,7 +8,7 @@ if __name__ == '__main__':
     # initialize
     costs = []
     iterations = 1
-    
+
     # generate multiple grids and apply hillclimb algorithm
     for i in range(iterations):
         random.rand(test_grid)
@@ -34,8 +34,4 @@ if __name__ == '__main__':
 
     # plot
     # test_grid.histogram(costs, iterations)
-<<<<<<< HEAD
     test_grid.plot()
-=======
-    # test_grid.plot(test_grid)
->>>>>>> c2bdfee246c37fc3724d510ca3ed2ffb106dee09
