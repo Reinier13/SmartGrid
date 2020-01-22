@@ -87,7 +87,7 @@ class Grid:
                 for cable in branch:
                     cablex.append(cable.x)
                     cabley.append(cable.y)
-                ax.plot(cablex, cabley, '-', c=c)
+                ax.plot(cable.x, cable.y, '-', c=c)
 
         # plot batteries
         for battery in self.batteries:

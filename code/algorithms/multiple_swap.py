@@ -26,7 +26,7 @@ def multiple_swap(grid, num_houses):
         while swap_house_1 in swap_houses_1:
             swap_house_1 = random.choice(swap_battery_1.houses)
         swap_houses_1.append(swap_house_1)
-        
+
     swap_battery_2 = choose_battery(grid)
     while swap_battery_1 == swap_battery_2:
         swap_battery_2 = choose_battery(grid)
@@ -49,7 +49,7 @@ def multiple_swap(grid, num_houses):
     for house in swap_houses_2:
         old_distance += distance(house, swap_battery_2)
         new_distance += distance(house, swap_battery_1)
-        
+
     # check if distance is improved and fits the capacity
     if new_distance < old_distance and capacity_fit(swap_houses_1, swap_houses_2):
 
@@ -66,8 +66,8 @@ def houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses):
     for i in range(4):
         house_1 = swap_houses_1[i]
         house_2 = swap_houses_2[i]
-        house_1.battery.houses.append(house_2.battery.houses.pop(house_2.battery.houses.index(house_2))
-        house_2.battery.houses.append(house_1.battery.houses.pop(house_1.battery.houses.index(house_1))
+        house_1.battery.houses.append(house_2.battery.houses.pop(house_2.battery.houses.index(house_2)))
+        house_2.battery.houses.append(house_1.battery.houses.pop(house_1.battery.houses.index(house_1)))
         house_2.battery = house_1.battery
         house_1.battery = swap_battery_2
 
@@ -87,7 +87,7 @@ def distance(house, battery):
 def capacity_fit(swap_houses_1, swap_houses_2):
     for house in swap_houses_1:
         output_1 += house.output
-        
+
     for house in swap_houses_2:
         output_2 += house.output
 
@@ -95,4 +95,4 @@ def capacity_fit(swap_houses_1, swap_houses_2):
     capacity_2 = swap_houses_2[0].battery.capacity_used() - output_2 + output_1
 
     if capacity_1 < swap_houses_1[0].battery.capacity and capacity_2 < swap_houses_2[0].battery.capacity:
-        return True 
+        return True
