@@ -26,9 +26,7 @@ def draft(grid):
                 remove_house(grid, closest_house_index)
                 battery.houses.append(grid.houses[closest_house_index])
                 num_houses += 1
-    print(num_houses)
-    print(grid.batteries[4].capacity_used())
-
+                
     if num_houses < len(grid.houses):
         draft(grid)
     else:
