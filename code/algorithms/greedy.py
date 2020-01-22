@@ -34,10 +34,10 @@ def greedy(grid):
             battery.houses.append(grid.houses[closest_house_index])
 
         num_houses += len(battery.houses)
+        
+        print(battery.capacity_used())
 
 
-
-    print(num_houses)
     if num_houses < len(grid.houses):
         greedy(grid)
     else:
@@ -79,7 +79,6 @@ def check_cap(battery, house):
 def remove_house(grid, closest_index):
     for battery in grid.batteries:
         battery.distances[closest_index] = MAX_DIST
-
 
 
 def draw(grid):

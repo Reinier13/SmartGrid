@@ -8,14 +8,14 @@ def hill_climb(grid):
     count = 0
 
     # iterate over desired number of improverments
-    for i in range(1000):
+    for i in range(10000):
         swap(grid)
         costs.append(grid.calculate_cost())
 
         # check identical cost outputs
         if costs[i] == costs[i-1]:
             count += 1
-            if count == 100:
+            if count == 1000:
                 break
         else:
             count = 0
@@ -47,6 +47,7 @@ def swap(grid):
 
                     # swap the houses
                     house_swap(swap_house_1, swap_house_2, swap_battery)
+                    print('SWAP!')
 
                     # recable the houses
                     for house in grid.houses:
