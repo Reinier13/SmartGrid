@@ -13,8 +13,7 @@ class Grid:
     def __init__(self, houses_file, batteries_file):
         self.batteries = self.load_batteries(batteries_file)
         self.houses = self.load_houses(houses_file)
-        self.branches = []
-        self.nodes = []
+        self.trees = []
         self.cost = set()
 
 
@@ -55,7 +54,7 @@ class Grid:
         return self.cost
 
 
-    def plot(self):
+    def plot(self, grid):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
@@ -77,12 +76,19 @@ class Grid:
 
         # plot houses
         for house in self.houses:
-            cablex = []
-            cabley = []
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
+<<<<<<< HEAD
+            # # plot cables
+            # for cable in house.cables:
+            #     cablex.append(cable[0])
+            #     cabley.append(cable[1])
+            # ax.plot(cablex, cabley, '-', color='green')
+
+=======
+>>>>>>> d6aae226cd1f4597d87901d640f27230d713f16f
         colors = itertools.cycle(["r", "b", "g", "y", "k"])
-        for tree in grid.trees:
+        for tree in self.trees:
             c = next(colors)
             for branch in tree:
                 cablex = []

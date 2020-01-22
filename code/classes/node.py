@@ -21,4 +21,4 @@ class Node:
         return nodes[closest]
 
     def __repr__(self):
-        return f"({self.x}, {self.y})"
+        return f"Node at ({self.x}, {self.y})"
