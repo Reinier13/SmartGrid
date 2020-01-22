@@ -20,6 +20,7 @@ def greedy(grid):
     for battery in grid.batteries:
 
         closest_house_index = pick(battery)
+
         # keep making connections until capacity is reached
         while check_cap(battery, grid.houses[closest_house_index]):
 
@@ -35,9 +36,6 @@ def greedy(grid):
 
         num_houses += len(battery.houses)
 
-
-
-    print(num_houses)
     if num_houses < len(grid.houses):
         greedy(grid)
     else:
@@ -83,9 +81,6 @@ def remove_house(grid, closest_index):
 
 
 def draw(grid):
-    # for house in grid.houses:
-    #     house.battery = None
-    #     house.cables = []
     for battery in grid.batteries:
         for house in battery.houses:
             house.battery = battery

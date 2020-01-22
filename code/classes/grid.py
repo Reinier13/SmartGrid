@@ -6,14 +6,14 @@ import matplotlib
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
 import numpy as np
-import itertools
 
 
 class Grid:
     def __init__(self, houses_file, batteries_file):
         self.batteries = self.load_batteries(batteries_file)
         self.houses = self.load_houses(houses_file)
-        self.trees = []
+        self.branches = []
+        self.nodes = []
         self.cost = set()
 
 
@@ -44,7 +44,7 @@ class Grid:
         return self.cost
 
 
-    def plot(self, grid):
+    def plot(self):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
@@ -66,18 +66,15 @@ class Grid:
 
         # plot houses
         for house in self.houses:
+            cablex = []
+            cabley = []
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
-        colors = itertools.cycle(["r", "b", "g", "y", "k"])
-        for trees in grid.trees:
-            c = next(colors)
-            for tree in trees:
-                cablex = []
-                cabley = []
-                for cable in tree:
-                    cablex.append(cable[0])
-                    cabley.append(cable[1])
-                ax.plot(cablex, cabley, '-', c=c)
+            # plot cables
+            for cable in house.cables:
+                cablex.append(cable[0])
+                cabley.append(cable[1])
+            ax.plot(cablex, cabley, '-', color='green')
 
         # plot batteries
         for battery in self.batteries:
