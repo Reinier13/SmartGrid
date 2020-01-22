@@ -71,10 +71,7 @@ def houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses):
     for i in range(num_houses):
         house_1 = swap_houses_1[i]
         house_2 = swap_houses_2[i]
-<<<<<<< HEAD
 
-=======
->>>>>>> c2bdfee246c37fc3724d510ca3ed2ffb106dee09
         house_1.battery.houses.append(house_2.battery.houses.pop(house_2.battery.houses.index(house_2)))
         house_2.battery.houses.append(house_1.battery.houses.pop(house_1.battery.houses.index(house_1)))
         house_2.battery = house_1.battery
