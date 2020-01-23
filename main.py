@@ -13,13 +13,12 @@ if __name__ == '__main__':
     for i in range(iterations):
         random.rand(test_grid)
         # swap.hill_climb(test_grid)
-        multiple_swap.hill_climb(test_grid)
+        multiple_swap.hill_climb(test_grid, 2)
         print(test_grid.calculate_cost())
-        mst.mst(test_grid)
         costs.append(test_grid.calculate_cost())
 
     # display lowest cost
-    print(min(costs))
+    print(costs)
     # print(max(costs))
     # print(sum(costs)/len(costs))
 
