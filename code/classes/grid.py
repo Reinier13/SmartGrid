@@ -1,4 +1,3 @@
-from copy import deepcopy
 from .house import House
 from .battery import Battery
 import csv
@@ -49,8 +48,8 @@ class Grid:
             self.cost += battery.cost
         for tree in self.trees:
             for branch in tree:
-                for node in branch:
-                    self.cost += 9
+                # print(branch)
+                self.cost += ((len(branch) - 1) * 9)
         return self.cost
 
 
@@ -78,8 +77,16 @@ class Grid:
         for house in self.houses:
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
+            # cablex = []
+            # cabley = []
+            # for cable in house.cables:
+            #     cablex.append(cable[0])
+            #     cabley.append(cable[1])
+            # ax.plot(cablex, cabley, '-', color='green')
+
+
         colors = itertools.cycle(["r", "b", "g", "y", "k"])
-        for tree in grid.trees:
+        for tree in self.trees:
             c = next(colors)
             for branch in tree:
                 cablex = []
@@ -87,7 +94,7 @@ class Grid:
                 for cable in branch:
                     cablex.append(cable.x)
                     cabley.append(cable.y)
-                ax.plot(cable.x, cable.y, '-', c=c)
+                ax.plot(cablex, cabley, '-', c=c)
 
         # plot batteries
         for battery in self.batteries:
