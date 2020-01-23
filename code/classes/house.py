@@ -22,7 +22,7 @@ class House:
         if self.y > self.battery.y:
             delta_y = list(range(self.y, self.battery.y - 1, -1))
 
-        for x in delta_x:
+        for x in delta_x[:-1]:
             node_list.append(Node(x, self.y))
         for y in delta_y:
             node_list.append(Node(self.battery.x, y))

@@ -8,7 +8,7 @@ def hill_climb(grid):
     count = 0
 
     # iterate over desired number of improverments
-    for i in range(10000):
+    for i in range(30000):
         swap(grid)
         costs.append(grid.calculate_cost())
 
@@ -35,6 +35,7 @@ def swap(grid):
         if swap_battery == swap_house_1.battery:
             continue
         else:
+            tree_obj = tree.Tree()
             for house in swap_battery.houses:
                 swap_house_2 = house
 
@@ -53,6 +54,7 @@ def swap(grid):
                     for house in grid.houses:
                         house.cables = []
                         house.add_cable()
+        grid.trees.append(tree_obj.nodes)
 
 
 def house_swap(swap_house_1, swap_house_2, swap_battery):

@@ -16,7 +16,7 @@ class Tree:
         if node.y > target.y:
             delta_y = list(range(node.y, target.y - 1, -1))
 
-        for x in delta_x:
+        for x in delta_x[:-1]:
             node_list.append(Node(x,node.y))
         for y in delta_y:
             node_list.append(Node(target.x,y))

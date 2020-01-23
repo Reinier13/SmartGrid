@@ -20,6 +20,11 @@ if __name__ == '__main__':
         # mst.mst(test_grid)
         # costs.append(test_grid.calculate_cost())
 
+
+        multiple_swap.hill_climb(test_grid, 1)
+        mst.mst(test_grid)
+        print(test_grid.calculate_cost())
+
     # print(test_grid.trees)
 
     # print(min(costs))
