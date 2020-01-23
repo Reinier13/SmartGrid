@@ -78,15 +78,13 @@ class Grid:
         for house in self.houses:
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
 
-<<<<<<< HEAD
             # # plot cables
             # for cable in house.cables:
             #     cablex.append(cable[0])
             #     cabley.append(cable[1])
             # ax.plot(cablex, cabley, '-', color='green')
 
-=======
->>>>>>> d6aae226cd1f4597d87901d640f27230d713f16f
+
         colors = itertools.cycle(["r", "b", "g", "y", "k"])
         for tree in self.trees:
             c = next(colors)

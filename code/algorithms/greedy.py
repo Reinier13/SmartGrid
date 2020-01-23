@@ -36,7 +36,6 @@ def greedy(grid):
 
         num_houses += len(battery.houses)
 
-        print(battery.capacity_used())
 
     if num_houses < len(grid.houses):
         greedy(grid)

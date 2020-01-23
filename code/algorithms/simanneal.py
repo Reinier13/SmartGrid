@@ -11,8 +11,6 @@ def simanneal(grid):
 
         swap(grid, temperature)
 
-
-
         # recable the houses
         for house in grid.houses:
             house.cables = []
@@ -20,15 +18,15 @@ def simanneal(grid):
             grid.trees.append(house.cables)
 
         if i == 0:
-            min_cost = 100000
+            min_cost = grid.calculate_cost()
         else:
             pickle_in = open("dict.pickle", "rb")
             min_cost = pickle.load(pickle_in)
 
-        if grid.calculate_cost() < min_cost.calculate_cost():
+        if grid.calculate_cost() <= min_cost.calculate_cost():
             pickle.dump(grid, pickle_out)
         else:
-            pickle.dump(min_cost_grid, pickle_out)
+            pickle.dump(min_cost, pickle_out)
 
 
 def swap(grid, temperature):
