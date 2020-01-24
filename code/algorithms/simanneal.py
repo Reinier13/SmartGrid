@@ -1,33 +1,48 @@
 import random, math
+import pickle
+from code.classes import tree
 
 def simanneal(grid):
-    pickle_out = open("dict.pickle", "wb")
 
-    temperature = 1000
-    cooling_rate = 0.03
 
-    for i in range(1000):
-        temperature = temperature * 0.03
+    temperature = 10000
+    cooling_rate = 0.95
 
-        swap(grid, temperature)
+    for i in range(50):
+        temporary_temperature = temperature * (cooling_rate ** i)
 
-        # recable the houses
+        swap(grid, temporary_temperature)
+
+        # grid.trees = []
+        # # recable the houses
+        # for battery in grid.batteries:
+        #     tree_obj = tree.Tree()
+        #
         for house in grid.houses:
             house.cables = []
             house.add_cable()
-            grid.trees.append(house.cables)
+            # tree_obj.nodes.append(house.cables)
+
+            # grid.trees.append(house.cables)
+
 
         if i == 0:
-            min_cost = grid.calculate_cost()
+            min_cost = grid
         else:
             pickle_in = open("dict.pickle", "rb")
             min_cost = pickle.load(pickle_in)
 
+        print(min_cost.calculate_cost())
+        print(grid.calculate_cost())
+        pickle_out = open("dict.pickle", "wb")
         if grid.calculate_cost() <= min_cost.calculate_cost():
             pickle.dump(grid, pickle_out)
         else:
             pickle.dump(min_cost, pickle_out)
 
+    pickle_in = open("dict.pickle", "rb")
+    min_cost = pickle.load(pickle_in)
+    print(min_cost)
 
 def swap(grid, temperature):
     # take random house and battery
@@ -58,6 +73,7 @@ def swap(grid, temperature):
                     house_swap(swap_house_1, swap_house_2, swap_battery)
 
                 elif math.exp(delta_distance/temperature) > random.uniform(0,1):
+
                     house_swap(swap_house_1, swap_house_2, swap_battery)
 
 
