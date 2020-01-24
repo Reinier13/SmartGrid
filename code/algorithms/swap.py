@@ -74,10 +74,3 @@ def capacity_fit(swap_house_1, swap_house_2):
 def choose_battery(grid):
     other_battery = random.choice(grid.batteries)
     return other_battery
-
-
-def distance(house, battery):
-    delta_x = house.x - battery.x
-    delta_y = house.y - battery.y
-    delta = abs(delta_x) + abs(delta_y)
-    return delta

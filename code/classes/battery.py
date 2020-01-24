@@ -16,5 +16,13 @@ class Battery:
             used_capacity += house.output
         return used_capacity
 
+    def check_cap(self, house):
+        if (self.capacity_used() + house.output) <= self.capacity:
+            return True
+
+    def clear(self):
+        self.houses = []
+        self.distances = []
+
     def __repr__(self):
         return f"[{self.x}, {self.y}, {self.capacity}]"

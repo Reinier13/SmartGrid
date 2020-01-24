@@ -1,13 +1,18 @@
 import random
 import numpy as np
-from code.algorithms import helpers
+from code.algorithms.helpers import distance
 
 
 MAX_DIST = 10000
 
 
 def draft(grid):
-    clear(grid)
+
+    for battery in grid.batteries:
+        battery.clear()
+        for house in battery.houses:
+            house.clear()
+
     num_houses = 0
     random.shuffle(grid.batteries)
 
@@ -18,7 +23,7 @@ def draft(grid):
 
         for battery in grid.batteries:
             closest_house_index = pick(battery)
-            if check_cap(battery):
+            if battery.check_cap(grid.houses[closest_house_index]):
 
                 if battery.distances[closest_house_index] == MAX_DIST:
                     house_available = False
@@ -33,36 +38,16 @@ def draft(grid):
     else:
         draw(grid)
 
-def clear(grid):
-    for battery in grid.batteries:
-        battery.houses = []
-        battery.distances = []
-    for house in grid.houses:
-        house.battery = None
-        house.cables = []
-
-
-# def distance(house, battery):
-#     delta_x = house.x - battery.x
-#     delta_y = house.y - battery.y
-#     delta = abs(delta_x) + abs(delta_y)
-#     return delta
-
 
 def create_distances(grid):
     for battery in grid.batteries:
         for house in grid.houses:
-            battery.distances.append(helpers.distance(house, battery))
+            battery.distances.append(distance(house, battery))
 
 
 def pick(battery):
     closest_house_index = battery.distances.index(min(battery.distances))
     return closest_house_index
-
-
-def check_cap(battery):
-    if battery.capacity_used() <= battery.capacity:
-        return True
 
 
 def remove_house(grid, closest_house_index):

@@ -29,6 +29,10 @@ class House:
 
         self.cables.append(node_list)
 
+    def clear(self):
+        self.battery = None
+        self.cables = []
+
 
     def __repr__(self):
         return f"House at ({self.x}, {self.y})"

@@ -1,4 +1,6 @@
 import random
+from code.algorithms.helpers import distance
+
 
 def hill_climb(grid, num_houses):
     # create list to store improved grid costs
@@ -84,13 +86,7 @@ def houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses):
 def choose_battery(grid):
     other_battery = random.choice(grid.batteries)
     return other_battery
-
-
-def distance(house, battery):
-    delta_x = house.x - battery.x
-    delta_y = house.y - battery.y
-    delta = abs(delta_x) + abs(delta_y)
-    return delta
+    
 
 def capacity_fit(swap_houses_1, swap_houses_2):
     output_1 = 0
