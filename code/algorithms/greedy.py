@@ -1,6 +1,5 @@
 import random
 import numpy as np
-from .mst import mst
 
 
 MAX_DIST = 10000
@@ -71,7 +70,7 @@ def pick(battery):
 
 
 def check_cap(battery, house):
-    if (battery.capacity_used() + house.output) <= battery.capacity:
+    if battery.capacity_used() <= battery.capacity:
         return True
 
 
