@@ -3,8 +3,6 @@ import argparse
 def parseArgs():
     """parseArgs.
     Parses arguments given to main and returns them
-    Forces input for district and method if no arguments are given and sets
-    number of iterations for kmeans to 50 if nothing is specified.
     Runs everything by default
     """
     parser = argparse.ArgumentParser()
