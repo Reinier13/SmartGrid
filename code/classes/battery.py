@@ -11,6 +11,9 @@ class Battery:
         self.houses.append(house)
 
     def capacity_used(self):
+        """
+        Calculates the capacity used.
+        """
         used_capacity = 0.0
         for house in self.houses:
             used_capacity += house.output

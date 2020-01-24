@@ -12,6 +12,11 @@ class House:
 
 
     def add_cable(self):
+        """
+        Adds a branch filled with nodes to a house.
+        """
+
+        # retrieve all coordinates from battery to house
         node_list = []
         if self.x <= self.battery.x:
             delta_x = list(range(self.x, self.battery.x + 1))
@@ -22,6 +27,7 @@ class House:
         if self.y > self.battery.y:
             delta_y = list(range(self.y, self.battery.y - 1, -1))
 
+        # make node objects of all coordinates
         for x in delta_x[:-1]:
             node_list.append(Node(x, self.y))
         for y in delta_y:
