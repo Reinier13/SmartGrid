@@ -84,3 +84,4 @@ def draw(grid):
         for house in battery.houses:
             house.battery = battery
             house.add_cable()
+    

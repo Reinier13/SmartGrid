@@ -1,5 +1,6 @@
 import random
 import numpy as np
+from code.algorithms import helpers
 
 
 MAX_DIST = 10000
@@ -40,17 +41,18 @@ def clear(grid):
         house.battery = None
         house.cables = []
 
-def distance(house, battery):
-    delta_x = house.x - battery.x
-    delta_y = house.y - battery.y
-    delta = abs(delta_x) + abs(delta_y)
-    return delta
+
+# def distance(house, battery):
+#     delta_x = house.x - battery.x
+#     delta_y = house.y - battery.y
+#     delta = abs(delta_x) + abs(delta_y)
+#     return delta
 
 
 def create_distances(grid):
     for battery in grid.batteries:
         for house in grid.houses:
-            battery.distances.append(distance(house, battery))
+            battery.distances.append(helpers.distance(house, battery))
 
 
 def pick(battery):
