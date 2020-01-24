@@ -19,7 +19,7 @@ To run this program flags can be used.
                             Specify the method of initially assigning houses to
                             batteries (greedy, random)
 
-      -hc {single_swap,multiple_swap,simanneal}, --method {single_swap,multiple_swap,simanneal}
+      -hc {single_swap,multiple_swap}, --method {single_swap,multiple_swap}
                             Specify which type of hill climb
 
       -s {1,2,3,4}, --swaps {1,2,3,4},
