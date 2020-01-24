@@ -53,7 +53,7 @@ class Grid:
         return self.cost
 
 
-    def plot(self, grid):
+    def plot(self, grid, title):
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
@@ -101,11 +101,12 @@ class Grid:
             ax.scatter(battery.x, battery.y, c='b', marker='*', zorder=2)
 
         # set labels and show plot
-        ax.set(xlabel='X-axis', ylabel='Y-axis', title='Grid')
+        costs = grid.cost
+        ax.set(xlabel='X-axis', ylabel='Y-axis', title=title + ", Cost: " + str(costs))
         plt.show()
 
 
     def histogram(self, x, iterations):
         plt.hist(x, bins=iterations, edgecolor='black', facecolor='blue')
         plt.show()
-        #  range=(50000,70000),
+
