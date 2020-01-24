@@ -84,6 +84,7 @@ class Grid:
             #     cabley.append(cable[1])
             # ax.plot(cablex, cabley, '-', color='green')
 
+
         colors = itertools.cycle(["r", "b", "g", "y", "k"])
         for tree in self.trees:
             c = next(colors)
@@ -93,7 +94,7 @@ class Grid:
                 for cable in branch:
                     cablex.append(cable.x)
                     cabley.append(cable.y)
-                ax.plot(cablex, cabley, '-', c=c)
+                    ax.plot(cablex, cabley, '-', c=c)
 
         # plot batteries
         for battery in self.batteries:

@@ -36,7 +36,6 @@ def greedy(grid):
 
         num_houses += len(battery.houses)
 
-        print(battery.capacity_used())
 
     if num_houses < len(grid.houses):
         greedy(grid)
@@ -86,3 +85,4 @@ def draw(grid):
         for house in battery.houses:
             house.battery = battery
             house.add_cable()
+    
