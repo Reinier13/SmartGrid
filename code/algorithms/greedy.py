@@ -1,6 +1,5 @@
 import random
 import numpy as np
-from .mst import mst
 
 
 MAX_DIST = 10000
