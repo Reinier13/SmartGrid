@@ -17,6 +17,9 @@ class Grid:
 
 
     def load_batteries(self, batteries_file):
+        """
+        Load all the batteries into the grid.
+        """
         with open(batteries_file, 'r') as in_file:
             reader = csv.DictReader(in_file)
             batteries = []
@@ -26,6 +29,9 @@ class Grid:
 
 
     def load_houses(self, houses_file):
+        """
+        Load all the houses into the grid.
+        """
         with open(houses_file, 'r') as houses_file:
             reader = csv.DictReader(houses_file)
             houses = []
@@ -43,6 +49,9 @@ class Grid:
     #     return self.cost
 
     def calculate_cost(self):
+        """
+        Calculates the costs of the whole grid system.
+        """
         self.cost = 0
         for battery in self.batteries:
             self.cost += battery.cost
@@ -53,7 +62,14 @@ class Grid:
         return self.cost
 
 
+<<<<<<< HEAD
+    def plot(self, grid):
+        """
+        Plots the grid system.
+        """
+=======
     def plot(self, grid, title):
+>>>>>>> 8ec711a8fb39430d4959fb46b37e921c9a0e89c4
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 

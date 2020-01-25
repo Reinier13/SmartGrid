@@ -7,12 +7,18 @@ class Node:
         self.y = y
 
     def get_distances(self, nodes):
+        """
+        Returns distance between two nodes.
+        """
         distances = []
         for target in nodes:
             distances.append(helpers.distance(self, target))
         return distances
 
     def get_closest_node(self, nodes):
+        """
+        Returns closest node.
+        """
         distances = self.get_distances(nodes)
         array = np.array(distances)
         closest = distances.index(np.partition(array, 0)[0])
