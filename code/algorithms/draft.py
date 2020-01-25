@@ -9,7 +9,8 @@ MAX_DIST = 10000
 def draft(grid):
     """
     Draft - Greedy algorithm that connects the batteries in turn with the houses
-    that are closest to that battery until the capacity of the battery is reached.
+    that are closest to that battery until the capacity of the battery is
+    reached.
     """
 
     clear(grid)
