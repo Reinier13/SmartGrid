@@ -1,5 +1,5 @@
 from ast import literal_eval as make_tuple
-from .node import Node
+# from .node import Node
 
 class House:
     def __init__(self, x, y, output):

@@ -1,5 +1,5 @@
 import random
-from .helpers import distance
+from .helpers import distance, draw
 from code.classes import tree
 
 def hill_climb(grid):
@@ -22,11 +22,7 @@ def hill_climb(grid):
         else:
             count = 0
 
-    for battery in grid.batteries:
-        tree_obj = tree.Tree()
-        for house in battery.houses:
-            tree_obj.add_nodes(house, battery)
-        grid.trees.append(tree_obj.nodes)
+    draw(grid)
 
 def swap(grid):
     # take random house and battery
@@ -56,7 +52,6 @@ def swap(grid):
 
                     # swap the houses
                     house_swap(swap_house_1, swap_house_2, swap_battery)
-                    print('SWAP!')
 
 
 def house_swap(swap_house_1, swap_house_2, swap_battery):

@@ -1,4 +1,4 @@
-from code.algorithms import helpers
+from code.algorithms.helpers import distance
 import numpy as np
 
 class Node:
@@ -12,7 +12,7 @@ class Node:
         """
         distances = []
         for target in nodes:
-            distances.append(helpers.distance(self, target))
+            distances.append(distance(self, target))
         return distances
 
     def get_closest_node(self, nodes):

@@ -1,5 +1,5 @@
 import random
-from code.algorithms.helpers import distance
+from code.algorithms.helpers import distance, draw
 
 
 def hill_climb(grid, num_houses):
@@ -22,8 +22,7 @@ def hill_climb(grid, num_houses):
         else:
             count = 0
 
-    for house in grid.houses:
-        grid.trees.append(house.cables)
+    draw(grid)
 
 
 def multiple_swap(grid, num_houses):
@@ -64,13 +63,6 @@ def multiple_swap(grid, num_houses):
         # swap the houses
         houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses)
 
-        print(1)
-
-        # recable the houses
-        for house in grid.houses:
-            house.cables = []
-            house.add_cable()
-
 
 def houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses):
     for i in range(num_houses):
@@ -86,7 +78,7 @@ def houses_swap(swap_houses_1, swap_houses_2, swap_battery_2, num_houses):
 def choose_battery(grid):
     other_battery = random.choice(grid.batteries)
     return other_battery
-    
+
 
 def capacity_fit(swap_houses_1, swap_houses_2):
     output_1 = 0

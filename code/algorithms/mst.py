@@ -1,10 +1,9 @@
 import random
 from code.classes import node, tree
 from code.classes.grid import Grid
-from .helpers import calculate_cost2
 
 def mst(grid):
-    
+
     for battery in grid.batteries:
         tree_obj = tree.Tree()
         nodes = []
