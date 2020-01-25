@@ -1,37 +1,65 @@
 import random
 import numpy as np
-from code.algorithms import helpers
+from code.algorithms.helpers import distance
 
 
 MAX_DIST = 10000
 
 
 def draft(grid):
-    clear(grid)
+    """
+    Draft - Greedy algorithm that connects the batteries in turn with the houses
+    that are closest to that battery until the capacity of the battery is reached.
+    """
+
+    for battery in grid.batteries:
+        battery.clear()
+        for house in battery.houses:
+            house.clear()
+
+    # init
     num_houses = 0
     random.shuffle(grid.batteries)
 
+    # clear all lists in grid
+    clear(grid)
+
+    # get distances of batteries to houses
     create_distances(grid)
 
+    # create connection between houses and batteries
     house_available = True
     while house_available:
-
         for battery in grid.batteries:
-            closest_house_index = pick(battery)
-            if check_cap(battery):
 
+            # get index of closest house
+            closest_house_index = pick(battery)
+<<<<<<< HEAD
+            if battery.check_cap(grid.houses[closest_house_index]):
+=======
+
+            # add house if capacity is not yet reached
+            if check_cap(battery):
+>>>>>>> d3da386e05f1182e4a81394902e215e727a3a76b
+
+                # end algorithm if all houses are connected
                 if battery.distances[closest_house_index] == MAX_DIST:
                     house_available = False
                     break
 
+                # connect house to battery and mark as connected
                 remove_house(grid, closest_house_index)
                 battery.houses.append(grid.houses[closest_house_index])
                 num_houses += 1
 
+    # run again if not all houses connected otherwise draw up grid
     if num_houses < len(grid.houses):
         draft(grid)
     else:
         draw(grid)
+
+<<<<<<< HEAD
+=======
 
 def clear(grid):
     for battery in grid.batteries:
@@ -48,21 +76,17 @@ def clear(grid):
 #     delta = abs(delta_x) + abs(delta_y)
 #     return delta
 
+>>>>>>> d3da386e05f1182e4a81394902e215e727a3a76b
 
 def create_distances(grid):
     for battery in grid.batteries:
         for house in grid.houses:
-            battery.distances.append(helpers.distance(house, battery))
+            battery.distances.append(distance(house, battery))
 
 
 def pick(battery):
     closest_house_index = battery.distances.index(min(battery.distances))
     return closest_house_index
-
-
-def check_cap(battery):
-    if battery.capacity_used() <= battery.capacity:
-        return True
 
 
 def remove_house(grid, closest_house_index):
