@@ -1,4 +1,3 @@
-from ast import literal_eval as make_tuple
 from .node import Node
 
 class Tree:

@@ -4,7 +4,7 @@ from code.algorithms.arguments import parseArgs
 import numpy as np
 
 def main():
-    """ Smart Grid by m4st3r_h4ck3rs
+    """ Smart Grid by m4st3r_h4ck3rz
         Please refer to the README for more information.
     """
 
