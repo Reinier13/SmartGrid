@@ -23,31 +23,14 @@ def main():
             greedy.greedy(connect_grid)
             print("Initial costs: ", connect_grid.calculate_cost())
 
-<<<<<<< HEAD
-    # generate multiple grids and apply hillclimb algorithm
-    for i in range(iterations):
-        draft.draft(test_grid)
-        # print(test_grid.calculate_cost())
-        swap.hill_climb(test_grid)
-        # multiple_swap.hill_climb(test_grid, 2)
-        mst.mst(test_grid)
-        print(test_grid.calculate_cost())
-=======
         if args.method == "random":
             # Connect all houses to random battery
             random.rand(connect_grid)
             print("Initial costs: ", connect_grid.calculate_cost())
->>>>>>> a0bcedc520526e4b6b839f29f196ec29248fdc3e
 
         if args.plot:
            connect_grid.plot(connect_grid, 'Initial')
 
-<<<<<<< HEAD
-    # display lowest cost
-    # print(min(costs))
-    # print(max(costs))
-    # print(sum(costs)/len(costs))
-=======
     if args.part == "2":
         if args.method == "greedy":
             # Connect all houses to nearest battery
@@ -86,7 +69,6 @@ def main():
 
     if args.plot:
         connect_grid.plot(connect_grid, "Final")
->>>>>>> a0bcedc520526e4b6b839f29f196ec29248fdc3e
 
     return connect_grid
 

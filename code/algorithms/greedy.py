@@ -1,11 +1,7 @@
 import random
 import numpy as np
-<<<<<<< HEAD
 from .mst import mst
 from code.algorithms.helpers import distance
-
-=======
->>>>>>> a0bcedc520526e4b6b839f29f196ec29248fdc3e
 
 
 MAX_DIST = 10000
@@ -54,7 +50,7 @@ def greedy(grid):
 def create_distances(grid):
     for battery in grid.batteries:
         for house in grid.houses:
-            battery.distances.append(helpers.distance(house, battery))
+            battery.distances.append(distance(house, battery))
 
 
 def pick(battery):
@@ -62,14 +58,6 @@ def pick(battery):
     return closest_index
 
 
-<<<<<<< HEAD
-=======
-def check_cap(battery, house):
-    if battery.capacity_used() <= battery.capacity:
-        return True
-
-
->>>>>>> a0bcedc520526e4b6b839f29f196ec29248fdc3e
 def remove_house(grid, closest_index):
     for battery in grid.batteries:
         battery.distances[closest_index] = MAX_DIST

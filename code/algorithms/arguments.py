@@ -23,7 +23,7 @@ def parseArgs():
                         choices = ["1","2","3","4"])
     parser.add_argument("-sa","--simanneal",
                         help = "Flag if hillclimb should be perfomed with simulated annealing",
-                        action = "store_true")                   
+                        action = "store_true")
     parser.add_argument("-pt","--part",
                         help = "Specifies until which part of the assignment the case should be solved",
                         choices = ["1","2","3","4"])
