@@ -52,7 +52,7 @@ def main():
         print("Initial costs: ", connect_grid.calculate_cost())
 
         if args.plot:
-           connect_grid.plot(connect_grid, "Initial")
+           connect_grid.plot(connect_grid, "Final")
 
     if args.part == "1":
         first()

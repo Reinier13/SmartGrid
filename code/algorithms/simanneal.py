@@ -27,7 +27,7 @@ def simanneal(grid, temperature, cooling_rate):
             house.add_cable()
             # tree_obj.nodes.append(house.cables)
 
-            # grid.trees.append(house.cables)
+            grid.trees.append(tree_obj.nodes)
 
 
         if i == 0:

@@ -1,5 +1,5 @@
 import random
-from .helpers import distance, draw
+from .helpers import distance, draw, clear
 from code.classes import tree
 
 def hill_climb(grid):
