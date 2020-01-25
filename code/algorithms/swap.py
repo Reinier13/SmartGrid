@@ -1,5 +1,5 @@
 import random
-from .helpers import distance, draw
+from .helpers import distance, draw, clear
 from code.classes import tree
 
 def hill_climb(grid):
@@ -25,46 +25,45 @@ def hill_climb(grid):
     draw(grid)
 
 def swap(grid):
-    # take random house and battery
+
+    # take random house and the battery that it's connected to
     swap_house_1 = random.choice(grid.houses)
-    swap_battery = choose_battery(grid)
+    for battery in grid.batteries:
+        if swap_house_1 in battery.houses:
+            swap_battery_1 = battery
+            break
 
-    # make sure house and battery aren't connected
-    while swap_battery == swap_house_1.battery:
-        swap_battery = choose_battery(grid)
+    # get random battery not connected to house
+    swap_battery_2 = choose_battery()
+    while swap_battery_2 == swap_battery_1:
+        swap_battery_2 = choose_battery()
 
-    # iterate over all houses of all batteries
-    # expect the battery that house 1 is connected to
-    for swap_battery in grid.batteries:
-        if swap_battery == swap_house_1.battery:
-            continue
-        else:
-            # tree_obj = tree.Tree()
-            for house in swap_battery.houses:
-                swap_house_2 = house
+    # iterate over all houses of random battery
+    # which is not the battery that house 1 is connected to
+    for house in swap_battery_2.houses:
+        swap_house_2 = house
 
-                # calculate distances
-                old_distance = distance(swap_house_1, swap_house_1.battery) + distance(swap_house_2, swap_house_2.battery)
-                new_distance = distance(swap_house_2, swap_house_1.battery) + distance(swap_house_1, swap_house_2.battery)
+        # calculate distances
+        old_distance = distance(swap_house_1, swap_battery_1) + distance(swap_house_2, swap_battery_2)
+        new_distance = distance(swap_house_2, swap_battery_1) + distance(swap_house_1, swap_battery_2)
 
-                # check if distance is improved and fits the capacity
-                if new_distance < old_distance and capacity_fit(swap_house_1, swap_house_2):
+        # check if distance is improved and fits the capacity
+        if new_distance < old_distance and capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
 
-                    # swap the houses
-                    house_swap(swap_house_1, swap_house_2, swap_battery)
-
-
-def house_swap(swap_house_1, swap_house_2, swap_battery):
-    swap_house_1.battery.houses.append(swap_house_2.battery.houses.pop(swap_house_2.battery.houses.index(swap_house_2)))
-    swap_house_2.battery.houses.append(swap_house_1.battery.houses.pop(swap_house_1.battery.houses.index(swap_house_1)))
-    swap_house_2.battery = swap_house_1.battery
-    swap_house_1.battery = swap_battery
+            # swap the houses
+            house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2)
+            break
 
 
-def capacity_fit(swap_house_1, swap_house_2):
-    capacity_1 = swap_house_1.battery.capacity_used() - swap_house_1.output + swap_house_2.output
-    capacity_2 = swap_house_2.battery.capacity_used() - swap_house_2.output + swap_house_1.output
-    if capacity_1 < swap_house_1.battery.capacity and capacity_2 < swap_house_2.battery.capacity:
+def house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
+    swap_battery_1.houses.append(swap_battery_2.houses.pop(swap_battery_2.houses.index(swap_house_2)))
+    swap_battery_2.houses.append(swap_battery_1.houses.pop(swap_battery_1.houses.index(swap_house_1)))
+
+
+def capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
+    capacity_1 = swap_battery_1.capacity_used() - swap_house_1.output + swap_house_2.output
+    capacity_2 = swap_battery_2.capacity_used() - swap_house_2.output + swap_house_1.output
+    if capacity_1 < swap_battery_1.capacity and capacity_2 < swap_battery_2.capacity:
         return True
 
 

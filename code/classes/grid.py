@@ -40,14 +40,6 @@ class Grid:
         return houses
 
 
-    # def calculate_cost(self):
-    #     self.cost = 0
-    #     for battery in self.batteries:
-    #         self.cost += battery.cost
-    #     for house in self.houses:
-    #         self.cost += (len(house.cables) - 1) * 9
-    #     return self.cost
-
     def calculate_cost(self):
         """
         Calculates the costs of the whole grid system.
@@ -115,7 +107,7 @@ class Grid:
 
         # set labels and show plot
         costs = grid.cost
-        ax.set(xlabel='X-axis', ylabel='Y-axis', title=title + ", Cost: " + str(costs))
+        ax.set(xlabel='X-axis', ylabel='Y-axis', title=title + ", cost: " + str(costs))
         plt.show()
 
 
