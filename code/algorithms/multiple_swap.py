@@ -1,5 +1,5 @@
 import random
-from code.algorithms.helpers import distance, draw
+from code.algorithms.helpers import distance, draw, clear
 
 
 def hill_climb(grid, num_houses):

@@ -3,7 +3,7 @@ from code.classes import node, tree
 from code.classes.grid import Grid
 
 def mst(grid):
-
+    grid.trees = []
     for battery in grid.batteries:
         tree_obj = tree.Tree()
         nodes = []
