@@ -69,9 +69,6 @@ def main():
 
     print("Final cost: ", connect_grid.calculate_cost())
 
-    if args.plot:
-        connect_grid.plot(connect_grid, "Final")
-
     return connect_grid
 
 
