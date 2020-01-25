@@ -43,4 +43,4 @@ class House:
 
 
     def __repr__(self):
-        return f"House at ({self.x}, {self.y})"
+        return f"House at ({self.x}, {self.y}) with output: {self.output}"

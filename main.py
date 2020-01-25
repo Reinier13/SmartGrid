@@ -4,7 +4,7 @@ from code.algorithms.arguments import parseArgs
 import numpy as np
 
 def main():
-    """ 
+    """
     Smart Grid by m4st3r_h4ck3rz.
     Please refer to the README for more information.
     """
@@ -29,12 +29,12 @@ def main():
         fourth(args, connect_grid)
 
     # cost after applying the desired algorithms
-    print("Final cost: ", connect_grid.calculate_cost())
+    print("Final cost:", connect_grid.calculate_cost())
 
     return connect_grid
 
 def first(args, grid):
-    """ 
+    """
     Run the desired commands to solve the first mission.
     """
     connect_grid = grid
@@ -42,17 +42,17 @@ def first(args, grid):
     if args.method == "greedy":
         # connect all houses to nearest battery
         greedy.greedy(connect_grid)
-        print("Initial costs: ", connect_grid.calculate_cost())
+        print("Initial costs:", connect_grid.calculate_cost())
 
     if args.method == "draft":
         # connect all batteries with their nearest houses
         draft.draft(connect_grid)
-        print("Initial costs: ", connect_grid.calculate_cost())
+        print("Initial costs:", connect_grid.calculate_cost())
 
     if args.method == "random":
         # connect all houses to random battery
         random.rand(connect_grid)
-        print("Initial costs: ", connect_grid.calculate_cost())
+        print("Initial costs:", connect_grid.calculate_cost())
 
     if args.plot:
         connect_grid.plot(connect_grid, 'Initial')
@@ -60,7 +60,7 @@ def first(args, grid):
     return connect_grid
 
 def second(args, grid):
-    """ 
+    """
     Run the desired commands to solve the second mission.
     """
     connect_grid = first(args, grid)
@@ -83,7 +83,7 @@ def second(args, grid):
     return connect_grid
 
 def third(args, grid):
-    """ 
+    """
     Run the desired commands to solve the third mission.
     """
     connect_grid = second(args, grid)
@@ -92,7 +92,7 @@ def third(args, grid):
     optimize = False
     mst.mst(connect_grid, optimize)
 
-    print("Initial costs: ", connect_grid.calculate_cost())
+    print("Initial costs:", connect_grid.calculate_cost())
 
     if args.plot:
         connect_grid.plot(connect_grid, "MST")
@@ -100,7 +100,7 @@ def third(args, grid):
     return connect_grid
 
 def fourth(args, grid):
-    """ 
+    """
     Run the desired commands to solve the fourth mission.
     """
     connect_grid = second(args, grid)
@@ -109,7 +109,7 @@ def fourth(args, grid):
     optimize = True
     mst.mst(connect_grid, optimize)
 
-    print("Initial costs: ", connect_grid.calculate_cost())
+    print("Initial costs:", connect_grid.calculate_cost())
 
     if args.plot:
         connect_grid.plot(connect_grid, "MST")

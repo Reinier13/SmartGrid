@@ -20,17 +20,17 @@ def mst(grid, optimize_bool):
         grid.trees.append(tree_obj.nodes)
 
 def optimize(battery, nodes, tree_obj):
-    for i in range(150):
+    for i in range(100):
         house = random.choice(battery.houses)
         for node in house.nodes:
             nodes.remove(node)
 
-        print(house.nodes[-1])
+        # print(house.nodes[-1])
         house.nodes = []
 
         closest_node = house.node.get_closest_node(nodes)
         house.nodes = tree_obj.add_nodes(house.node, closest_node)
-        print(house.nodes[-1])
+        # print(house.nodes[-1])
         for tree_list in tree_obj.nodes:
             for node_obj in tree_list:
                 nodes.append(node_obj)
