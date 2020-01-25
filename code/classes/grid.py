@@ -62,14 +62,10 @@ class Grid:
         return self.cost
 
 
-<<<<<<< HEAD
-    def plot(self, grid):
+    def plot(self, grid, title):
         """
         Plots the grid system.
         """
-=======
-    def plot(self, grid, title):
->>>>>>> 8ec711a8fb39430d4959fb46b37e921c9a0e89c4
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
@@ -125,4 +121,3 @@ class Grid:
     def histogram(self, x, iterations):
         plt.hist(x, bins=iterations, edgecolor='black', facecolor='blue')
         plt.show()
-
