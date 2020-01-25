@@ -29,16 +29,7 @@ def simanneal(grid, temperature, cooling_rate):
         #     house.add_cable()
         #     # tree_obj.nodes.append(house.cables)
         #
-<<<<<<< HEAD
         #     # grid.trees.append(house.cables)
-=======
-        for house in grid.houses:
-            house.cables = []
-            house.add_cable()
-            # tree_obj.nodes.append(house.cables)
-
-            grid.trees.append(tree_obj.nodes)
->>>>>>> 0eca3dd286170ef0875eeb3ecf9fc4e9c3095e37
 
 
         if i == 0:
@@ -65,57 +56,57 @@ def swap(grid, temperature):
     and sometimes when the the solution is worse.
     """
 
-    # take random house and battery
+    # take random house and battery it is connected to
     swap_house_1 = random.choice(grid.houses)
-    swap_battery = choose_battery(grid)
+    for battery in grid.batteries:
+        if swap_house_1 in battery.houses:
+            swap_battery_1 = battery
+            break
 
+
+    swap_battery = choose_battery(grid)
     # make sure house and battery aren't connected
-    while swap_battery == swap_house_1.battery:
-        swap_battery = choose_battery(grid)
+    while swap_battery_2 == swap_house_1.battery:
+        swap_battery_2 = choose_battery(grid)
 
     # iterate over all houses of all batteries
     # expect the battery that house 1 is connected to
-    for swap_battery in grid.batteries:
-        if swap_battery == swap_house_1.battery:
-            continue
-        else:
-            for house in swap_battery.houses:
-                swap_house_2 = house
 
-                # calculate distances
-                old_distance = distance(swap_house_1, swap_house_1.battery) + distance(swap_house_2, swap_house_2.battery)
-                new_distance = distance(swap_house_2, swap_house_1.battery) + distance(swap_house_1, swap_house_2.battery)
-                delta_distance = old_distance - new_distance
+    for house in swap_battery_2.houses:
+        swap_house_2 = house
 
-                # check if distance is improved and fits the capacity
-                if delta_distance > 0 and capacity_fit(swap_house_1, swap_house_2):
+        # calculate distances
+        old_distance = distance(swap_house_1, swap_house_1.battery) + distance(swap_house_2, swap_battery_2)
+        new_distance = distance(swap_house_2, swap_house_1.battery) + distance(swap_house_1, swap_battery_2)
+        delta_distance = old_distance - new_distance
 
-                    # swap the houses
-                    house_swap(swap_house_1, swap_house_2, swap_battery)
+        # check if distance is improved and fits the capacity
+        if delta_distance > 0 and capacity_fit(swap_house_1, swap_house_2):
 
-                # also do swap by random chance if not improved
-                elif math.exp(delta_distance/temperature) > random.random():
-                    house_swap(swap_house_1, swap_house_2, swap_battery)
+            # swap the houses
+            house_swap(swap_house_1, swap_house_2, swap_battery_2)
+
+        # also do swap by random chance if not improved
+        elif math.exp(delta_distance/temperature) > random.random():
+            house_swap(swap_house_1, swap_house_2, swap_battery_2)
 
 
 
-def house_swap(swap_house_1, swap_house_2, swap_battery):
+def house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
     """
     Swaps house with a house in another battery.
     """
-    swap_house_1.battery.houses.append(swap_house_2.battery.houses.pop(swap_house_2.battery.houses.index(swap_house_2)))
-    swap_house_2.battery.houses.append(swap_house_1.battery.houses.pop(swap_house_1.battery.houses.index(swap_house_1)))
-    swap_house_2.battery = swap_house_1.battery
-    swap_house_1.battery = swap_battery
+    swap_battery_1.houses.append(swap_battery_2.houses.pop(swap_battery_2.houses.index(swap_house_2)))
+    swap_battery_2.houses.append(swap_battery_1.houses.pop(swap_battery_1.houses.index(swap_house_1)))
 
 
-def capacity_fit(swap_house_1, swap_house_2):
+def capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
     """
     Checks if the capacity is not exceeded.
     """
-    capacity_1 = swap_house_1.battery.capacity_used() - swap_house_1.output + swap_house_2.output
-    capacity_2 = swap_house_2.battery.capacity_used() - swap_house_2.output + swap_house_1.output
-    if capacity_1 < swap_house_1.battery.capacity and capacity_2 < swap_house_2.battery.capacity:
+    capacity_1 = swap_battery_1.capacity_used() - swap_house_1.output + swap_house_2.output
+    capacity_2 = swap_battery_2.capacity_used() - swap_house_2.output + swap_house_1.output
+    if capacity_1 < swap_battery_1.capacity and capacity_2 < swap_battery_2.capacity:
         return True
 
 
