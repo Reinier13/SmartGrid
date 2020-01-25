@@ -1,5 +1,5 @@
 from ast import literal_eval as make_tuple
-from .node import Node
+# from .node import Node
 
 class House:
     def __init__(self, x, y, output):
@@ -34,6 +34,10 @@ class House:
             node_list.append(Node(self.battery.x, y))
 
         self.cables.append(node_list)
+
+    def clear(self):
+        self.battery = None
+        self.cables = []
 
 
     def __repr__(self):

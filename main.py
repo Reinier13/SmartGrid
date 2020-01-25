@@ -50,6 +50,8 @@ def main():
         if args.hillclimb == "multiple_swap":
             opt = int(args.swaps)
             multiple_swap.hill_climb(connect_grid, opt)
+        
+        connect_grid.calculate_cost()
 
         if args.plot:
            connect_grid.plot(connect_grid, 'After hill climb')
@@ -65,10 +67,7 @@ def main():
     if args.part == "4":
         pass
 
-    print("Final cost: ", connect_grid.cost)
-
-    if args.plot:
-        connect_grid.plot(connect_grid, "Final")
+    print("Final cost: ", connect_grid.calculate_cost())
 
     return connect_grid
 

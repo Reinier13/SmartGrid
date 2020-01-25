@@ -1,5 +1,7 @@
 import random
 import numpy as np
+from .mst import mst
+from code.algorithms.helpers import distance
 
 
 MAX_DIST = 10000
@@ -10,10 +12,12 @@ def greedy(grid):
     that are closest until the capacity of the battery is reached.
     """
 
-    # clears all lists in the grid
-    clear(grid)
-
     # init
+    for battery in grid.batteries:
+        battery.clear()
+        for house in battery.houses:
+            house.clear()
+
     num_houses = 0
     random.shuffle(grid.batteries)
 
@@ -27,7 +31,9 @@ def greedy(grid):
         closest_house_index = pick(battery)
 
         # keep making connections until capacity is reached
-        while check_cap(battery, grid.houses[closest_house_index]):
+        while battery.check_cap(grid.houses[closest_house_index]):
+
+            # get index of closest house to battery
             closest_house_index = pick(battery)
 
             # if all houses are connected break out of loop
@@ -47,27 +53,6 @@ def greedy(grid):
         draw(grid)
 
 
-def clear(grid):
-    """
-    Clears all lists in grid.
-    """
-    for battery in grid.batteries:
-        battery.houses = []
-        battery.distances = []
-    for house in grid.houses:
-        house.battery = None
-        house.cables = []
-
-def distance(house, battery):
-    """
-    Calculates distance between house and battery.
-    """
-    delta_x = house.x - battery.x
-    delta_y = house.y - battery.y
-    delta = abs(delta_x) + abs(delta_y)
-    return delta
-
-
 def create_distances(grid):
     """
     Creates lists of distances for all batteries to all houses.
@@ -83,14 +68,6 @@ def pick(battery):
     """
     closest_index = battery.distances.index(min(battery.distances))
     return closest_index
-
-
-def check_cap(battery, house):
-    """
-    Checks if capacity of battery is yet reached.
-    """
-    if (battery.capacity_used() + house.output) <= battery.capacity:
-        return True
 
 
 def remove_house(grid, closest_index):

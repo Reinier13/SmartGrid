@@ -66,7 +66,7 @@ class Grid:
         """
         Plots the grid system.
         """
-        
+
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 

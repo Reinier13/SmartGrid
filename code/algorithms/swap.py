@@ -1,4 +1,6 @@
 import random
+from .helpers import distance, draw
+from code.classes import tree
 
 def hill_climb(grid):
     # create list to store improved grid costs
@@ -19,6 +21,8 @@ def hill_climb(grid):
                 break
         else:
             count = 0
+
+    draw(grid)
 
 def swap(grid):
     # take random house and battery
@@ -48,13 +52,6 @@ def swap(grid):
 
                     # swap the houses
                     house_swap(swap_house_1, swap_house_2, swap_battery)
-                    print('SWAP!')
-
-                    # recable the houses
-                    for house in grid.houses:
-                        house.cables = []
-                        house.add_cable()
-        # grid.trees.append(tree_obj.nodes)
 
 
 def house_swap(swap_house_1, swap_house_2, swap_battery):
@@ -74,10 +71,3 @@ def capacity_fit(swap_house_1, swap_house_2):
 def choose_battery(grid):
     other_battery = random.choice(grid.batteries)
     return other_battery
-
-
-def distance(house, battery):
-    delta_x = house.x - battery.x
-    delta_y = house.y - battery.y
-    delta = abs(delta_x) + abs(delta_y)
-    return delta
