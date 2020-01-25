@@ -65,7 +65,7 @@ def main():
     if args.part == "4":
         pass
 
-    print("Final cost: ", connect_grid.cost)
+    print("Final cost: ", connect_grid.calculate_cost())
 
     if args.plot:
         connect_grid.plot(connect_grid, "Final")
