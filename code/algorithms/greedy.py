@@ -1,7 +1,7 @@
 import random
 import numpy as np
 from .mst import mst
-from code.algorithms.helpers import distance
+from code.algorithms.helpers import distance, draw, clear
 
 
 MAX_DIST = 10000
@@ -13,10 +13,7 @@ def greedy(grid):
     """
 
     # init
-    for battery in grid.batteries:
-        battery.clear()
-        for house in battery.houses:
-            house.clear()
+    clear(grid)
 
     num_houses = 0
     random.shuffle(grid.batteries)
@@ -76,13 +73,3 @@ def remove_house(grid, closest_index):
     """
     for battery in grid.batteries:
         battery.distances[closest_index] = MAX_DIST
-
-
-def draw(grid):
-    """
-    Adds all grid points to a list, which form the cable from house to battery.
-    """
-    for battery in grid.batteries:
-        for house in battery.houses:
-            house.battery = battery
-            house.add_cable()
