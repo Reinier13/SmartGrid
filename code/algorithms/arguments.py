@@ -13,8 +13,8 @@ def parseArgs():
                         help = "Flag if plots should be made",
                         action = "store_true")
     parser.add_argument("-m","--method",
-                        help = "Specify the method of initially assigning houses to batteries (greedy, random)",
-                        choices = ["greedy","random"])
+                        help = "Specify the method of initially assigning houses to batteries (greedy, random, draft)",
+                        choices = ["greedy","random", "draft"])
     parser.add_argument("-hc","--hillclimb",
                         help = "Specify which type of hill climb",
                         choices = ["single_swap", "multiple_swap"])
@@ -40,8 +40,8 @@ def parseArgs():
 
     if args.method == None:
         args.method = input("Choose method: ")
-        while args.method not in ["greedy","random"]:
-            args.method = input("Choose method(\"greedy\" or \"random\"): ")
+        while args.method not in ["greedy","random", "draft"]:
+            args.method = input("Choose method(\"greedy\" or \"random\" \"draft\"): ")
 
     if args.part in ["2", "3", "4"]:
         if args.hillclimb == None:

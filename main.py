@@ -5,8 +5,8 @@ import numpy as np
 
 def main():
     """ 
-        Smart Grid by m4st3r_h4ck3rz.
-        Please refer to the README for more information.
+    Smart Grid by m4st3r_h4ck3rz.
+    Please refer to the README for more information.
     """
     # get arguments
     args = parseArgs()
@@ -35,13 +35,18 @@ def main():
 
 def first(args, grid):
     """ 
-        Run the desired commands to solve the first mission.
+    Run the desired commands to solve the first mission.
     """
     connect_grid = grid
 
     if args.method == "greedy":
         # connect all houses to nearest battery
         greedy.greedy(connect_grid)
+        print("Initial costs: ", connect_grid.calculate_cost())
+
+    if args.method == "draft":
+        # connect all batteries with their nearest houses
+        draft.draft(connect_grid)
         print("Initial costs: ", connect_grid.calculate_cost())
 
     if args.method == "random":
@@ -56,7 +61,7 @@ def first(args, grid):
 
 def second(args, grid):
     """ 
-        Run the desired commands to solve the second mission.
+    Run the desired commands to solve the second mission.
     """
     connect_grid = first(args, grid)
 
@@ -79,7 +84,7 @@ def second(args, grid):
 
 def third(args, grid):
     """ 
-        Run the desired commands to solve the third mission.
+    Run the desired commands to solve the third mission.
     """
     connect_grid = second(args, grid)
 
@@ -96,7 +101,7 @@ def third(args, grid):
 
 def fourth(args, grid):
     """ 
-        Run the desired commands to solve the fourth mission.
+    Run the desired commands to solve the fourth mission.
     """
     connect_grid = second(args, grid)
 
