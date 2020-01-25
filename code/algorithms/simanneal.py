@@ -17,17 +17,19 @@ def simanneal(grid, temperature, cooling_rate):
 
         swap(grid, temporary_temperature)
 
-        # grid.trees = []
-        # # recable the houses
-        # for battery in grid.batteries:
-        #     tree_obj = tree.Tree()
-        #
-        for house in grid.houses:
-            house.cables = []
-            house.add_cable()
-            # tree_obj.nodes.append(house.cables)
+        draw(grid)
 
-            # grid.trees.append(house.cables)
+        # # grid.trees = []
+        # # # recable the houses
+        # # for battery in grid.batteries:
+        # #     tree_obj = tree.Tree()
+        # #
+        # for house in grid.houses:
+        #     house.cables = []
+        #     house.add_cable()
+        #     # tree_obj.nodes.append(house.cables)
+        #
+        #     # grid.trees.append(house.cables)
 
 
         if i == 0:
