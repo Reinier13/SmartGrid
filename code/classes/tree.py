@@ -21,3 +21,4 @@ class Tree:
             node_list.append(Node(target.x,y))
 
         self.nodes.append(node_list)
+        return node_list

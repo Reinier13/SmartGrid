@@ -1,7 +1,7 @@
 import random
 import numpy as np
 from .mst import mst
-from code.algorithms.helpers import distance, draw
+from code.algorithms.helpers import distance, draw, clear
 
 
 MAX_DIST = 10000
@@ -13,10 +13,7 @@ def greedy(grid):
     """
 
     # init
-    for battery in grid.batteries:
-        battery.clear()
-        for house in battery.houses:
-            house.clear()
+    clear(grid)
 
     num_houses = 0
     random.shuffle(grid.batteries)
