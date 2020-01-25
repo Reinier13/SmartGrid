@@ -34,9 +34,9 @@ def swap(grid):
             break
 
     # get random battery not connected to house
-    swap_battery_2 = choose_battery()
+    swap_battery_2 = choose_battery(grid)
     while swap_battery_2 == swap_battery_1:
-        swap_battery_2 = choose_battery()
+        swap_battery_2 = choose_battery(grid)
 
     # iterate over all houses of random battery
     # which is not the battery that house 1 is connected to
