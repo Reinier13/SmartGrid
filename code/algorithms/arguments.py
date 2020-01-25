@@ -38,13 +38,13 @@ def parseArgs():
     if args.part == None:
         args.part = "1"
         
-    if args.part = "1" or args.part = "2":
+    if args.part in ["1", "2"]:
         if args.method == None:
             args.method = input("Choose method: ")
             while args.method not in ["greedy","random"]:
                 args.method = input("Choose method(\"greedy\" or \"random\"): ")
 
-    if args.part = "2":
+    if args.part == "2":
         if args.hillclimb == None:
             args.hillclimb = input("Choose hillclimb: ")
             while args.method not in ["single_swap", "multiple_swap"]:
@@ -55,5 +55,5 @@ def parseArgs():
             args.swaps = input("Choose number of swaps: ")
             while args.swaps not in ["1","2","3", "4"]:
             args.swaps = input("Choose number of swaps(1, 2, 3 or 4): ")
-            
+
     return args
