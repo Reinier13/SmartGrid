@@ -19,8 +19,8 @@ class Battery:
             used_capacity += house.output
         return used_capacity
 
-    def check_cap(self, house):
-        if (self.capacity_used() + house.output) <= self.capacity:
+    def check_cap(self):
+        if self.capacity_used() <= self.capacity:
             return True
 
     def clear(self):

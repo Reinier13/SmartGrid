@@ -11,7 +11,8 @@ def draw(grid):
     for battery in grid.batteries:
         tree_obj = tree.Tree()
         for house in battery.houses:
-            tree_obj.add_nodes(house, battery)
+            added_nodes = tree_obj.add_nodes(house, battery)
+            house.nodes = added_nodes
         grid.trees.append(tree_obj.nodes)
 
 def clear(grid):

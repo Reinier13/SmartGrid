@@ -28,7 +28,7 @@ def draft(grid):
 
             # get index of closest house
             closest_house_index = pick(battery)
-            if battery.check_cap(grid.houses[closest_house_index]):
+            if battery.check_cap():
 
                 # end algorithm if all houses are connected
                 if battery.distances[closest_house_index] == MAX_DIST:
@@ -39,6 +39,8 @@ def draft(grid):
                 remove_house(grid, closest_house_index)
                 battery.houses.append(grid.houses[closest_house_index])
                 num_houses += 1
+
+        print(battery.capacity_used())
 
     draw(grid)
 
