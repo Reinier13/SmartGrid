@@ -38,13 +38,12 @@ def parseArgs():
     if args.part == None:
         args.part = "1"
 
-    if args.part in ["1", "2"]:
-        if args.method == None:
-            args.method = input("Choose method: ")
-            while args.method not in ["greedy","random"]:
-                args.method = input("Choose method(\"greedy\" or \"random\"): ")
+    if args.method == None:
+        args.method = input("Choose method: ")
+        while args.method not in ["greedy","random"]:
+            args.method = input("Choose method(\"greedy\" or \"random\"): ")
 
-    if args.part == "2":
+    if args.part in ["2", "3", "4"]:
         if args.hillclimb == None:
             args.hillclimb = input("Choose hillclimb: ")
             while args.method not in ["single_swap", "multiple_swap"]:
