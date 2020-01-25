@@ -2,7 +2,7 @@ import random
 from code.classes import node, tree
 from code.classes.grid import Grid
 
-def mst(grid):
+def mst(grid, optimize_bool):
     grid.trees = []
     for battery in grid.batteries:
         tree_obj = tree.Tree()
@@ -15,16 +15,22 @@ def mst(grid):
             for tree_list in tree_obj.nodes:
                 for node_obj in tree_list:
                     nodes.append(node_obj)
-        optimize(battery, nodes, tree_obj)
+        if optimize_bool:
+            optimize(battery, nodes, tree_obj)
         grid.trees.append(tree_obj.nodes)
 
 def optimize(battery, nodes, tree_obj):
-    for i in range(100):
+    for i in range(150):
         house = random.choice(battery.houses)
         for node in house.nodes:
             nodes.remove(node)
+
+        print(house.nodes[-1])
+        house.nodes = []
+
         closest_node = house.node.get_closest_node(nodes)
-        tree_obj.add_nodes(house.node, closest_node)
+        house.nodes = tree_obj.add_nodes(house.node, closest_node)
+        print(house.nodes[-1])
         for tree_list in tree_obj.nodes:
             for node_obj in tree_list:
                 nodes.append(node_obj)

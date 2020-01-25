@@ -10,7 +10,7 @@ def main():
     """
     # get arguments
     args = parseArgs()
-    
+
     # specify paths for data to load
     housePath = "input/wijk" + args.district + "_huizen.csv"
     batteryPath = "input/wijk" + args.district + "_batterijen.csv"
@@ -26,7 +26,7 @@ def main():
     if args.part == "3":
         third(args, connect_grid)
     if args.part == "4":
-        pass
+        fourth(args, connect_grid)
 
     # cost after applying the desired algorithms
     print("Final cost: ", connect_grid.calculate_cost())
@@ -56,7 +56,7 @@ def first(args, grid):
 
     if args.plot:
         connect_grid.plot(connect_grid, 'Initial')
-        
+
     return connect_grid
 
 def second(args, grid):
@@ -90,7 +90,7 @@ def third(args, grid):
 
     # find a non-optimized minimal spanning tree
     optimize = False
-    mst.mst(connect_grid)
+    mst.mst(connect_grid, optimize)
 
     print("Initial costs: ", connect_grid.calculate_cost())
 
@@ -115,6 +115,6 @@ def fourth(args, grid):
         connect_grid.plot(connect_grid, "MST")
 
     return connect_grid
- 
+
 if __name__ == '__main__':
     main()
