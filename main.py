@@ -4,13 +4,13 @@ from code.algorithms.arguments import parseArgs
 import numpy as np
 
 def main():
-    """ 
+    """
         Smart Grid by m4st3r_h4ck3rz.
         Please refer to the README for more information.
     """
     # get arguments
     args = parseArgs()
-    
+
     # specify paths for data to load
     housePath = "input/wijk" + args.district + "_huizen.csv"
     batteryPath = "input/wijk" + args.district + "_batterijen.csv"
@@ -26,7 +26,7 @@ def main():
     if args.part == "3":
         third(args, connect_grid)
     if args.part == "4":
-        pass
+        fourth(args, connect_grid)
 
     # cost after applying the desired algorithms
     print("Final cost: ", connect_grid.calculate_cost())
@@ -34,7 +34,7 @@ def main():
     return connect_grid
 
 def first(args, grid):
-    """ 
+    """
         Run the desired commands to solve the first mission.
     """
     connect_grid = grid
@@ -51,11 +51,11 @@ def first(args, grid):
 
     if args.plot:
         connect_grid.plot(connect_grid, 'Initial')
-        
+
     return connect_grid
 
 def second(args, grid):
-    """ 
+    """
         Run the desired commands to solve the second mission.
     """
     connect_grid = first(args, grid)
@@ -78,14 +78,14 @@ def second(args, grid):
     return connect_grid
 
 def third(args, grid):
-    """ 
+    """
         Run the desired commands to solve the third mission.
     """
     connect_grid = second(args, grid)
 
     # find a non-optimized minimal spanning tree
     optimize = False
-    mst.mst(connect_grid)
+    mst.mst(connect_grid, optimize)
 
     print("Initial costs: ", connect_grid.calculate_cost())
 
@@ -95,7 +95,7 @@ def third(args, grid):
     return connect_grid
 
 def fourth(args, grid):
-    """ 
+    """
         Run the desired commands to solve the fourth mission.
     """
     connect_grid = second(args, grid)
@@ -110,6 +110,6 @@ def fourth(args, grid):
         connect_grid.plot(connect_grid, "MST")
 
     return connect_grid
- 
+
 if __name__ == '__main__':
     main()
