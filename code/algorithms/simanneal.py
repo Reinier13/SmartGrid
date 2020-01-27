@@ -10,15 +10,16 @@ def simanneal(grid):
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-    temperature = 10000
-    cooling_rate = 0.99
+    temperature = 250
+    cooling_rate = 0.95
     count = 0
     for i in range(1000):
         temporary_temperature = temperature * (cooling_rate ** i)
+        # temporary_temperature = temperature - (cooling_rate * i)
         if temporary_temperature < 1.000001:
             temporary_temperature = 1.000001
 
-        grid_last_cost = copy.deepcopy(grid)
+        last_grid = copy.deepcopy(grid)
         swap(grid, temporary_temperature)
         grid.draw()
 
@@ -26,8 +27,9 @@ def simanneal(grid):
             grid_min_cost = copy.deepcopy(grid)
         if grid.calculate_cost() < grid_min_cost.calculate_cost():
             grid_min_cost = copy.deepcopy(grid)
+            print("YAAS")
 
-        if grid.calculate_cost() == grid_last_cost.calculate_cost():
+        if grid.calculate_cost() == last_grid.calculate_cost():
             count += 1
         else:
             count = 0
@@ -60,11 +62,14 @@ def swap(grid, temperature):
 
         if delta_distance < 0 and capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
             house_swap(swap_house_1, swap_house_2,swap_battery_1, swap_battery_2)
+            print(grid.calculate_cost())
             break
 
         elif math.exp(-(delta_distance/temperature)) > random.random() and \
             capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
             house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2)
+            print('Math')
+            print(grid.calculate_cost())
             break
 
 
