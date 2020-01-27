@@ -1,5 +1,5 @@
 import random
-from .helpers import distance, draw, clear
+from .helpers import distance
 from code.classes import tree
 
 def hill_climb(grid):
@@ -22,7 +22,7 @@ def hill_climb(grid):
         else:
             count = 0
 
-    draw(grid)
+    grid.draw()
 
 def swap(grid):
 

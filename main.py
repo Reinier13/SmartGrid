@@ -1,11 +1,11 @@
 from code.classes import grid
-from code.algorithms import random, draft, swap, greedy, mst, multiple_swap, simanneal
+from code.algorithms import random, swap, greedy, mst, multiple_swap, simanneal
 from code.algorithms.arguments import parseArgs
 import numpy as np
 
 def main():
     """
-    Smart Grid by m4st3r_h4ck3rz.
+    Smart Grid by m4st3r_h4ck3rz_4_l1f3.mp3.
     Please refer to the README for more information.
     """
     # get arguments
@@ -28,9 +28,6 @@ def main():
     if args.part == "4":
         fourth(args, connect_grid)
 
-    # cost after applying the desired algorithms
-    print("Final cost:", connect_grid.calculate_cost())
-
     return connect_grid
 
 def first(args, grid):
@@ -43,18 +40,18 @@ def first(args, grid):
         # connect all batteries with their nearest houses
         # one battery at a time
         greedy.greedy(connect_grid)
-        print("Initial costs:", connect_grid.calculate_cost())
+        print("Greedy costs:", connect_grid.calculate_cost())
 
     if args.method == "draft":
         # connect all batteries with their nearest houses
         # each battery taking turns picking a house
-        draft.draft(connect_grid)
-        print("Initial costs:", connect_grid.calculate_cost())
+        greedy.draft(connect_grid)
+        print("Draft costs:", connect_grid.calculate_cost())
 
     if args.method == "random":
         # connect all houses to random battery
         random.rand(connect_grid)
-        print("Initial costs:", connect_grid.calculate_cost())
+        print("Random costs:", connect_grid.calculate_cost())
 
     if args.plot:
         connect_grid.plot(connect_grid, 'Initial')
@@ -81,7 +78,7 @@ def second(args, grid):
         simanneal.simanneal(connect_grid)
 
     # update the cost
-    connect_grid.calculate_cost()
+    print("Improved costs:", connect_grid.calculate_cost())
 
     if args.plot:
         connect_grid.plot(connect_grid, 'After hill climb')
@@ -98,7 +95,7 @@ def third(args, grid):
     optimize = False
     mst.mst(connect_grid, optimize)
 
-    print("Initial costs:", connect_grid.calculate_cost())
+    print("MST costs:", connect_grid.calculate_cost())
 
     if args.plot:
         connect_grid.plot(connect_grid, "Shared cables")
@@ -115,7 +112,7 @@ def fourth(args, grid):
     optimize = True
     mst.mst(connect_grid, optimize)
 
-    print("Initial costs:", connect_grid.calculate_cost())
+    print("MST optimized costs:", connect_grid.calculate_cost())
 
     if args.plot:
         connect_grid.plot(connect_grid, "Shared cables optimized")
