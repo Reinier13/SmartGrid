@@ -10,7 +10,7 @@ def simanneal(grid):
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-    temperature = 10000
+    temperature = 1000
     cooling_rate = 0.99
     count = 0
     for i in range(1000):
@@ -33,7 +33,7 @@ def simanneal(grid):
 
         if grid.calculate_cost() < grid_min_cost.calculate_cost():
             grid_min_cost = copy.deepcopy(grid)
-        # print(grid_min_cost.calculate_cost())
+        print(grid_min_cost.calculate_cost())
 
 
         if grid.calculate_cost() == grid_last_cost.calculate_cost():
