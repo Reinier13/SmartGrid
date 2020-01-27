@@ -15,15 +15,12 @@ def parseArgs():
     parser.add_argument("-m","--method",
                         help = "Specify the method of initially assigning houses to batteries (greedy, random, draft)",
                         choices = ["greedy","random", "draft"])
-    parser.add_argument("-hc","--hillclimb",
-                        help = "Specify which type of hill climb",
-                        choices = ["single_swap", "multiple_swap", "sa"])
+    parser.add_argument("-o","--optimize",
+                        help = "Specify which type of optimization (single_swap, multiple_swap, simanneal)",
+                        choices = ["single_swap", "multiple_swap", "simanneal"])
     parser.add_argument("-s","--swaps",
-                        help = "In case of multiple swaps, specify the number of houses to swap",
-                        choices = ["1","2","3","4"])
-    parser.add_argument("-sa","--simanneal",
-                        help = "Flag if hillclimb should be perfomed with simulated annealing",
-                        action = "store_true")
+                        help = "In case of multiple swaps, specify the number of houses to swap(1, 2, 3, 4)",
+                        choices = ["2","3","4","5"])
     parser.add_argument("-pt","--part",
                         help = "Specifies until which part of the assignment the case should be solved",
                         choices = ["1","2","3","4"])
@@ -44,12 +41,12 @@ def parseArgs():
             args.method = input("Choose method(\"greedy\" or \"random\" \"draft\"): ")
 
     if args.part in ["2", "3", "4"]:
-        if args.hillclimb == None:
-            args.hillclimb = input("Choose hillclimb: ")
-            while args.method not in ["single_swap", "multiple_swap"]:
-                args.hillclimb = input("Choose hillclimb(\"single_swap\" or \"multiple_swap\"): ")
+        if args.optimize == None:
+            args.optimize = input("Choose optimize option: ")
+            while args.method not in ["single_swap", "multiple_swap", "simanneal"]:
+                args.hillclimb = input("Choose hillclimb(\"single_swap\" or \"multiple_swap\" \"simanneal\"): ")
 
-    if args.hillclimb == "multiple_swap":
+    if args.optimize == "multiple_swap":
         if args.swaps == None:
             args.swaps = input("Choose number of swaps: ")
             while args.swaps not in ["1","2","3","4","5"]:

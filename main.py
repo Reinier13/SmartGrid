@@ -65,15 +65,15 @@ def second(args, grid):
     connect_grid = first(args, grid)
 
     # check which type of hillclimb to run
-    if args.hillclimb == "single_swap":
-        swap.hill_climb(connect_grid)
+    if args.optimize == "single_swap":
+        hillclimb.hill_climb(connect_grid, 1)
 
-    if args.hillclimb == "multiple_swap":
+    if args.optimize == "multiple_swap":
         # save the number of houses to swap simultanously
         opt = int(args.swaps)
         hillclimb.hill_climb(connect_grid, opt)
 
-    if args.hillclimb == "sa":
+    if args.optimize == "simanneal":
         # simulated anneal
         connect_grid = simanneal.simanneal(connect_grid)
 
@@ -92,8 +92,7 @@ def third(args, grid):
     connect_grid = second(args, grid)
 
     # find a non-optimized minimal spanning tree
-    optimize = False
-    mst.mst(connect_grid, optimize)
+    mst.mst(connect_grid)
 
     print("MST costs:", connect_grid.calculate_cost())
 
@@ -109,8 +108,7 @@ def fourth(args, grid):
     connect_grid = second(args, grid)
 
     # find a optimized minimal spanning tree
-    optimize = True
-    mst.mst(connect_grid, optimize)
+    mst.mst(connect_grid)
 
     print("MST optimized costs:", connect_grid.calculate_cost())
 
