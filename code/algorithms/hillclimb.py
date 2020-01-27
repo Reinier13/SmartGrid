@@ -15,7 +15,6 @@ def hill_climb(grid, num_houses):
                 count = 0
         grid.draw()
 
-    return grid
 
 
 def multiple_swap(grid, num_houses):
