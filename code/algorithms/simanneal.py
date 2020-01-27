@@ -12,17 +12,17 @@ def simanneal(grid):
     """
     temperature = 10000
     cooling_rate = 0.99
-    for i in range(50):
+    count = 0
+    for i in range(1000):
 
         # exponential cooling scheme
         temporary_temperature = temperature * (cooling_rate ** i)
-        if temporary_temperature < 0.001:
-            temporary_temperature = 0.001
+        if temporary_temperature < 1.000001:
+            temporary_temperature = 1.000001
 
         # temporary_temperature = temperature - (cooling_rate * i)
 
-
-
+        grid_last_cost = copy.deepcopy(grid)
         swap(grid, temporary_temperature)
 
         grid.draw()
@@ -31,9 +31,21 @@ def simanneal(grid):
             grid_min_cost = copy.deepcopy(grid)
 
 
+
         if grid.calculate_cost() < grid_min_cost.calculate_cost():
             grid_min_cost = copy.deepcopy(grid)
         print(grid_min_cost.calculate_cost())
+
+
+        if grid.calculate_cost() == grid_last_cost.calculate_cost():
+            count += 1
+            print(count)
+            if count == 10:
+                break
+        else:
+            count = 0
+
+
     return grid_min_cost
 
 def swap(grid, temperature):
