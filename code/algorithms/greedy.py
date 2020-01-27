@@ -60,6 +60,7 @@ def fit(grid):
             greedy(grid)
     grid.draw()
 
+
 def arrange(grid, count):
     capacities_used = []
     for battery in grid.batteries:

@@ -1,5 +1,5 @@
 from code.classes import grid
-from code.algorithms import random, swap, greedy, mst, multiple_swap, simanneal
+from code.algorithms import random, greedy, hillclimb, simanneal, mst
 from code.algorithms.arguments import parseArgs
 import numpy as np
 
@@ -71,7 +71,7 @@ def second(args, grid):
     if args.hillclimb == "multiple_swap":
         # save the number of houses to swap simultanously
         opt = int(args.swaps)
-        multiple_swap.hill_climb(connect_grid, opt)
+        hillclimb.hill_climb(connect_grid, opt)
 
     if args.hillclimb == "sa":
         # simulated anneal

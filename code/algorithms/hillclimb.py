@@ -1,23 +1,19 @@
 import random
 from code.algorithms.helpers import distance
 
-class HillClimb():
-    def __init__(self, grid, num_houses):
-        self.grid = grid
-
 def hill_climb(grid, num_houses):
-    costs = []
-    count = 0
-    for i in range(30000):
-        multiple_swap(grid, num_houses)
-        costs.append(grid.calculate_cost())
-        if costs[i] == costs[i-1]:
-            count += 1
-            if count == 1000:
-                break
-        else:
-            count = 0
-    grid.draw()
+        costs = []
+        count = 0
+        for i in range(200000):
+            multiple_swap(grid, num_houses)
+            costs.append(grid.calculate_cost())
+            if costs[i] == costs[i-1]:
+                count += 1
+                if count == 15000:
+                    break
+            else:
+                count = 0
+        grid.draw()
 
 
 def multiple_swap(grid, num_houses):
