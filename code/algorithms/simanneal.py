@@ -1,7 +1,6 @@
 import random, math
 import pickle
 from code.classes import tree
-from .helpers import draw
 
 def simanneal(grid):
     """
