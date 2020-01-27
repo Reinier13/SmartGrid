@@ -1,14 +1,16 @@
 import random, math
 import pickle
 from code.classes import tree
+from .helpers import draw
 
-def simanneal(grid, temperature, cooling_rate):
+def simanneal(grid):
     """
     Simulated Annealing algorithm based on a Hill climb swap where houses swap
-    batteries. Each improvement is approved and also sometimes it accepts solutions
-    that are worse in hope for a better solution later on.
+    batteries. Each improvement is approved and also sometimes it accepts
+    solutions that are worse in hope for a better solution later on.
     """
-
+    temperature = 1000
+    cooling_rate = 0.95
     for i in range(50):
 
         # exponential cooling scheme
@@ -19,11 +21,11 @@ def simanneal(grid, temperature, cooling_rate):
 
         grid.draw()
 
-        # # grid.trees = []
-        # # # recable the houses
-        # # for battery in grid.batteries:
-        # #     tree_obj = tree.Tree()
-        # #
+        # grid.trees = []
+        # # recable the houses
+        # for battery in grid.batteries:
+        #     tree_obj = tree.Tree()
+        #
         # for house in grid.houses:
         #     house.cables = []
         #     house.add_cable()
@@ -34,20 +36,12 @@ def simanneal(grid, temperature, cooling_rate):
 
         if i == 0:
             min_cost = grid
-        else:
-            pickle_in = open("dict.pickle", "rb")
-            min_cost = pickle.load(pickle_in)
 
-        print(min_cost[-1].calculate_cost())
         print(grid.calculate_cost())
-        pickle_out = open("dict.pickle", "wb")
-        if grid.calculate_cost() <= min_cost[-1].calculate_cost():
-            pickle.dump(grid, pickle_out)
-        else:
-            pickle.dump(min_cost, pickle_out)
+        print(min_cost.calculate_cost())
+        if grid.calculate_cost() < min_cost.calculate_cost():
+            min_cost = grid
 
-    pickle_in = open("dict.pickle", "rb")
-    min_cost = pickle.load(pickle_in)
     print(min_cost)
 
 def swap(grid, temperature):
@@ -64,9 +58,9 @@ def swap(grid, temperature):
             break
 
 
-    swap_battery = choose_battery(grid)
     # make sure house and battery aren't connected
-    while swap_battery_2 == swap_house_1.battery:
+    swap_battery_2 = choose_battery(grid)
+    while swap_battery_2 == swap_battery_1:
         swap_battery_2 = choose_battery(grid)
 
     # iterate over all houses of all batteries
@@ -76,19 +70,24 @@ def swap(grid, temperature):
         swap_house_2 = house
 
         # calculate distances
-        old_distance = distance(swap_house_1, swap_house_1.battery) + distance(swap_house_2, swap_battery_2)
-        new_distance = distance(swap_house_2, swap_house_1.battery) + distance(swap_house_1, swap_battery_2)
+        old_distance = distance(swap_house_1, swap_battery_1) + distance(swap_house_2, swap_battery_2)
+        new_distance = distance(swap_house_2, swap_battery_1) + distance(swap_house_1, swap_battery_2)
         delta_distance = old_distance - new_distance
 
         # check if distance is improved and fits the capacity
-        if delta_distance > 0 and capacity_fit(swap_house_1, swap_house_2):
+        if delta_distance > 0 and capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
+
+            print('Improvement')
 
             # swap the houses
-            house_swap(swap_house_1, swap_house_2, swap_battery_2)
+            house_swap(swap_house_1, swap_house_2,swap_battery_1, swap_battery_2)
+            break
 
         # also do swap by random chance if not improved
         elif math.exp(delta_distance/temperature) > random.random():
-            house_swap(swap_house_1, swap_house_2, swap_battery_2)
+
+            house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2)
+            break
 
 
 

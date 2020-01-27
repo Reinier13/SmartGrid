@@ -16,7 +16,11 @@ def greedy(grid):
     create_distances(grid)
     for battery in grid.batteries:
         closest_house_index = pick(battery)
+
+        # keep making connections until capacity is reached
         while battery.check_cap():
+
+            # get index of closest house to battery
             closest_house_index = pick(battery)
             if battery.distances[closest_house_index] == MAX_DIST:
                 break
