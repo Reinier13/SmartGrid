@@ -40,12 +40,14 @@ def first(args, grid):
     connect_grid = grid
 
     if args.method == "greedy":
-        # connect all houses to nearest battery
+        # connect all batteries with their nearest houses
+        # one battery at a time
         greedy.greedy(connect_grid)
         print("Initial costs:", connect_grid.calculate_cost())
 
     if args.method == "draft":
         # connect all batteries with their nearest houses
+        # each battery taking turns picking a house
         draft.draft(connect_grid)
         print("Initial costs:", connect_grid.calculate_cost())
 
@@ -95,7 +97,7 @@ def third(args, grid):
     print("Initial costs:", connect_grid.calculate_cost())
 
     if args.plot:
-        connect_grid.plot(connect_grid, "MST")
+        connect_grid.plot(connect_grid, "Shared cables")
 
     return connect_grid
 
@@ -112,7 +114,7 @@ def fourth(args, grid):
     print("Initial costs:", connect_grid.calculate_cost())
 
     if args.plot:
-        connect_grid.plot(connect_grid, "MST")
+        connect_grid.plot(connect_grid, "Shared cables optimized")
 
     return connect_grid
 
