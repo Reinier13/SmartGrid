@@ -1,7 +1,7 @@
 import random
 from code.algorithms.helpers import distance
 
-def hill_climb(grid, num_houses):
+def hillclimb(grid, num_houses):
         costs = []
         count = 0
         for i in range(200000):
