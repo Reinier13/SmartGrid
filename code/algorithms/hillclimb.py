@@ -9,12 +9,11 @@ def hillclimb(grid, num_houses):
             costs.append(grid.calculate_cost())
             if costs[i] == costs[i-1]:
                 count += 1
-                if count == 15000:
+                if count == 20000:
                     break
             else:
                 count = 0
         grid.draw()
-
 
 
 def multiple_swap(grid, num_houses):

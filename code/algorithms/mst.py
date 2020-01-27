@@ -31,3 +31,6 @@ def optimize(battery, nodes, tree_obj):
         for tree_list in tree_obj.nodes:
             for node_obj in tree_list:
                 nodes.append(node_obj)
+
+def swap(grid):
+    
