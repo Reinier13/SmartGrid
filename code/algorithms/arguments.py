@@ -1,9 +1,9 @@
 import argparse
 
 def parseArgs():
-    """parseArgs.
-    Parses arguments given to main and returns them
-    Runs everything by default
+    """
+    Parses arguments given to main and returns them.
+    Runs everything by default.
     """
     parser = argparse.ArgumentParser()
     parser.add_argument("-d","--district",
@@ -52,7 +52,7 @@ def parseArgs():
     if args.hillclimb == "multiple_swap":
         if args.swaps == None:
             args.swaps = input("Choose number of swaps: ")
-            while args.swaps not in ["1","2","3", "4"]:
-                args.swaps = input("Choose number of swaps(1, 2, 3 or 4): ")
+            while args.swaps not in ["2","3","4","5"]:
+                args.swaps = input("Choose number of swaps(2, 3, 4 or 5): ")
 
     return args

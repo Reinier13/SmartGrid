@@ -72,9 +72,9 @@ class Grid:
         Clear all connections between batteries and houses.
         """
         for battery in self.batteries:
-            battery.clear()
             for house in battery.houses:
                 house.clear()
+            battery.clear()
 
 
     def plot(self, grid, title):

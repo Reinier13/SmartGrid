@@ -4,7 +4,6 @@ import copy
 
 from code.classes import tree
 
-
 def simanneal(grid):
     """
     Simulated Annealing algorithm based on a Hill climb swap where houses swap
