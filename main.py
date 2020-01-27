@@ -75,7 +75,7 @@ def second(args, grid):
 
     if args.hillclimb == "sa":
         # simulated anneal
-        simanneal.simanneal(connect_grid)
+        connect_grid = simanneal.simanneal(connect_grid)
 
     # update the cost
     print("Improved costs:", connect_grid.calculate_cost())
