@@ -24,6 +24,8 @@ def hill_climb(grid):
 
     grid.draw()
 
+    return grid
+
 def swap(grid):
 
     # take random house and the battery that it's connected to
