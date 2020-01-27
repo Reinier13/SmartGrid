@@ -1,6 +1,7 @@
 import random
 import math
 import copy
+from decimal import Decimal
 from code.classes import tree
 from code.algorithms.helpers import distance
 
@@ -10,34 +11,42 @@ def simanneal(grid):
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-    temperature = 1000
-    cooling_rate = 0.99
-    count = 0
-    for i in range(1000):
-        temporary_temperature = temperature * (cooling_rate ** i)
-        if temporary_temperature < 1.000001:
-            temporary_temperature = 1.000001
-
-        grid_last_cost = copy.deepcopy(grid)
-        swap(grid, temporary_temperature)
-        grid.draw()
-
-        if i == 0:
-            grid_min_cost = copy.deepcopy(grid)
-        if grid.calculate_cost() < grid_min_cost.calculate_cost():
-            grid_min_cost = copy.deepcopy(grid)
-        print(grid_min_cost.calculate_cost())
+    z = []
+    for i in range(1000, 0, -100):
+        temperature = i
+        for j in range(10):
+            cooling_rate = j/10
 
 
-        if grid.calculate_cost() == grid_last_cost.calculate_cost():
-            count += 1
-        else:
             count = 0
+            for h in range(1000):
+                temporary_temperature = temperature * (cooling_rate ** h)
+                if temporary_temperature < 1.000001:
+                    temporary_temperature = 1.000001
 
-        if count == 10:
-            break
+                grid_last_cost = copy.deepcopy(grid)
+                swap(grid, temporary_temperature)
+                grid.draw()
 
-    return grid_min_cost
+                if h == 0:
+                    grid_min_cost = copy.deepcopy(grid)
+                if grid.calculate_cost() < grid_min_cost.calculate_cost():
+                    grid_min_cost = copy.deepcopy(grid)
+                print(grid_min_cost.calculate_cost())
+
+
+                if grid.calculate_cost() == grid_last_cost.calculate_cost():
+                    count += 1
+                else:
+                    count = 0
+
+
+                if count == 10:
+                    break
+            z.append(grid_min_cost.calculate_cost())
+
+
+    return z
 
 def swap(grid, temperature):
     """
@@ -64,7 +73,7 @@ def swap(grid, temperature):
             house_swap(swap_house_1, swap_house_2,swap_battery_1, swap_battery_2)
             break
 
-        elif math.exp(-(delta_distance/temperature)) > random.random() and \
+        elif math.exp(-delta_distance/temperature) > random.random() and \
             capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
             house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2)
             break
