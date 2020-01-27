@@ -1,5 +1,5 @@
 from code.classes import grid
-from code.algorithms import random, swap, greedy, mst, multiple_swap, simanneal
+from code.algorithms import random, greedy, hillclimb, simanneal, mst
 from code.algorithms.arguments import parseArgs
 import numpy as np
 
@@ -66,16 +66,16 @@ def second(args, grid):
 
     # check which type of hillclimb to run
     if args.hillclimb == "single_swap":
-        multiple_swap.hill_climb(connect_grid, 1)
+        hillclimb.hill_climb(connect_grid, 1)
 
     if args.hillclimb == "multiple_swap":
         # save the number of houses to swap simultanously
         opt = int(args.swaps)
-        multiple_swap.hill_climb(connect_grid, opt)
+        hillclimb.hill_climb(connect_grid, opt)
 
     if args.hillclimb == "sa":
         # simulated anneal
-        simanneal.simanneal(connect_grid)
+        connect_grid = simanneal.simanneal(connect_grid)
 
     # update the cost
     print("Improved costs:", connect_grid.calculate_cost())

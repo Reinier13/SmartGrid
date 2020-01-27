@@ -1,5 +1,7 @@
-import random, math
-import pickle
+import random
+import math
+import copy
+
 from code.classes import tree
 
 def simanneal(grid):
@@ -8,40 +10,31 @@ def simanneal(grid):
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-    temperature = 1000
-    cooling_rate = 0.95
+    temperature = 10000
+    cooling_rate = 0.99
     for i in range(50):
 
         # exponential cooling scheme
         temporary_temperature = temperature * (cooling_rate ** i)
+        if temporary_temperature < 0.001:
+            temporary_temperature = 0.001
+
+        # temporary_temperature = temperature - (cooling_rate * i)
+
 
 
         swap(grid, temporary_temperature)
 
         grid.draw()
 
-        # grid.trees = []
-        # # recable the houses
-        # for battery in grid.batteries:
-        #     tree_obj = tree.Tree()
-        #
-        # for house in grid.houses:
-        #     house.cables = []
-        #     house.add_cable()
-        #     # tree_obj.nodes.append(house.cables)
-        #
-        #     # grid.trees.append(house.cables)
-
-
         if i == 0:
-            min_cost = grid
+            grid_min_cost = copy.deepcopy(grid)
 
-        print(grid.calculate_cost())
-        print(min_cost.calculate_cost())
-        if grid.calculate_cost() < min_cost.calculate_cost():
-            min_cost = grid
 
-    print(min_cost)
+        if grid.calculate_cost() < grid_min_cost.calculate_cost():
+            grid_min_cost = copy.deepcopy(grid)
+        print(grid_min_cost.calculate_cost())
+    return grid_min_cost
 
 def swap(grid, temperature):
     """
@@ -71,10 +64,10 @@ def swap(grid, temperature):
         # calculate distances
         old_distance = distance(swap_house_1, swap_battery_1) + distance(swap_house_2, swap_battery_2)
         new_distance = distance(swap_house_2, swap_battery_1) + distance(swap_house_1, swap_battery_2)
-        delta_distance = old_distance - new_distance
+        delta_distance = new_distance - old_distance
 
         # check if distance is improved and fits the capacity
-        if delta_distance > 0 and capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
+        if delta_distance < 0 and capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
 
             print('Improvement')
 
@@ -83,7 +76,8 @@ def swap(grid, temperature):
             break
 
         # also do swap by random chance if not improved
-        elif math.exp(delta_distance/temperature) > random.random():
+        elif math.exp(-(delta_distance/temperature)) > random.random() and \
+            capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
 
             house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2)
             break
