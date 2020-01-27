@@ -17,7 +17,7 @@ def parseArgs():
                         choices = ["greedy","random", "draft"])
     parser.add_argument("-hc","--hillclimb",
                         help = "Specify which type of hill climb",
-                        choices = ["single_swap", "multiple_swap"])
+                        choices = ["single_swap", "multiple_swap", "sa"])
     parser.add_argument("-s","--swaps",
                         help = "In case of multiple swaps, specify the number of houses to swap",
                         choices = ["1","2","3","4"])

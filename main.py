@@ -73,6 +73,10 @@ def second(args, grid):
         opt = int(args.swaps)
         multiple_swap.hill_climb(connect_grid, opt)
 
+    if args.hillclimb == "sa":
+        # simulated anneal
+        simanneal.simanneal(connect_grid)
+
     # update the cost
     print("Improved costs:", connect_grid.calculate_cost())
 
