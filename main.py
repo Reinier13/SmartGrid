@@ -65,15 +65,15 @@ def second(args, grid):
     connect_grid = first(args, grid)
 
     # check which type of hillclimb to run
-    if args.hillclimb == "single_swap":
+    if args.optimize == "single_swap":
         hillclimb.hill_climb(connect_grid, 1)
 
-    if args.hillclimb == "multiple_swap":
+    if args.optimize == "multiple_swap":
         # save the number of houses to swap simultanously
         opt = int(args.swaps)
         hillclimb.hill_climb(connect_grid, opt)
 
-    if args.hillclimb == "sa":
+    if args.optimize == "simanneal":
         # simulated anneal
         connect_grid = simanneal.simanneal(connect_grid)
 
