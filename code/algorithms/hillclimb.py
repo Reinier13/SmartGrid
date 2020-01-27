@@ -15,6 +15,7 @@ def hill_climb(grid, num_houses):
             count = 0
     grid.draw()
 
+
 def multiple_swap(grid, num_houses):
     swap_battery_1 = choose_battery(grid)
     swap_houses_1 = []
