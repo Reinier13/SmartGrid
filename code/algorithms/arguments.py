@@ -17,7 +17,7 @@ def parseArgs():
                         choices = ["greedy","random", "draft"])
     parser.add_argument("-o","--optimize",
                         help = "Specify which type of optimization (single_swap, multiple_swap, simanneal)",
-                        choices = ["single_swap", "multiple_swap" "simanneal"])
+                        choices = ["single_swap", "multiple_swap", "simanneal"])
     parser.add_argument("-s","--swaps",
                         help = "In case of multiple swaps, specify the number of houses to swap(1, 2, 3, 4)",
                         choices = ["2","3","4","5"])
