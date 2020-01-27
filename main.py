@@ -71,7 +71,7 @@ def second(args, grid):
     if args.hillclimb == "multiple_swap":
         # save the number of houses to swap simultanously
         opt = int(args.swaps)
-        hillclimb.hill_climb(connect_grid, opt)
+        hillclimb.hillclimb(connect_grid, opt)
 
     if args.hillclimb == "sa":
         # simulated anneal
