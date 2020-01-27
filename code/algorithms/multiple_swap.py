@@ -8,7 +8,7 @@ class HillClimb():
 def hill_climb(grid, num_houses):
     costs = []
     count = 0
-    for i in range(30000):
+    for i in range(50000):
         multiple_swap(grid, num_houses)
         costs.append(grid.calculate_cost())
         if costs[i] == costs[i-1]:

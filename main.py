@@ -66,7 +66,7 @@ def second(args, grid):
 
     # check which type of hillclimb to run
     if args.hillclimb == "single_swap":
-        swap.hill_climb(connect_grid)
+        multiple_swap.hill_climb(connect_grid, 1)
 
     if args.hillclimb == "multiple_swap":
         # save the number of houses to swap simultanously
