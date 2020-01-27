@@ -1,5 +1,3 @@
-from code.classes import tree
-
 def distance(house, battery):
     delta_x = house.x - battery.x
     delta_y = house.y - battery.y
