@@ -1,5 +1,5 @@
 import random
-from code.algorithms.helpers import distance, draw, clear
+from code.algorithms.helpers import distance
 
 
 def hill_climb(grid, num_houses):
@@ -22,7 +22,7 @@ def hill_climb(grid, num_houses):
         else:
             count = 0
 
-    draw(grid)
+    grid.draw()
 
 
 def multiple_swap(grid, num_houses):

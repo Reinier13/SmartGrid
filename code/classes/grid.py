@@ -1,5 +1,6 @@
 from .house import House
 from .battery import Battery
+from code.classes.tree import Tree
 import csv
 import matplotlib
 import matplotlib.mlab as mlab
@@ -42,27 +43,47 @@ class Grid:
 
     def calculate_cost(self):
         """
-        Calculates the costs of the whole grid system.
+        Calculate the costs of the whole grid system.
         """
         self.cost = 0
         for battery in self.batteries:
             self.cost += battery.cost
         for tree in self.trees:
             for branch in tree:
-                # print(branch)
                 self.cost += ((len(branch) - 1) * 9)
         return self.cost
 
 
+    def draw(self):
+        """
+        Fill grid with trees with batteries and their corresponding houses.
+        """
+        self.trees = []
+        for battery in self.batteries:
+            tree_obj = Tree()
+            for house in battery.houses:
+                added_nodes = tree_obj.add_nodes(house, battery)
+                house.nodes = added_nodes
+            self.trees.append(tree_obj.nodes)
+
+
+    def clear(self):
+        """
+        Clear all connections between batteries and houses.
+        """
+        for battery in self.batteries:
+            battery.clear()
+            for house in battery.houses:
+                house.clear()
+
+
     def plot(self, grid, title):
         """
-        Plots the grid system.
+        Plot the grid system.
         """
-
         fig = plt.figure()
         ax = fig.add_subplot(1, 1, 1)
 
-        # major ticks every 10, minor ticks every 1
         major_ticks = np.arange(0, 51, 10)
         minor_ticks = np.arange(0, 51, 1)
 
@@ -71,24 +92,12 @@ class Grid:
         ax.set_yticks(major_ticks)
         ax.set_yticks(minor_ticks, minor=True)
 
-        # a corresponding grid
         ax.grid(which='both')
-
-        # settings for the grids
         ax.grid(which='minor', alpha=0.2)
         ax.grid(which='major', alpha=0.5)
 
-        # plot houses
         for house in self.houses:
             ax.scatter(house.x, house.y, c='r', marker='o', zorder=2)
-
-            # cablex = []
-            # cabley = []
-            # for cable in house.cables:
-            #     cablex.append(cable[0])
-            #     cabley.append(cable[1])
-            # ax.plot(cablex, cabley, '-', color='green')
-
 
         colors = itertools.cycle(["r", "b", "g", "y", "k"])
         for tree in self.trees:
@@ -101,11 +110,9 @@ class Grid:
                     cabley.append(cable.y)
                     ax.plot(cablex, cabley, '-', c=c)
 
-        # plot batteries
         for battery in self.batteries:
             ax.scatter(battery.x, battery.y, c='b', marker='*', zorder=2)
 
-        # set labels and show plot
         costs = grid.cost
         ax.set(xlabel='X-axis', ylabel='Y-axis', title=title + ", cost: " + str(costs))
         plt.show()

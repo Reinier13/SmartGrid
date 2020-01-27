@@ -19,7 +19,7 @@ def simanneal(grid):
 
         swap(grid, temporary_temperature)
 
-        draw(grid)
+        grid.draw()
 
         # grid.trees = []
         # # recable the houses
