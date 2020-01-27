@@ -24,3 +24,19 @@ def rand(grid):
             house.battery = None
         grid.trees = []
         rand(grid)
+
+def rand(grid):
+    num_houses = 0
+    random.shuffle(grid.houses)
+    for battery in grid.batteries:
+        for house in grid.houses:
+            capacity_used = battery.capacity_used()
+            if (battery.capacity > (capacity_used + house.output)) and house.battery == None:
+                battery.add_house(house)
+                house.battery = battery
+        num_houses += len(battery.houses)
+    grid.draw()
+
+    if num_houses != len(grid.houses):
+        grid.clear()
+        rand(grid)
