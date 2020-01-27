@@ -28,7 +28,7 @@ def greedy(grid):
         closest_house_index = pick(battery)
 
         # keep making connections until capacity is reached
-        while battery.check_cap(grid.houses[closest_house_index]):
+        while battery.check_cap():
 
             # get index of closest house to battery
             closest_house_index = pick(battery)

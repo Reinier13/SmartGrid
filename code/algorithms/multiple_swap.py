@@ -58,7 +58,7 @@ def multiple_swap(grid, num_houses):
         new_distance += distance(house, swap_battery_1)
 
     # check if distance is improved and fits the capacity
-    if new_distance < old_distance and capacity_fit(swap_houses_1, swap_houses_2):
+    if new_distance < old_distance and capacity_fit(swap_houses_1, swap_houses_2, swap_battery_1, swap_battery_2):
 
         # swap the houses
         houses_swap(swap_houses_1, swap_houses_2,swap_battery_1, swap_battery_2, num_houses)
