@@ -1,7 +1,7 @@
 import random
 import numpy as np
 from .mst import mst
-from code.algorithms.helpers import distance, draw, clear
+from code.algorithms.helpers import distance
 
 
 MAX_DIST = 10000
@@ -11,48 +11,87 @@ def greedy(grid):
     Greedy algorithm that chooses a random battery and connects with houses
     that are closest until the capacity of the battery is reached.
     """
-
-    # init
-    clear(grid)
-
-    num_houses = 0
+    grid.clear()
     random.shuffle(grid.batteries)
-
-    # get distances of batteries to houses
     create_distances(grid)
-
-    # create connection between houses and batteries
     for battery in grid.batteries:
-
-        # get index of closest house to battery
         closest_house_index = pick(battery)
-
-        # keep making connections until capacity is reached
-        while battery.check_cap(grid.houses[closest_house_index]):
-
-            # get index of closest house to battery
+        while battery.check_cap():
             closest_house_index = pick(battery)
-
-            # if all houses are connected break out of loop
             if battery.distances[closest_house_index] == MAX_DIST:
                 break
-
-            # connect house to battery and mark as connected
             battery.houses.append(grid.houses[closest_house_index])
             remove_house(grid, closest_house_index)
+    fit(grid)
 
-        num_houses += len(battery.houses)
 
-    # if not all houses are connected run again otherwise draw grid
-    if num_houses < len(grid.houses):
-        greedy(grid)
-    else:
-        draw(grid)
+def draft(grid):
+    """
+    Draft - Greedy algorithm that connects the batteries in turn with the houses
+    that are closest to that battery until the capacity of the battery is
+    reached.
+    """
+    grid.clear()
+    random.shuffle(grid.batteries)
+    create_distances(grid)
+    house_available = True
+    while house_available:
+        for battery in grid.batteries:
+            closest_house_index = pick(battery)
+            if battery.check_cap():
+                if battery.distances[closest_house_index] == MAX_DIST:
+                    house_available = False
+                    break
+                remove_house(grid, closest_house_index)
+                battery.houses.append(grid.houses[closest_house_index])
+    fit(grid)
+
+
+def fit(grid):
+    count = 0
+    while check_houses_cap(grid) == False:
+        arrange(grid, count)
+        count += 1
+        if count == 25:
+            greedy(grid)
+    grid.draw()
+
+def arrange(grid, count):
+    capacities_used = []
+    for battery in grid.batteries:
+        capacities_used.append(battery.capacity_used())
+        bat_max_cap_index = capacities_used.index(max(capacities_used))
+        bat_min_cap_index = capacities_used.index(min(capacities_used))
+        bat_max_cap = grid.batteries[bat_max_cap_index]
+        bat_min_cap = grid.batteries[bat_min_cap_index]
+
+    bat_max_cap.distances = []
+    for house in bat_max_cap.houses:
+        bat_max_cap.distances.append(distance(house, bat_max_cap))
+
+    array = np.array(bat_max_cap.distances)
+    bat_max_dist_index = bat_max_cap.distances.index(np.partition(array, -(count+1))[-(count+1)])
+    max_dist = bat_max_cap.houses[bat_max_dist_index]
+
+    bat_min_cap.houses.append(bat_max_cap.houses.pop(bat_max_dist_index))
+
+
+def check_houses_cap(grid):
+    """
+    Check if all houses are compliant to the capacity constraint. Return False
+    if this is not the case.
+    """
+    count = 0
+    for battery in grid.batteries:
+        if battery.check_cap():
+            count += 1
+    if count != len(grid.batteries):
+        return False
 
 
 def create_distances(grid):
     """
-    Creates lists of distances for all batteries to all houses.
+    Creates distances for all batteries from the battery to all its houses.
     """
     for battery in grid.batteries:
         for house in grid.houses:
@@ -69,7 +108,7 @@ def pick(battery):
 
 def remove_house(grid, closest_index):
     """
-    Marks house as connected to a battery.
+    Marks house as connected to a battery by setting the distance to a max.
     """
     for battery in grid.batteries:
         battery.distances[closest_index] = MAX_DIST
