@@ -20,13 +20,13 @@ def mst(grid, part):
             house.nodes = battery.tree.add_branch(house.node, closest_node)
             for node_obj in house.nodes:
                 battery.nodes.append(node_obj)
-        # optimize(battery, battery.nodes, battery.tree)
+        if part == "pt3":
+            optimize(battery, battery.nodes, battery.tree)
         grid.trees.append(battery.tree)
-        print(grid.calculate_cost())
     if part == "pt4":
         swap(grid)
-        for battery in grid.batteries:
-            grid.trees.append(battery.tree)
+        # for battery in grid.batteries:
+        #     grid.trees.append(battery.tree)
 
 
 def optimize(battery, nodes, tree_obj):

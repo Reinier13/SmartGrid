@@ -55,8 +55,8 @@ def first(args, grid):
         random.rand(connect_grid)
         print("Random costs:", connect_grid.calculate_cost())
 
-    # if args.plot:
-    #     connect_grid.plot(connect_grid, 'Initial')
+    if args.plot:
+        connect_grid.plot(connect_grid, 'Initial')
 
     return connect_grid
 
@@ -82,8 +82,8 @@ def second(args, grid):
     # update the cost
     print("Improved costs:", connect_grid.calculate_cost())
 
-    # if args.plot:
-    #     connect_grid.plot(connect_grid, 'After hill climb')
+    if args.plot:
+        connect_grid.plot(connect_grid, 'After hill climb')
 
     return connect_grid
 
@@ -100,7 +100,7 @@ def third(args, grid):
 
     print("MST costs:", connect_grid.calculate_cost())
 
-    if args.plot and args.part == "3":
+    if args.plot:
         connect_grid.plot(connect_grid, "Shared cables")
 
     return connect_grid
@@ -111,9 +111,6 @@ def fourth(args, grid):
     Solve the fourth mission.
     """
     connect_grid = third(args, grid)
-
-    if args.plot and args.part == "4":
-        connect_grid.plot(connect_grid, "Shared cables optimized")
 
     # find a optimized minimal spanning tree
     part = "pt4"
