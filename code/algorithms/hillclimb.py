@@ -1,5 +1,5 @@
 import random
-from code.algorithms.helpers import distance
+from code.helpers import distance
 
 def hill_climb(grid, num_houses):
     costs = []
