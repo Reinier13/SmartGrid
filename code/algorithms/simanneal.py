@@ -22,7 +22,6 @@ def simanneal(grid, ):
                 temporary_temperature = temperature * (cooling_rate ** h)
                 if temporary_temperature < 1.000001:
                     temporary_temperature = 1.000001
->>>>>>> 0bdba46816e4fbc0915cc37ae134376bb8c7f0c1
 
         if h == 0:
             grid_min_cost = copy.deepcopy(grid)
