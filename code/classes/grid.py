@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import itertools
+from matplotlib import cm
+from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
 
 class Grid:
@@ -123,6 +125,61 @@ class Grid:
         plt.hist(x, bins=iterations, edgecolor='black', facecolor='blue')
         plt.show()
 
-    def simanneal_plot(self, x, y, z):
-        Axes3D.plot_surface(x, y, z)
+    def simanneal_plot(self, coord_list):
+        x = []
+        y = []
+        z = []
+        for coord in coord_list:
+            x.append(coord[0])
+            y.append(coord[1])
+            # z.append(coord[2])
+        print(x[1],y[1])
+
+        fig = plt.figure()
+        # ax = fig.gca(projection='3d')
+
+        # x = np.reshape(x, (10, 10, 10))
+        # y = np.reshape(y, (10, 10, 10))
+        # z = np.reshape(z, (10, 10, 10))
+
+        x.reverse()
+        x = np.asarray(x)
+        y = np.asarray(y)
+        X, Y = np.meshgrid(x, y)
+        # z = np.asarray(x+y)
+        R = np.sqrt(X**2 + Y**2)
+        Z = np.sin(R)
+
+        # fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+
+        ax.plot_surface(X, Y, Z)
+
+        ax.set_xlabel('X Label')
+        ax.set_ylabel('Y Label')
+        ax.set_zlabel('Z Label')
+
         plt.show()
+
+        # fig = plt.figure()
+        # ax = fig.gca(projection='3d')
+        #
+        # # Make data.
+        # X = np.array(x)
+        # Y = np.array(y)
+        # # X, Y = np.meshgrid(X, Y)
+        # Z = np.array(z)
+        #
+        # # Plot the surface.
+        # surf = ax.plot_trisurf(X, Y, Z, cmap=cm.coolwarm,
+        #                        linewidth=0, antialiased=False)
+        #
+        # # Customize the z axis.
+        # ax.set_zlim(-1.01, 1.01)
+        # ax.zaxis.set_major_locator(LinearLocator(10))
+        # ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
+        #
+        # # Add a color bar which maps values to colors.
+        # fig.colorbar(surf, shrink=0.5, aspect=5)
+        #
+        # plt.show()

@@ -5,20 +5,20 @@ from decimal import Decimal
 from code.classes import tree
 from code.algorithms.helpers import distance
 
-def simanneal(grid):
+def simanneal(grid, ):
     """
     Simulated Annealing algorithm based on a Hill climb swap where houses swap
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-    z = []
-    for i in range(1000, 0, -100):
+    coord_list = []
+    for i in range(500, -100, -100):
         temperature = i
         for j in range(10):
             cooling_rate = j/10
 
             count = 0
-            for h in range(1000):
+            for h in range(10):
                 temporary_temperature = temperature * (cooling_rate ** h)
                 if temporary_temperature < 1.000001:
                     temporary_temperature = 1.000001
@@ -31,7 +31,7 @@ def simanneal(grid):
                     grid_min_cost = copy.deepcopy(grid)
                 if grid.calculate_cost() < grid_min_cost.calculate_cost():
                     grid_min_cost = copy.deepcopy(grid)
-                print(grid_min_cost.calculate_cost())
+                # print(grid_min_cost.calculate_cost())
 
 
                 if grid.calculate_cost() == grid_last_cost.calculate_cost():
@@ -39,13 +39,24 @@ def simanneal(grid):
                 else:
                     count = 0
 
-
                 if count == 10:
                     break
-            z.append(grid_min_cost.calculate_cost())
 
+                coord = [i, j, grid.calculate_cost()]
+                coord_list.append(coord)
+    temp_list = []
+    coolingrate = []
+    costs = []
+    for coord in coord_list:
+        temp_list.append(coord[0])
+        coolingrate.append(coord[1])
+        costs.append(coord[2])
 
-    return z
+    min_cost_index = costs.index(min(costs))
+    print(costs[min_cost_index])
+    print(coolingrate[min_cost_index])
+    print(temp_list[min_cost_index])
+
 
 def swap(grid, temperature):
     """
@@ -70,14 +81,11 @@ def swap(grid, temperature):
 
         if delta_distance < 0 and capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
             house_swap(swap_house_1, swap_house_2,swap_battery_1, swap_battery_2)
-            print(grid.calculate_cost())
             break
 
         elif math.exp(-delta_distance/temperature) > random.random() and \
             capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
             house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2)
-            print('Math')
-            print(grid.calculate_cost())
             break
 
 
