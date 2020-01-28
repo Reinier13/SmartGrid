@@ -3,6 +3,7 @@ from code.algorithms import random, greedy, hillclimb, simanneal, mst, determine
 from code.arguments import parseArgs
 import numpy as np
 
+
 def main():
     """
     Smart Grid by m4st3r_h4ck3rz_4_l1f3.mp3.
@@ -29,6 +30,7 @@ def main():
         fourth(args, connect_grid)
 
     return connect_grid
+
 
 def first(args, grid):
     """
@@ -58,6 +60,7 @@ def first(args, grid):
 
     return connect_grid
 
+
 def second(args, grid):
     """
     Solves the second mission.
@@ -84,6 +87,7 @@ def second(args, grid):
 
     return connect_grid
 
+
 def third(args, grid):
     """
     Solve the third mission.
@@ -101,6 +105,7 @@ def third(args, grid):
 
     return connect_grid
 
+
 def fourth(args, grid):
     """
     Solve the fourth mission.
@@ -117,6 +122,7 @@ def fourth(args, grid):
     print("MST optimized costs:", connect_grid.calculate_cost())
 
     return connect_grid
+
 
 if __name__ == '__main__':
     main()

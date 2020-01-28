@@ -5,11 +5,8 @@ import csv
 import matplotlib
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import itertools
-from matplotlib import cm
-from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
 
 class Grid:
