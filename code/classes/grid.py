@@ -1,6 +1,6 @@
 from .house import House
 from .battery import Battery
-from code.classes.tree import Tree
+from .tree import Tree
 import csv
 import matplotlib
 import matplotlib.mlab as mlab
@@ -13,6 +13,10 @@ from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
 
 class Grid:
+    """
+    Class Grid holds other objects and has methods to load data 
+    and make/clear connections.
+    """
     def __init__(self, houses_file, batteries_file):
         self.batteries = self.load_batteries(batteries_file)
         self.houses = self.load_houses(houses_file)
@@ -59,7 +63,7 @@ class Grid:
 
     def draw(self):
         """
-        Fill grid with trees with batteries and their corresponding houses.
+        Fill grid with trees of batteries and their corresponding houses.
         """
         self.trees = []
         for battery in self.batteries:

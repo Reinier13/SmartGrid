@@ -19,8 +19,8 @@ def parseArgs():
                         help = "Specify which type of optimization (single_swap, multiple_swap, simanneal)",
                         choices = ["single_swap", "multiple_swap", "simanneal"])
     parser.add_argument("-s","--swaps",
-                        help = "In case of multiple swaps, specify the number of houses to swap(1, 2, 3, 4)",
-                        choices = ["2","3","4","5"])
+                        help = "In case of multiple swaps, specify the number of houses to swap(2 up to 14)",
+                        choices = ["2","3","4","5","6","7","8","9","10","11","12","13","14"])
     parser.add_argument("-pt","--part",
                         help = "Specifies until which part of the assignment the case should be solved",
                         choices = ["1","2","3","4"])
@@ -40,7 +40,7 @@ def parseArgs():
         while args.method not in ["greedy","random", "draft"]:
             args.method = input("Choose method(\"greedy\" or \"random\" \"draft\"): ")
 
-    if args.part in ["2", "4"]:
+    if args.part in ["2","3","4"]:
         if args.optimize == None:
             args.optimize = input("Choose optimize option: ")
             while args.method not in ["single_swap", "multiple_swap", "simanneal"]:
@@ -49,7 +49,7 @@ def parseArgs():
     if args.optimize == "multiple_swap":
         if args.swaps == None:
             args.swaps = input("Choose number of swaps: ")
-            while args.swaps not in ["1","2","3","4","5"]:
-                args.swaps = input("Choose number of swaps(1, 2, 3, 4 or 5): ")
+            while args.swaps not in ["2","3","4","5","6","7","8","9","10","11","12","13","14"]:
+                args.swaps = input("Choose number of swaps(2 up to 14): ")
 
     return args
