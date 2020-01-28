@@ -14,7 +14,7 @@ from matplotlib.ticker import LinearLocator, FormatStrFormatter
 
 class Grid:
     """
-    Class Grid holds other objects and has methods to load data 
+    Class Grid holds other objects and has methods to load data
     and make/clear connections.
     """
     def __init__(self, houses_file, batteries_file):
@@ -136,54 +136,53 @@ class Grid:
         for coord in coord_list:
             x.append(coord[0])
             y.append(coord[1])
-            # z.append(coord[2])
-        print(x[1],y[1])
+            z.append(coord[2])
+        print(x)
+        print(y)
+
+        matrix_x = []
+        for i in range(len(x)):
+            x_list = []
+            for value in x:
+                x_list.append(value)
+            matrix_x.append(x_list)
+        print(matrix_x)
+
+        matrix_y = []
+        for value in y:
+            y_list = []
+            for i in range(len(y)):
+                y_list.append(value)
+            matrix_y.append(y_list)
+        print(matrix_y)
+
+        matrix_z = []
+        for value in z:
+            matrix_z.append(value)
+
+
+        # x.append(list(range(1,11))*10)
+        # y.append(list(range(1,11))*10)
+        # z.append(range(1,101))
 
         fig = plt.figure()
-        # ax = fig.gca(projection='3d')
 
-        # x = np.reshape(x, (10, 10, 10))
-        # y = np.reshape(y, (10, 10, 10))
-        # z = np.reshape(z, (10, 10, 10))
+        X = np.asarray(matrix_x)
+        Y = np.asarray(matrix_y)
+        Z = np.asarray(z)
+        X = np.reshape(X, (len(x), len(x)))
+        Y = np.reshape(Y, (len(y), len(y)))
+        Z = np.reshape(Z, (2, 2))
 
-        x.reverse()
-        x = np.asarray(x)
-        y = np.asarray(y)
-        X, Y = np.meshgrid(x, y)
-        # z = np.asarray(x+y)
-        R = np.sqrt(X**2 + Y**2)
-        Z = np.sin(R)
-
-        # fig = plt.figure()
         ax = fig.add_subplot(111, projection='3d')
 
-        ax.plot_surface(X, Y, Z)
+        ax.plot_surface(X, Y, Z, cmap=cm.coolwarm)
+
+        print(X.shape)
+        print(Z)
 
         ax.set_xlabel('X Label')
         ax.set_ylabel('Y Label')
         ax.set_zlabel('Z Label')
 
         plt.show()
-
-        # fig = plt.figure()
-        # ax = fig.gca(projection='3d')
-        #
-        # # Make data.
-        # X = np.array(x)
-        # Y = np.array(y)
-        # # X, Y = np.meshgrid(X, Y)
-        # Z = np.array(z)
-        #
-        # # Plot the surface.
-        # surf = ax.plot_trisurf(X, Y, Z, cmap=cm.coolwarm,
-        #                        linewidth=0, antialiased=False)
-        #
-        # # Customize the z axis.
-        # ax.set_zlim(-1.01, 1.01)
-        # ax.zaxis.set_major_locator(LinearLocator(10))
-        # ax.zaxis.set_major_formatter(FormatStrFormatter('%.02f'))
-        #
-        # # Add a color bar which maps values to colors.
-        # fig.colorbar(surf, shrink=0.5, aspect=5)
-        #
-        # plt.show()
