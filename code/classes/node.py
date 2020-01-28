@@ -1,4 +1,4 @@
-from code.algorithms.helpers import distance
+from code.helpers import distance
 import numpy as np
 
 class Node:
