@@ -20,8 +20,9 @@ def mst(grid, part):
             house.nodes = battery.tree.add_branch(house.node, closest_node)
             for node_obj in house.nodes:
                 battery.nodes.append(node_obj)
-        optimize(battery, battery.nodes, battery.tree)
+        # optimize(battery, battery.nodes, battery.tree)
         grid.trees.append(battery.tree)
+        print(grid.calculate_cost())
     if part == "pt4":
         swap(grid)
         for battery in grid.batteries:
@@ -92,8 +93,8 @@ def perform_swap(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2, clo
     """
     Performs the actual swap, same as in the hillclimber.
     """
-    rand_battery_1.tree.branches.remove(rand_house_1.nodes)
-    rand_battery_2.tree.branches.remove(rand_house_2.nodes)
+    rand_battery_1.tree.branches.pop(rand_battery_1.houses.index(rand_house_1))
+    rand_battery_2.tree.branches.pop(rand_battery_2.houses.index(rand_house_2))
 
     rand_battery_1.add_house(rand_battery_2.houses.pop(rand_battery_2.houses.index(rand_house_2)))
     rand_battery_2.add_house(rand_battery_1.houses.pop(rand_battery_1.houses.index(rand_house_1)))

@@ -53,8 +53,8 @@ def first(args, grid):
         random.rand(connect_grid)
         print("Random costs:", connect_grid.calculate_cost())
 
-    if args.plot:
-        connect_grid.plot(connect_grid, 'Initial')
+    # if args.plot:
+    #     connect_grid.plot(connect_grid, 'Initial')
 
     return connect_grid
 
@@ -79,8 +79,8 @@ def second(args, grid):
     # update the cost
     print("Improved costs:", connect_grid.calculate_cost())
 
-    if args.plot:
-        connect_grid.plot(connect_grid, 'After hill climb')
+    # if args.plot:
+    #     connect_grid.plot(connect_grid, 'After hill climb')
 
     return connect_grid
 
