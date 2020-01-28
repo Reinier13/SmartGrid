@@ -5,24 +5,32 @@ from decimal import Decimal
 from code.classes import tree
 from code.helpers import distance
 
-def simanneal(grid, ):
+def simanneal(grid):
     """
     Simulated Annealing algorithm based on a Hill climb swap where houses swap
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-    coord_list = []
-    for i in range(500, -100, -100):
-        temperature = i
-        for j in range(10):
-            cooling_rate = j/10
+    # z = []
+    # for i in range(500, 0, -100):
+    #     temperature = i
+    #     for j in range(2):
+    #         cooling_rate = j/10
 
-            count = 0
-            for h in range(10):
-                temporary_temperature = temperature * (cooling_rate ** h)
-                if temporary_temperature < 1.000001:
-                    temporary_temperature = 1.000001
+    #
+    temperature = 1000
+    cooling_rate = 0.99
 
+    count = 0
+    for h in range(1000):
+        temporary_temperature = temperature * (cooling_rate ** h)
+        if temporary_temperature < 1.000001:
+            temporary_temperature = 1.000001
+
+        grid_last_cost = copy.deepcopy(grid)
+        swap(grid, temporary_temperature)
+        grid.draw()
+        
         if h == 0:
             grid_min_cost = copy.deepcopy(grid)
         if grid.calculate_cost() < grid_min_cost.calculate_cost():
@@ -39,8 +47,6 @@ def simanneal(grid, ):
         if count == 10:
             break
 
-                coord = [i, j, grid.calculate_cost()]
-                coord_list.append(coord)
     temp_list = []
     coolingrate = []
     costs = []
