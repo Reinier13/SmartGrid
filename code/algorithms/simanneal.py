@@ -11,6 +11,7 @@ def simanneal(grid):
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
+<<<<<<< HEAD
     # z = []
     # for i in range(500, 0, -100):
     #     temperature = i
@@ -31,6 +32,20 @@ def simanneal(grid):
         swap(grid, temporary_temperature)
         grid.draw()
         
+=======
+    coord_list = []
+    for i in range(500, -100, -100):
+        temperature = i
+        for j in range(10):
+            cooling_rate = j/10
+
+            count = 0
+            for h in range(10):
+                temporary_temperature = temperature * (cooling_rate ** h)
+                if temporary_temperature < 1.000001:
+                    temporary_temperature = 1.000001
+
+>>>>>>> c81659f43061ed0a3d00eba3bc9f4d340ca3f7c3
         if h == 0:
             grid_min_cost = copy.deepcopy(grid)
         if grid.calculate_cost() < grid_min_cost.calculate_cost():
@@ -46,10 +61,20 @@ def simanneal(grid):
 
         if count == 10:
             break
-    # z.append(grid_min_cost.calculate_cost())
 
+    temp_list = []
+    coolingrate = []
+    costs = []
+    for coord in coord_list:
+        temp_list.append(coord[0])
+        coolingrate.append(coord[1])
+        costs.append(coord[2])
 
-    return grid_min_cost
+    min_cost_index = costs.index(min(costs))
+    print(costs[min_cost_index])
+    print(coolingrate[min_cost_index])
+    print(temp_list[min_cost_index])
+
 
 def swap(grid, temperature):
     """
@@ -74,14 +99,11 @@ def swap(grid, temperature):
 
         if delta_distance < 0 and capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
             house_swap(swap_house_1, swap_house_2,swap_battery_1, swap_battery_2)
-            print(grid.calculate_cost())
             break
 
         elif math.exp(-delta_distance/temperature) > random.random() and \
             capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
             house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2)
-            print('Math')
-            print(grid.calculate_cost())
             break
 
 
