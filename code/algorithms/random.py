@@ -17,6 +17,7 @@ def rand(grid):
                 house.battery = battery
         num_houses += len(battery.houses)
 
+
     # retry if not all houses get assigned
     if num_houses != len(grid.houses):
         grid.clear()

@@ -5,8 +5,10 @@ class Tree:
     Class Tree has the nodes of a tree object as an attribute
     and also contains a method to add notes to the tree.
     """
+    
     def __init__(self):
         self.branches = []
+
 
     def add_branch(self, node, target):
         """

@@ -6,12 +6,14 @@ from decimal import Decimal
 from code.classes import tree
 from code.helpers import distance
 
+
 def simanneal(grid):
     """
     Simulated Annealing algorithm based on a Hill climb swap where houses swap
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
+    
     temperature = 1000
     cooling_rate = 0.95
 
