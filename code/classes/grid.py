@@ -71,7 +71,7 @@ class Grid:
             for house in battery.houses:
                 added_nodes = tree_obj.add_nodes(house, battery)
                 house.nodes = added_nodes
-            self.trees.append(tree_obj.nodes)
+            self.trees.append(tree_obj.branches)
 
 
     def clear(self):
