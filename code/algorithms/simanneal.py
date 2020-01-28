@@ -11,7 +11,6 @@ def simanneal(grid):
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-<<<<<<< HEAD
     # z = []
     # for i in range(500, 0, -100):
     #     temperature = i
@@ -31,21 +30,7 @@ def simanneal(grid):
         grid_last_cost = copy.deepcopy(grid)
         swap(grid, temporary_temperature)
         grid.draw()
-        
-=======
-    coord_list = []
-    for i in range(500, -100, -100):
-        temperature = i
-        for j in range(10):
-            cooling_rate = j/10
 
-            count = 0
-            for h in range(10):
-                temporary_temperature = temperature * (cooling_rate ** h)
-                if temporary_temperature < 1.000001:
-                    temporary_temperature = 1.000001
-
->>>>>>> c81659f43061ed0a3d00eba3bc9f4d340ca3f7c3
         if h == 0:
             grid_min_cost = copy.deepcopy(grid)
         if grid.calculate_cost() < grid_min_cost.calculate_cost():
