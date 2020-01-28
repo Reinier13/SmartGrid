@@ -114,8 +114,6 @@ def fourth(args, grid):
 
     print("MST optimized costs:", connect_grid.calculate_cost())
 
-        
-
     return connect_grid
 
 if __name__ == '__main__':
