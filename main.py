@@ -112,9 +112,6 @@ def fourth(args, grid):
     """
     connect_grid = third(args, grid)
 
-    if args.plot:
-        connect_grid.plot(connect_grid, "Shared cables optimized")
-
     # find a optimized minimal spanning tree
     part = "pt4"
     mst.mst(connect_grid, part)

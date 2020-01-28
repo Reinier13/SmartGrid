@@ -114,6 +114,6 @@ class Grid:
         for battery in self.batteries:
             ax.scatter(battery.x, battery.y, c='b', marker='*', zorder=2)
 
-        costs = grid.cost
-        ax.set(xlabel='X-axis', ylabel='Y-axis', title=title + ", cost: " + str(costs))
+        # costs = grid.cost
+        ax.set(xlabel='X-axis', ylabel='Y-axis', title=title)
         plt.show()

@@ -54,7 +54,7 @@ To run it on district 1 in part 2 completely with a greedy way of connecting the
 
 To run it on district 1 in part 2 completely with a greedy way of connecting them while producing a plot the user, and performing a hillclimb with multiple swaps with 3 houses afterwards, would have to run
 
-    "main.py -d 1 -m greedy -hc multiple_swap -s 3 -p -pt 2"
+    "main.py -d 1 -m greedy -o multiple_swap -s 3 -p -pt 2"
 
 ### Structure
 
