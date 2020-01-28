@@ -123,6 +123,9 @@ class Grid:
         plt.hist(x, bins=iterations, edgecolor='black', facecolor='blue')
         plt.show()
 
-    def simanneal_plot(self, x, y, z):
-        Axes3D.plot_surface(x, y, z)
+    def simanneal_plot(self):
+        fig = plt.figure()
+        ax = fig.add_subplot(111, projection='3d')
+
+        ax.plot_surface([1,2,3], [1,2,3], [1,2,3])
         plt.show()

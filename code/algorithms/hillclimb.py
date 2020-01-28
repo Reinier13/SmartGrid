@@ -60,8 +60,8 @@ def houses_swap(swap_houses_1, swap_houses_2, swap_battery_1, swap_battery_2, nu
         house_1 = swap_houses_1[i]
         house_2 = swap_houses_2[i]
 
-        swap_battery_1.houses.append(swap_battery_2.houses.pop(swap_battery_2.houses.index(house_2)))
-        swap_battery_2.houses.append(swap_battery_1.houses.pop(swap_battery_1.houses.index(house_1)))
+        swap_battery_1.add_house(swap_battery_2.houses.pop(swap_battery_2.houses.index(house_2)))
+        swap_battery_2.add_house(swap_battery_1.houses.pop(swap_battery_1.houses.index(house_1)))
 
 
 def choose_battery(grid):

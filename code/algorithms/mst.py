@@ -5,18 +5,18 @@ from code.classes.grid import Grid
 def mst(grid):
     grid.trees = []
     for battery in grid.batteries:
-        tree_obj = tree.Tree()
+        battery.tree = tree.Tree()
         nodes = []
         nodes.append(node.Node(battery.x, battery.y))
         for house in battery.houses:
             house.node = node.Node(house.x, house.y)
             closest_node = house.node.get_closest_node(nodes)
-            house.nodes = tree_obj.add_nodes(house.node, closest_node)
-            for tree_list in tree_obj.nodes:
+            house.nodes = battery.tree.add_nodes(house.node, closest_node)
+            for tree_list in battery.tree.nodes:
                 for node_obj in tree_list:
                     nodes.append(node_obj)
-        optimize(battery, nodes, tree_obj)
-        grid.trees.append(tree_obj.nodes)
+        optimize(battery, nodes, battery.tree)
+        grid.trees.append(battery.tree.nodes)
 
 
 def optimize(battery, nodes, tree_obj):

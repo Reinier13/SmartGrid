@@ -11,42 +11,45 @@ def simanneal(grid):
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-    z = []
-    for i in range(1000, 0, -100):
-        temperature = i
-        for j in range(10):
-            cooling_rate = j/10
+    # z = []
+    # for i in range(500, 0, -100):
+    #     temperature = i
+    #     for j in range(2):
+    #         cooling_rate = j/10
+
+    #
+    temperature = 1000
+    cooling_rate = 0.99
+
+    count = 0
+    for h in range(1000):
+        temporary_temperature = temperature * (cooling_rate ** h)
+        if temporary_temperature < 1.000001:
+            temporary_temperature = 1.000001
+
+        grid_last_cost = copy.deepcopy(grid)
+        swap(grid, temporary_temperature)
+        grid.draw()
+
+        if h == 0:
+            grid_min_cost = copy.deepcopy(grid)
+        if grid.calculate_cost() < grid_min_cost.calculate_cost():
+            grid_min_cost = copy.deepcopy(grid)
 
 
+
+        if grid.calculate_cost() == grid_last_cost.calculate_cost():
+            count += 1
+        else:
             count = 0
-            for h in range(1000):
-                temporary_temperature = temperature * (cooling_rate ** h)
-                if temporary_temperature < 1.000001:
-                    temporary_temperature = 1.000001
-
-                grid_last_cost = copy.deepcopy(grid)
-                swap(grid, temporary_temperature)
-                grid.draw()
-
-                if h == 0:
-                    grid_min_cost = copy.deepcopy(grid)
-                if grid.calculate_cost() < grid_min_cost.calculate_cost():
-                    grid_min_cost = copy.deepcopy(grid)
-                print(grid_min_cost.calculate_cost())
 
 
-                if grid.calculate_cost() == grid_last_cost.calculate_cost():
-                    count += 1
-                else:
-                    count = 0
+        if count == 10:
+            break
+    # z.append(grid_min_cost.calculate_cost())
 
 
-                if count == 10:
-                    break
-            z.append(grid_min_cost.calculate_cost())
-
-
-    return z
+    return grid_min_cost
 
 def swap(grid, temperature):
     """
@@ -83,8 +86,8 @@ def house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
     """
     Swaps house with a house in another battery.
     """
-    swap_battery_1.houses.append(swap_battery_2.houses.pop(swap_battery_2.houses.index(swap_house_2)))
-    swap_battery_2.houses.append(swap_battery_1.houses.pop(swap_battery_1.houses.index(swap_house_1)))
+    swap_battery_1.add_house(swap_battery_2.houses.pop(swap_battery_2.houses.index(swap_house_2)))
+    swap_battery_2.add_house(swap_battery_1.houses.pop(swap_battery_1.houses.index(swap_house_1)))
 
 
 def capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):

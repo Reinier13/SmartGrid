@@ -77,7 +77,7 @@ def second(args, grid):
         # simulated anneal
         connect_grid = simanneal.simanneal(connect_grid)
     # update the cost
-    print("Improved costs:", connect_grid)
+    print("Improved costs:", connect_grid.calculate_cost())
 
     if args.plot:
         connect_grid.plot(connect_grid, 'After hill climb')
