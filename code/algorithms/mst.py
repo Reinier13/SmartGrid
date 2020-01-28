@@ -13,17 +13,16 @@ def mst(grid):
             house.node = node.Node(house.x, house.y)
             closest_node = house.node.get_closest_node(battery.nodes)
             house.nodes = battery.tree.add_nodes(house.node, closest_node)
-        for branch in battery.tree.nodes:
+        for branch in battery.tree.branches:
             for node_obj in branch:
                 battery.nodes.append(node_obj)
-        break
         # optimize(battery, battery.nodes, battery.tree)
-        grid.trees.append(battery.tree.nodes)
+        grid.trees.append(battery.tree.branches)
     print(grid.calculate_cost())
     swap(grid)
     grid.trees = []
     for battery in grid.batteries:
-        grid.trees.append(battery.tree.nodes)
+        grid.trees.append(battery.tree.branches)
 
 
 def optimize(battery, nodes, tree_obj):

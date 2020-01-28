@@ -2,11 +2,11 @@ from .node import Node
 
 class Tree:
     """
-    Class Tree has the nodes of a tree object as an attribute 
+    Class Tree has the nodes of a tree object as an attribute
     and also contains a method to add notes to the tree.
     """
     def __init__(self):
-        self.nodes = []
+        self.branches = []
 
     def add_nodes(self, node, target):
         """
@@ -27,5 +27,5 @@ class Tree:
         for y in delta_y:
             node_list.append(Node(target.x,y))
 
-        self.nodes.append(node_list)
+        self.branches.append(node_list)
         return node_list

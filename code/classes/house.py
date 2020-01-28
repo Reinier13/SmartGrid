@@ -8,8 +8,6 @@ class House:
         self.output = float(output.strip(' '))
         self.node = None
         self.nodes = []
-        self.battery = None
-        self.cables = []
         self.distances = []
 
     def clear(self):
