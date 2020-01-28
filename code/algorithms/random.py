@@ -5,7 +5,7 @@ from code.classes import tree
 def rand(grid):
     """
     Random algorithm fill the battery with houses randomly
-    until the capacity of the battery is reached.
+    until the capacity of each battery is reached.
     """
     num_houses = 0
     random.shuffle(grid.houses)
