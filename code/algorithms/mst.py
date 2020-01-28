@@ -49,8 +49,6 @@ def swap(grid):
 
         old_distance = len(rand_house_1.nodes) + len(rand_house_2.nodes) - 2
 
-        print(rand_battery_1.nodes)
-        
         for node in rand_house_1.nodes:
             rand_battery_1.nodes.remove(node)
 
@@ -77,8 +75,11 @@ def swap(grid):
 
 
 def perform_swap(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2, closest_node_1, closest_node_2):
-    rand_battery_1.tree.branches.pop(rand_battery_1.houses.index(rand_house_1))
-    rand_battery_2.tree.branches.pop(rand_battery_2.houses.index(rand_house_2))
+    # rand_battery_1.tree.branches.pop(rand_battery_1.houses.index(rand_house_1))
+    # rand_battery_2.tree.branches.pop(rand_battery_2.houses.index(rand_house_2))
+    #
+    rand_battery_1.tree.branches.remove(rand_house_1.nodes)
+    rand_battery_2.tree.branches.remove(rand_house_2.nodes)
 
     rand_battery_1.add_house(rand_battery_2.houses.pop(rand_battery_2.houses.index(rand_house_2)))
     rand_battery_2.add_house(rand_battery_1.houses.pop(rand_battery_1.houses.index(rand_house_1)))

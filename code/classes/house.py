@@ -9,6 +9,7 @@ class House:
         self.node = None
         self.nodes = []
         self.distances = []
+        self.battery = None
 
     def __repr__(self):
         """
