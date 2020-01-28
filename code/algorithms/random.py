@@ -3,6 +3,10 @@ from code.classes import tree
 
 
 def rand(grid):
+    """
+    Random algorithm fill the battery with houses randomly
+    until the capacity of the battery is reached.
+    """
     num_houses = 0
     random.shuffle(grid.houses)
     for battery in grid.batteries:
@@ -13,6 +17,7 @@ def rand(grid):
                 house.battery = battery
         num_houses += len(battery.houses)
 
+    # retry if not all houses get assigned
     if num_houses != len(grid.houses):
         grid.clear()
         rand(grid)

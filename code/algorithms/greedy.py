@@ -52,6 +52,10 @@ def draft(grid):
 
 
 def fit(grid):
+    """
+    After a greedy or draft algorithm is runned,
+    houses have to be rearranged until every battery capacity is met.
+    """
     count = 0
     while check_houses_cap(grid) == False:
         arrange(grid, count)
@@ -62,6 +66,10 @@ def fit(grid):
 
 
 def arrange(grid, count):
+    """
+    The house with the longest distance to battery with the most capacity used,
+    gets rearranged to the battery with the least capacity used. 
+    """
     capacities_used = []
     for battery in grid.batteries:
         capacities_used.append(battery.capacity_used())
