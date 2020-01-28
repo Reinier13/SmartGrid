@@ -237,6 +237,8 @@
 
 ##### optimize()
 
--
+- Per battery, there are 300 random houses picked who get the opportunity to repick their closest node and conenct to it if it is closer than their last one. During this process, their corresponding nodes are removed from the 
 
 ##### swap()
+
+-
