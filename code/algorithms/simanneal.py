@@ -5,7 +5,7 @@ from decimal import Decimal
 from code.classes import tree
 from code.algorithms.helpers import distance
 
-def simanneal(grid, ):
+def simanneal(grid):
     """
     Simulated Annealing algorithm based on a Hill climb swap where houses swap
     batteries. Each improvement is approved and also sometimes it accepts
@@ -39,8 +39,6 @@ def simanneal(grid, ):
         if count == 10:
             break
 
-                coord = [i, j, grid.calculate_cost()]
-                coord_list.append(coord)
     temp_list = []
     coolingrate = []
     costs = []

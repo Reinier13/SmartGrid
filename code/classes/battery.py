@@ -7,6 +7,7 @@ class Battery:
         self.houses = []
         self.distances = []
         self.tree = None
+        self.nodes = []
 
     def add_house(self, house):
         self.houses.append(house)
