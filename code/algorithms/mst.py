@@ -15,10 +15,11 @@ def mst(grid):
             house.nodes = battery.tree.add_branch(house.node, closest_node)
             for node_obj in house.nodes:
                 battery.nodes.append(node_obj)
-        print(grid.calculate_cost())
         optimize(battery, battery.nodes, battery.tree)
+    swap(grid)
+    for battery in grid.batteries:
         grid.trees.append(battery.tree)
-    # swap(grid)
+        print(grid.calculate_cost())
 
 
 def optimize(battery, nodes, tree_obj):
@@ -36,11 +37,9 @@ def optimize(battery, nodes, tree_obj):
 
 
 def swap(grid):
-    for i in range(300):
+    for i in range(10000):
         rand_battery_1 = random.choice(grid.batteries)
         rand_battery_2 = random.choice(grid.batteries)
-
-        # print("voor swap:", len(rand_battery_1.nodes))
 
         while rand_battery_1 == rand_battery_2:
             rand_battery_2 = random.choice(grid.batteries)
@@ -64,25 +63,10 @@ def swap(grid):
 
         new_distance = closest_node_1_dist + closest_node_2_dist
 
-        # print(old_distance)
-        # print(new_distance)
+        if new_distance < old_distance and capacity_fit(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2):
+            perform_swap(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2, closest_node_1, closest_node_2)
+            print(1)
 
-        print('eeen....')
-        if (new_distance < old_distance) and capacity_fit(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2):
-            print('JA!')
-
-            rand_battery_1.add_house(rand_battery_2.houses.pop(rand_battery_2.houses.index(rand_house_2)))
-            rand_battery_2.add_house(rand_battery_1.houses.pop(rand_battery_1.houses.index(rand_house_1)))
-
-            rand_house_1.nodes = rand_battery_2.tree.add_branch(rand_house_1, closest_node_1)
-            rand_house_2.nodes = rand_battery_1.tree.add_branch(rand_house_2, closest_node_2)
-
-
-            for node_obj in rand_house_2.nodes:
-                rand_battery_1.nodes.append(node_obj)
-
-            for node_obj in rand_house_1.nodes:
-                rand_battery_2.nodes.append(node_obj)
         else:
             for node_obj in rand_house_1.nodes:
                 rand_battery_1.nodes.append(node_obj)
@@ -90,9 +74,23 @@ def swap(grid):
             for node_obj in rand_house_2.nodes:
                 rand_battery_2.nodes.append(node_obj)
 
-            # for tree_list in rand_battery_2.tree.branches:
-            #     for node_obj in tree_list:
-            #         rand_battery_2.nodes.append(node_obj)
+
+def perform_swap(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2, closest_node_1, closest_node_2):
+    rand_battery_1.tree.branches.pop(rand_battery_1.houses.index(rand_house_1))
+    rand_battery_2.tree.branches.pop(rand_battery_2.houses.index(rand_house_2))
+
+    rand_battery_1.add_house(rand_battery_2.houses.pop(rand_battery_2.houses.index(rand_house_2)))
+    rand_battery_2.add_house(rand_battery_1.houses.pop(rand_battery_1.houses.index(rand_house_1)))
+
+    rand_house_1.nodes = rand_battery_2.tree.add_branch(rand_house_1, closest_node_1)
+    rand_house_2.nodes = rand_battery_1.tree.add_branch(rand_house_2, closest_node_2)
+
+    for node_obj in rand_house_2.nodes:
+        rand_battery_1.nodes.append(node_obj)
+
+    for node_obj in rand_house_1.nodes:
+        rand_battery_2.nodes.append(node_obj)
+
 
 def capacity_fit(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2):
     capacity_1 = rand_battery_1.capacity_used() - rand_house_1.output + rand_house_1.output
