@@ -1,6 +1,7 @@
 import random
 import math
 import copy
+import numpy as np
 from decimal import Decimal
 from code.classes import tree
 from code.helpers import distance
@@ -11,12 +12,16 @@ def simanneal(grid):
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-    # z = []
-    # for i in range(500, 0, -100):
-    #     temperature = i
-    #     for j in range(2):
-    #         cooling_rate = j/10
+    coord_list = []
+    for i in range(200, 0, -100):
+        temperature = i
+        coolingrates = np.arange(1,-1,-1)
+        for j in coolingrates:
+            print(j)
+            cooling_rate = j
 
+<<<<<<< HEAD
+=======
     #
     temperature = 1000
     cooling_rate = 0.99
@@ -30,7 +35,7 @@ def simanneal(grid):
         grid_last_cost = copy.deepcopy(grid)
         swap(grid, temporary_temperature)
         grid.draw()
-        
+
         if h == 0:
             grid_min_cost = copy.deepcopy(grid)
         if grid.calculate_cost() < grid_min_cost.calculate_cost():
@@ -41,24 +46,46 @@ def simanneal(grid):
         if grid.calculate_cost() == grid_last_cost.calculate_cost():
             count += 1
         else:
+>>>>>>> a0a11347997cc5d0e6960d2c5121fd9bfde726b1
             count = 0
+            for k in range(10):
+                temporary_temperature = temperature * (cooling_rate ** k)
+                if temporary_temperature < 1.000001:
+                    temporary_temperature = 1.000001
 
+                grid_last_cost = copy.deepcopy(grid)
+                swap(grid, temporary_temperature)
+                grid.draw()
 
-        if count == 10:
-            break
+                if k == 0:
+                    grid_min_cost = copy.deepcopy(grid)
+                if grid.calculate_cost() < grid_min_cost.calculate_cost():
+                    grid_min_cost = copy.deepcopy(grid)
 
-    temp_list = []
-    coolingrate = []
-    costs = []
-    for coord in coord_list:
-        temp_list.append(coord[0])
-        coolingrate.append(coord[1])
-        costs.append(coord[2])
+                if grid.calculate_cost() == grid_last_cost.calculate_cost():
+                    count += 1
+                else:
+                    count = 0
 
-    min_cost_index = costs.index(min(costs))
-    print(costs[min_cost_index])
-    print(coolingrate[min_cost_index])
-    print(temp_list[min_cost_index])
+                if count == 10:
+                    break
+
+            coord_list.append([temperature, cooling_rate, grid_min_cost.calculate_cost()])
+
+    return coord_list
+
+    # temp_list = []
+    # coolingrate = []
+    # costs = []
+    # for coord in coord_list:
+    #     temp_list.append(coord[0])
+    #     coolingrate.append(coord[1])
+    #     costs.append(coord[2])
+    #
+    # min_cost_index = costs.index(min(costs))
+    # print(costs[min_cost_index])
+    # print(coolingrate[min_cost_index])
+    # print(temp_list[min_cost_index])
 
 
 def swap(grid, temperature):
