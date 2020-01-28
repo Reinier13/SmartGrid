@@ -1,7 +1,7 @@
 import random
 from code.classes import node, tree
 from code.classes.grid import Grid
-from code.algorithms.helpers import distance
+from code.helpers import distance
 
 def mst(grid):
     grid.trees = []
