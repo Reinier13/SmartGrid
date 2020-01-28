@@ -2,6 +2,10 @@ from code.algorithms.helpers import distance
 import numpy as np
 
 class Node:
+    """
+    Class Node has a position and methods to get a distance
+    and find closest node.
+    """
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -29,4 +33,7 @@ class Node:
         return nodes[closest]
 
     def __repr__(self):
+        """
+        Returns a readable overview when house object is printed
+        """
         return f"Node at ({self.x}, {self.y})"
