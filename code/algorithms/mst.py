@@ -3,8 +3,7 @@ from code.classes import node, tree
 from code.classes.grid import Grid
 from code.helpers import distance
 
-
-def mst(grid):
+def mst(grid, part):
     """
     Create nodes for all batteries and houses and let (in order of increasing
     distance) houses pick their nearest node and connect to it, resulting in a
@@ -22,9 +21,11 @@ def mst(grid):
             for node_obj in house.nodes:
                 battery.nodes.append(node_obj)
         optimize(battery, battery.nodes, battery.tree)
-    # swap(grid)
-    for battery in grid.batteries:
-        grid.trees.append(battery.tree)
+    if part == part4:
+        swap(grid)
+        for battery in grid.batteries:
+            grid.trees.append(battery.tree)
+            print(grid.calculate_cost())
 
 
 def optimize(battery, nodes, tree_obj):
