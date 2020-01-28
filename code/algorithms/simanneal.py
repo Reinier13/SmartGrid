@@ -17,7 +17,6 @@ def simanneal(grid):
     #     for j in range(2):
     #         cooling_rate = j/10
 
-<<<<<<< HEAD
     #
     temperature = 1000
     cooling_rate = 0.99
@@ -31,14 +30,7 @@ def simanneal(grid):
         grid_last_cost = copy.deepcopy(grid)
         swap(grid, temporary_temperature)
         grid.draw()
-=======
-            count = 0
-            for h in range(1000):
-                temporary_temperature = temperature * (cooling_rate ** h)
-                if temporary_temperature < 1.000001:
-                    temporary_temperature = 1.000001
->>>>>>> 0bdba46816e4fbc0915cc37ae134376bb8c7f0c1
-
+        
         if h == 0:
             grid_min_cost = copy.deepcopy(grid)
         if grid.calculate_cost() < grid_min_cost.calculate_cost():

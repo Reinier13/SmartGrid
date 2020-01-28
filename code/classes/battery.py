@@ -6,7 +6,7 @@ class Battery:
         self.cost = 5000
         self.houses = []
         self.distances = []
-        self.tree = []
+        self.tree = None
 
     def add_house(self, house):
         self.houses.append(house)
