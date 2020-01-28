@@ -12,7 +12,7 @@
 
 ##### Methods:
 - clear()
-  - Clears the battery connected to the house object 
+  - Clears the battery connected to the house object
 
 
 ### battery.py
@@ -134,7 +134,7 @@
 
 ##### greedy()
 
-- It iterates over all batteries 
+- It iterates over all batteries
 - Then as long the battery capacity is not exceeded, the closest house is added
 - When all the houses are connected, some battery capacities have exceeded, so fit() is called
 
@@ -156,11 +156,9 @@
 #### Components:
 
 - determine_bound()
-  - Determine bound is an algorithm that connects every house to it's closest 
-    or furthest battery, without a capacity constraint for the battery
+  - Determine bound is an algorithm that connects every house to it's closest or furthest battery, without a capacity constraint for the battery
 - find_battery()
-  - Connect the furthest or closest battery, dependent on the global counter,
-    to a house
+  - Connect the furthest or closest battery, dependent on the global counter, to a house
 
 #### Flow
 
@@ -171,8 +169,7 @@
 #### Components:
 
 - hill_climb()
-  - Hillclimb algorithm iterates a swap in the battery-house-configuration,
-    so that a cheaper cost is found numerically
+  - Hillclimb algorithm iterates a swap in the battery-house-configuration, so that a cheaper cost is found numerically
 - multiple_swap()
   - Optimizes cable configuration by swapping houses from one battery to another
 - houses_swap()
@@ -200,12 +197,9 @@
 #### Components:
 
 - simanneal()
-  - Simulated Annealing algorithm based on a Hill climb swap where houses swap
-    batteries. Each improvement is approved and also sometimes it accepts
-    solutions that are worse in hope for a better solution later on
+  - Simulated Annealing algorithm based on a Hill climb swap where houses swap batteries. Each improvement is approved and also sometimes it accepts solutions that are worse in hope for a better solution later on
 - swap()
-  - Swaps a house with a house in another battery if the the solution improves
-    and sometimes when the the solution is worse
+  - Swaps a house with a house in another battery if the the solution improves and sometimes when the the solution is worse
 - house_swap()
   - Swaps house with a house in another battery
 - capacity_fit()
@@ -217,11 +211,11 @@
 
 ##### simanneal()
 
-- 
+- Simanneal perfoms the well known simulated annealing algorithm with a starting temperature of 1000 and a starting cooling rate of 1. By the formula specified in the code the change of acceptance in case there is no swap is changed gradually, which should result in finding the lowest cost
 
 ##### swap()
 
-- 
+- The flow here is the same as the flow in hillclimb.py with a single swap method
 
 
 ### mst.py
@@ -229,35 +223,20 @@
 #### Components:
 
 - mst()
-  - 
+  - Create nodes for all batteries and houses and let (in order of increasing distance) houses pick their nearest node and connect to it, resulting in a minimum spanning tree
 - optimize()
-  - 
+  - Optimize existing grid by letting a random selected house in a battery choose their closest node a.nd connect to it. This marginally improves the way houses are connected to their tree
 - swap()
-  - Swaps house with a house in another battery
+  - Swaps house with a house in another battery, based on distance.
 
 #### Flow
 
 ##### mst()
 
-- 
+-
 
 ##### optimize()
 
-- 
+-
 
 ##### swap()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
