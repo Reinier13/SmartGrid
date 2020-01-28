@@ -22,25 +22,23 @@ def simanneal(grid, ):
                 temporary_temperature = temperature * (cooling_rate ** h)
                 if temporary_temperature < 1.000001:
                     temporary_temperature = 1.000001
+>>>>>>> 0bdba46816e4fbc0915cc37ae134376bb8c7f0c1
 
-                grid_last_cost = copy.deepcopy(grid)
-                swap(grid, temporary_temperature)
-                grid.draw()
-
-                if h == 0:
-                    grid_min_cost = copy.deepcopy(grid)
-                if grid.calculate_cost() < grid_min_cost.calculate_cost():
-                    grid_min_cost = copy.deepcopy(grid)
-                # print(grid_min_cost.calculate_cost())
+        if h == 0:
+            grid_min_cost = copy.deepcopy(grid)
+        if grid.calculate_cost() < grid_min_cost.calculate_cost():
+            grid_min_cost = copy.deepcopy(grid)
 
 
-                if grid.calculate_cost() == grid_last_cost.calculate_cost():
-                    count += 1
-                else:
-                    count = 0
 
-                if count == 10:
-                    break
+        if grid.calculate_cost() == grid_last_cost.calculate_cost():
+            count += 1
+        else:
+            count = 0
+
+
+        if count == 10:
+            break
 
                 coord = [i, j, grid.calculate_cost()]
                 coord_list.append(coord)
@@ -93,8 +91,8 @@ def house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
     """
     Swaps house with a house in another battery.
     """
-    swap_battery_1.houses.append(swap_battery_2.houses.pop(swap_battery_2.houses.index(swap_house_2)))
-    swap_battery_2.houses.append(swap_battery_1.houses.pop(swap_battery_1.houses.index(swap_house_1)))
+    swap_battery_1.add_house(swap_battery_2.houses.pop(swap_battery_2.houses.index(swap_house_2)))
+    swap_battery_2.add_house(swap_battery_1.houses.pop(swap_battery_1.houses.index(swap_house_1)))
 
 
 def capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):

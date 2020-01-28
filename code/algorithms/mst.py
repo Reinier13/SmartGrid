@@ -6,19 +6,16 @@ def mst(grid):
     grid.trees = []
     for battery in grid.batteries:
         battery.tree = tree.Tree()
-        battery_node = [node.Node(battery.x, battery.y)]
-        battery.tree.nodes.append(battery_node)
+        nodes = []
+        nodes.append(node.Node(battery.x, battery.y))
         for house in battery.houses:
             house.node = node.Node(house.x, house.y)
-            for node1 in battery.tree.nodes:
-                # print(node1)
-                pass
-            closest_node = house.node.get_closest_node(battery.tree.nodes)
-            print(closest_node)
-            house.nodes = battery.tree.add_nodes(house.node, closest_node[0])
-            # for node_obj in battery.tree.nodes:
-            #     battery.tree.nodes.append(node_obj)
-        optimize(battery, battery.tree.nodes, battery.tree)
+            closest_node = house.node.get_closest_node(nodes)
+            house.nodes = battery.tree.add_nodes(house.node, closest_node)
+            for tree_list in battery.tree.nodes:
+                for node_obj in tree_list:
+                    nodes.append(node_obj)
+        optimize(battery, nodes, battery.tree)
         grid.trees.append(battery.tree.nodes)
 
 

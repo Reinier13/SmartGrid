@@ -1,5 +1,5 @@
 from code.classes import grid
-from code.algorithms import random, greedy, hillclimb, simanneal, mst
+from code.algorithms import random, greedy, hillclimb, simanneal, mst, determine_bound
 from code.algorithms.arguments import parseArgs
 import numpy as np
 
@@ -105,7 +105,7 @@ def fourth(args, grid):
     """
     Run the desired commands to solve the fourth mission.
     """
-    connect_grid = second(args, grid)
+    connect_grid = third(args, grid)
 
     # find a optimized minimal spanning tree
     mst.mst(connect_grid)
