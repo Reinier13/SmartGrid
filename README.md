@@ -2,7 +2,7 @@
 
 Electricity generation is being done by a lot of households nowadays. How to save this energy efficiently/economically is an complex problem. We will use heuristic methods to find our solutions. 
  
-We look at 3 dummy neighborhoods, with each 150 houses and 5 batteries. Every house has it’s own output of energy. Every battery has it’s own capacity to store this energy. Houses are connected by cables. Each cable and battery is going to cost money. Goal of this project: connect these batteries and houses as cost-efficient as possible!
+In this case There are 3 dummy neighborhoods, with each 150 houses and 5 batteries. Every house has it’s own output of energy. Every battery has it’s own capacity to store this energy. Houses are connected by cables. Each cable and battery is going to cost money. Goal of this project: connect these batteries and houses as cost-efficient as possible!
 
 ### The assignment was split into four parts:
 1. Connecting all houses to a battery in all districts, the houses can't share a cable
