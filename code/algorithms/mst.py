@@ -27,7 +27,6 @@ def mst(grid, part):
         swap(grid)
         for battery in grid.batteries:
             grid.trees.append(battery.tree)
-            print(grid.calculate_cost())
 
 
 def optimize(battery, nodes, tree_obj):
@@ -91,7 +90,7 @@ def swap(grid):
 
 def perform_swap(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2, closest_node_1, closest_node_2):
     """
-    Performs the actual swap, same as in the hillclimber.
+    Performs the actual swap, same method as in the hillclimber.
     """
     rand_battery_1.tree.branches.pop(rand_battery_1.houses.index(rand_house_1))
     rand_battery_2.tree.branches.pop(rand_battery_2.houses.index(rand_house_2))
