@@ -24,7 +24,7 @@ def greedy(grid):
             closest_house_index = pick(battery)
             if battery.distances[closest_house_index] == MAX_DIST:
                 break
-            battery.houses.append(grid.houses[closest_house_index])
+            battery.add_house(grid.houses[closest_house_index])
             remove_house(grid, closest_house_index)
     fit(grid)
 
@@ -47,7 +47,7 @@ def draft(grid):
                     house_available = False
                     break
                 remove_house(grid, closest_house_index)
-                battery.houses.append(grid.houses[closest_house_index])
+                battery.add_house(grid.houses[closest_house_index])
     fit(grid)
 
 
@@ -78,7 +78,7 @@ def arrange(grid, count):
     bat_max_dist_index = bat_max_cap.distances.index(np.partition(array, -(count+1))[-(count+1)])
     max_dist = bat_max_cap.houses[bat_max_dist_index]
 
-    bat_min_cap.houses.append(bat_max_cap.houses.pop(bat_max_dist_index))
+    bat_min_cap.add_house(bat_max_cap.houses.pop(bat_max_dist_index))
 
 
 def check_houses_cap(grid):
