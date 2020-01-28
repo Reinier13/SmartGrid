@@ -79,8 +79,8 @@ def second(args, grid):
     # update the cost
     print("Improved costs:", connect_grid.calculate_cost())
 
-    if args.plot:
-        connect_grid.plot(connect_grid, 'After hill climb')
+    # if args.plot:
+    #     connect_grid.plot(connect_grid, 'After hill climb')
 
     return connect_grid
 
@@ -95,8 +95,8 @@ def third(args, grid):
 
     print("MST costs:", connect_grid.calculate_cost())
 
-    if args.plot:
-        connect_grid.plot(connect_grid, "Shared cables")
+    # if args.plot:
+    #     connect_grid.plot(connect_grid, "Shared cables")
 
     return connect_grid
 

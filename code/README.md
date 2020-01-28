@@ -189,8 +189,8 @@
 
 - A list of houses from one battery and a list of houses from another battery are filled with unique houses
   - The list is filled with one house in case of a single_swap
-- The distance in case of a swap is compared with the old distance
-- If the distance is smaller, i.e. the cost is smaller, the houses_swap() function is called
+- The distance, in case of a swap, is compared with the old distance
+- If the distance is smaller, i.e. the cost is smaller, and the battery capacity is met the houses_swap() function is called
 
 ### simanneal.py
 
@@ -211,11 +211,16 @@
 
 ##### simanneal()
 
-- Simanneal perfoms the well known simulated annealing algorithm with a starting temperature of 1000 and a starting cooling rate of 1. By the formula specified in the code the change of acceptance in case there is no swap is changed gradually, which should result in finding the lowest cost
+- A temperature and cooling rate is set
+- For 1k iteration the temperature and cooling updates
+- swap() is called
 
 ##### swap()
 
-- The flow here is the same as the flow in hillclimb.py with a single swap method
+- Two houses from two unique batteries are assigned
+- The distance, in case of a swap, is compared with the old distance
+- If the distance is smaller, i.e. the cost is smaller, and the battery capacity is met the house_swap() function is called
+- For some acceptance probability a small deteriation is cost is also allowed
 
 
 ### mst.py
@@ -225,7 +230,7 @@
 - mst()
   - Create nodes for all batteries and houses and let (in order of increasing distance) houses pick their nearest node and connect to it, resulting in a minimum spanning tree
 - optimize()
-  - Optimize existing grid by letting a random selected house in a battery choose their closest node a.nd connect to it. This marginally improves the way houses are connected to their tree
+  - Optimize existing grid by letting a random selected house in a battery choose their closest node and connect to it. This marginally improves the way houses are connected to their tree
 - swap()
   - Swaps house with a house in another battery, based on distance.
 
@@ -237,7 +242,7 @@
 
 ##### optimize()
 
-- Per battery, there are 300 random houses picked who get the opportunity to repick their closest node and conenct to it if it is closer than their last one. During this process, their corresponding nodes are removed from the 
+- Per battery, there are 300 random houses picked who get the opportunity to repick their closest node and conenct to it if it is closer than their last one. During this process, their corresponding nodes are removed from the
 
 ##### swap()
 
