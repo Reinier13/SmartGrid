@@ -56,7 +56,7 @@ class Grid:
         for battery in self.batteries:
             self.cost += battery.cost
         for tree in self.trees:
-            for branch in tree:
+            for branch in tree.branches:
                 self.cost += ((len(branch) - 1) * 9)
         return self.cost
 
@@ -67,11 +67,10 @@ class Grid:
         """
         self.trees = []
         for battery in self.batteries:
-            tree_obj = Tree()
+            battery.tree = Tree()
             for house in battery.houses:
-                added_nodes = tree_obj.add_nodes(house, battery)
-                house.nodes = added_nodes
-            self.trees.append(tree_obj.branches)
+                house.nodes = battery.tree.add_branch(house, battery)
+            self.trees.append(battery.tree)
 
 
     def clear(self):
@@ -79,8 +78,6 @@ class Grid:
         Clear all connections between batteries and houses.
         """
         for battery in self.batteries:
-            for house in battery.houses:
-                house.clear()
             battery.clear()
 
 
@@ -109,7 +106,7 @@ class Grid:
         colors = itertools.cycle(["r", "b", "g", "y", "k"])
         for tree in self.trees:
             c = next(colors)
-            for branch in tree:
+            for branch in tree.branches:
                 cablex = []
                 cabley = []
                 for cable in branch:

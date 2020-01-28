@@ -6,7 +6,7 @@ from code.helpers import distance
 
 MAX_DIST = 10000
 
-def greedy(grid):
+def greedy(grid, method):
     """
     Greedy algorithm that chooses a random battery and connects with houses
     that are closest until the capacity of the battery is reached.
@@ -26,10 +26,10 @@ def greedy(grid):
                 break
             battery.add_house(grid.houses[closest_house_index])
             remove_house(grid, closest_house_index)
-    fit(grid)
+    fit(grid, method)
 
 
-def draft(grid):
+def draft(grid, method):
     """
     Draft - Greedy algorithm that connects the batteries in turn with the houses
     that are closest to that battery until the capacity of the battery is
@@ -48,10 +48,10 @@ def draft(grid):
                     break
                 remove_house(grid, closest_house_index)
                 battery.add_house(grid.houses[closest_house_index])
-    fit(grid)
+    fit(grid, method)
 
 
-def fit(grid):
+def fit(grid, method):
     """
     After a greedy or draft algorithm is runned,
     houses have to be rearranged until every battery capacity is met.
@@ -61,22 +61,26 @@ def fit(grid):
         arrange(grid, count)
         count += 1
         if count == 25:
-            greedy(grid)
+            if method == "greedy":
+                greedy(grid, method)
+            else:
+                draft(grid, method)
     grid.draw()
 
 
 def arrange(grid, count):
     """
     The house with the longest distance to battery with the most capacity used,
-    gets rearranged to the battery with the least capacity used. 
+    gets rearranged to the battery with the least capacity used.
     """
     capacities_used = []
     for battery in grid.batteries:
         capacities_used.append(battery.capacity_used())
-        bat_max_cap_index = capacities_used.index(max(capacities_used))
-        bat_min_cap_index = capacities_used.index(min(capacities_used))
-        bat_max_cap = grid.batteries[bat_max_cap_index]
-        bat_min_cap = grid.batteries[bat_min_cap_index]
+
+    bat_max_cap_index = capacities_used.index(max(capacities_used))
+    bat_min_cap_index = capacities_used.index(min(capacities_used))
+    bat_max_cap = grid.batteries[bat_max_cap_index]
+    bat_min_cap = grid.batteries[bat_min_cap_index]
 
     bat_max_cap.distances = []
     for house in bat_max_cap.houses:
@@ -84,7 +88,6 @@ def arrange(grid, count):
 
     array = np.array(bat_max_cap.distances)
     bat_max_dist_index = bat_max_cap.distances.index(np.partition(array, -(count+1))[-(count+1)])
-    max_dist = bat_max_cap.houses[bat_max_dist_index]
 
     bat_min_cap.add_house(bat_max_cap.houses.pop(bat_max_dist_index))
 

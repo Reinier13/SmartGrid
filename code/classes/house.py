@@ -10,14 +10,6 @@ class House:
         self.nodes = []
         self.distances = []
 
-    def clear(self):
-        """
-        Clears the battery associated to the house object
-        and clears cables to battery
-        """
-        self.battery = None
-        self.cables = []
-
     def __repr__(self):
         """
         Returns a readable overview when house object is printed

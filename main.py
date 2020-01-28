@@ -39,13 +39,13 @@ def first(args, grid):
     if args.method == "greedy":
         # connect all batteries with their nearest houses
         # one battery at a time
-        greedy.greedy(connect_grid)
+        greedy.greedy(connect_grid, args.method)
         print("Greedy costs:", connect_grid.calculate_cost())
 
     if args.method == "draft":
         # connect all batteries with their nearest houses
         # each battery taking turns picking a house
-        greedy.draft(connect_grid)
+        greedy.draft(connect_grid, args.method)
         print("Draft costs:", connect_grid.calculate_cost())
 
     if args.method == "random":
@@ -81,8 +81,9 @@ def second(args, grid):
     print("Improved costs:", connect_grid.calculate_cost())
 
     if args.plot:
+        pass
         # connect_grid.plot(connect_grid, 'After hill climb')
-        connect_grid.simanneal_plot(coord_list)
+        # connect_grid.simanneal_plot(coord_list)
 
     return connect_grid
 

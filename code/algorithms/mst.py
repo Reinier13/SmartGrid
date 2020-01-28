@@ -12,41 +12,35 @@ def mst(grid):
         for house in battery.houses:
             house.node = node.Node(house.x, house.y)
             closest_node = house.node.get_closest_node(battery.nodes)
-            house.nodes = battery.tree.add_nodes(house.node, closest_node)
-        for branch in battery.tree.branches:
-            for node_obj in branch:
+            house.nodes = battery.tree.add_branch(house.node, closest_node)
+            for node_obj in house.nodes:
                 battery.nodes.append(node_obj)
-        # optimize(battery, battery.nodes, battery.tree)
-        grid.trees.append(battery.tree.branches)
-    print(grid.calculate_cost())
-    swap(grid)
-    grid.trees = []
-    for battery in grid.batteries:
-        grid.trees.append(battery.tree.branches)
+        print(grid.calculate_cost())
+        optimize(battery, battery.nodes, battery.tree)
+        grid.trees.append(battery.tree)
+    # swap(grid)
 
 
 def optimize(battery, nodes, tree_obj):
-    for i in range(5):
+    for i in range(10):
         house = random.choice(battery.houses)
-        print(house.node)
         for node in house.nodes:
             nodes.remove(node)
-        nodes.remove(house.node)
+        # nodes.remove(house.node)
         house.nodes = []
         closest_node = house.node.get_closest_node(nodes)
-        print(closest_node)
-        house.nodes = tree_obj.add_nodes(house.node, closest_node)
-        for tree_list in tree_obj.nodes:
-            for node_obj in tree_list:
-                nodes.append(node_obj)
+        # print(closest_node)
+        house.nodes = tree_obj.add_branch(house.node, closest_node)
+        for node_obj in house.nodes:
+            nodes.append(node_obj)
 
 
 def swap(grid):
-    for i in range(100):
+    for i in range(300):
         rand_battery_1 = random.choice(grid.batteries)
         rand_battery_2 = random.choice(grid.batteries)
 
-        print("voor swap:", len(rand_battery_1.nodes))
+        # print("voor swap:", len(rand_battery_1.nodes))
 
         while rand_battery_1 == rand_battery_2:
             rand_battery_2 = random.choice(grid.batteries)
@@ -54,8 +48,13 @@ def swap(grid):
         rand_house_1 = random.choice(rand_battery_1.houses)
         rand_house_2 = random.choice(rand_battery_2.houses)
 
-        old_distance = len(rand_house_1.nodes) + len(rand_house_2.nodes)
-        # print(old_distance)
+        old_distance = len(rand_house_1.nodes) + len(rand_house_2.nodes) - 2
+
+        for node in rand_house_1.nodes:
+            rand_battery_1.nodes.remove(node)
+
+        for node in rand_house_2.nodes:
+            rand_battery_2.nodes.remove(node)
 
         closest_node_1 = rand_house_1.node.get_closest_node(rand_battery_2.nodes)
         closest_node_1_dist = distance(rand_house_1, closest_node_1)
@@ -64,61 +63,38 @@ def swap(grid):
         closest_node_2_dist = distance(rand_house_2, closest_node_2)
 
         new_distance = closest_node_1_dist + closest_node_2_dist
+
+        # print(old_distance)
         # print(new_distance)
 
-        if new_distance < old_distance and capacity_fit(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2):
-            print('LiL SW4P!!11!!')
-            # print(rand_battery_1.tree.nodes)
-
-            # if rand_battery_1.nodes == rand_battery_1.tree.nodes:
-            # print(rand_battery_1.tree.nodes)
-
-            print(len(rand_battery_1.nodes))
-
-
-            for node in rand_house_1.nodes:
-
-                rand_battery_1.nodes.remove(node)
-
-            for node in rand_house_2.nodes:
-                rand_battery_2.nodes.remove(node)
-
-            rand_battery_1.tree.nodes = []
-            rand_battery_2.tree.nodes = []
-            rand_battery_2.tree.nodes.append(rand_battery_2.nodes)
-            rand_battery_1.tree.nodes.append(rand_battery_1.nodes)
-            # if len(rand_battery_2.tree.nodes) != len(set(rand_battery_2.tree.nodes)):
-            #     print('JA2')
-            # else:
-            #     print('Nee2')
-
+        print('eeen....')
+        if (new_distance < old_distance) and capacity_fit(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2):
+            print('JA!')
 
             rand_battery_1.add_house(rand_battery_2.houses.pop(rand_battery_2.houses.index(rand_house_2)))
             rand_battery_2.add_house(rand_battery_1.houses.pop(rand_battery_1.houses.index(rand_house_1)))
 
-            rand_house_1.nodes = rand_battery_2.tree.add_nodes(rand_house_1, closest_node_1)
-            rand_house_2.nodes = rand_battery_1.tree.add_nodes(rand_house_2, closest_node_2)
+            rand_house_1.nodes = rand_battery_2.tree.add_branch(rand_house_1, closest_node_1)
+            rand_house_2.nodes = rand_battery_1.tree.add_branch(rand_house_2, closest_node_2)
 
-            # if len(rand_battery_2.tree.nodes) != len(set(rand_battery_2.tree.nodes)):
-            #
-            #     print('JA')
-            # else:
-            #     print('Nee')
-            rand_battery_1.nodes = []
-            rand_battery_2.nodes = []
 
-            for tree_list in rand_battery_1.tree.nodes:
-                for node_obj in tree_list:
-                    rand_battery_1.nodes.append(node_obj)
-            print(len(rand_battery_1.nodes))
+            for node_obj in rand_house_2.nodes:
+                rand_battery_1.nodes.append(node_obj)
 
-            for tree_list in rand_battery_2.tree.nodes:
-                for node_obj in tree_list:
-                    rand_battery_2.nodes.append(node_obj)
+            for node_obj in rand_house_1.nodes:
+                rand_battery_2.nodes.append(node_obj)
+        else:
+            for node_obj in rand_house_1.nodes:
+                rand_battery_1.nodes.append(node_obj)
 
+            for node_obj in rand_house_2.nodes:
+                rand_battery_2.nodes.append(node_obj)
+
+            # for tree_list in rand_battery_2.tree.branches:
+            #     for node_obj in tree_list:
+            #         rand_battery_2.nodes.append(node_obj)
 
 def capacity_fit(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2):
-
     capacity_1 = rand_battery_1.capacity_used() - rand_house_1.output + rand_house_1.output
     capacity_2 = rand_battery_2.capacity_used() - rand_house_1.output + rand_house_1.output
 

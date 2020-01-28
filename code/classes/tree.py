@@ -8,7 +8,7 @@ class Tree:
     def __init__(self):
         self.branches = []
 
-    def add_nodes(self, node, target):
+    def add_branch(self, node, target):
         """
         Adds a branch filled with nodes to a tree object.
         """

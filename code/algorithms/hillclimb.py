@@ -34,7 +34,7 @@ def multiple_swap(grid, num_houses):
     # check if battery 1 and 2 are not the same
     while swap_battery_1 == swap_battery_2:
         swap_battery_2 = random.choice(grid.batteries)
- 
+
     # fill two lists with houses for both batteries
     for i in range(num_houses):
         swap_house_1 = random.choice(swap_battery_1.houses)

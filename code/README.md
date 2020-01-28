@@ -83,7 +83,7 @@
 - nodes: The branch of node point the tree consists of
 
 ##### Methods:
-- add_nodes()
+- add_branch()
   - Adds a branch filled with nodes to a tree object
 
 
