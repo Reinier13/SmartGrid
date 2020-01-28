@@ -3,7 +3,7 @@ from code.classes import node, tree
 from code.classes.grid import Grid
 from code.helpers import distance
 
-def mst(grid):
+def mst(grid, part):
     grid.trees = []
     for battery in grid.batteries:
         battery.tree = tree.Tree()
@@ -16,10 +16,11 @@ def mst(grid):
             for node_obj in house.nodes:
                 battery.nodes.append(node_obj)
         optimize(battery, battery.nodes, battery.tree)
-    swap(grid)
-    for battery in grid.batteries:
-        grid.trees.append(battery.tree)
-        print(grid.calculate_cost())
+    if part == part4:
+        swap(grid)
+        for battery in grid.batteries:
+            grid.trees.append(battery.tree)
+            print(grid.calculate_cost())
 
 
 def optimize(battery, nodes, tree_obj):

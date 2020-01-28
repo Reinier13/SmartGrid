@@ -91,7 +91,7 @@ def third(args, grid):
     connect_grid = second(args, grid)
 
     # find a non-optimized minimal spanning tree
-    mst.mst(connect_grid)
+    mst.mst(connect_grid, part3)
 
     print("MST costs:", connect_grid.calculate_cost())
 
@@ -106,13 +106,15 @@ def fourth(args, grid):
     """
     connect_grid = third(args, grid)
 
+    if args.plot:
+        connect_grid.plot(connect_grid, "Shared cables optimized")
+
     # find a optimized minimal spanning tree
-    mst.mst(connect_grid)
+    mst.mst(connect_grid, part4)
 
     print("MST optimized costs:", connect_grid.calculate_cost())
 
-    if args.plot:
-        connect_grid.plot(connect_grid, "Shared cables optimized")
+        
 
     return connect_grid
 
