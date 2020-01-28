@@ -40,11 +40,11 @@ def parseArgs():
         while args.method not in ["greedy","random", "draft"]:
             args.method = input("Choose method(\"greedy\" or \"random\" \"draft\"): ")
 
-    if args.part in ["2", "3", "4"]:
+    if args.part in ["2", "4"]:
         if args.optimize == None:
             args.optimize = input("Choose optimize option: ")
             while args.method not in ["single_swap", "multiple_swap", "simanneal"]:
-                args.hillclimb = input("Choose hillclimb(\"single_swap\" or \"multiple_swap\" \"simanneal\"): ")
+                args.optimize = input("Choose optimize(\"single_swap\" or \"multiple_swap\" \"simanneal\"): ")
 
     if args.optimize == "multiple_swap":
         if args.swaps == None:
