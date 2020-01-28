@@ -102,7 +102,7 @@ def house_swap(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
 
 def capacity_fit(swap_house_1, swap_house_2, swap_battery_1, swap_battery_2):
     """
-    Checks if the capacity is not exceeded.
+    Checks if the capacity of both batteries is not exceeded.
     """
     capacity_1 = swap_battery_1.capacity_used() - swap_house_1.output + swap_house_2.output
     capacity_2 = swap_battery_2.capacity_used() - swap_house_2.output + swap_house_1.output
