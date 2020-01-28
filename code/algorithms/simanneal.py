@@ -13,9 +13,9 @@ def simanneal(grid):
     solutions that are worse in hope for a better solution later on.
     """
     coord_list = []
-    for i in range(200, 0, -100):
+    for i in range(1000, 0, -100):
         temperature = i
-        coolingrates = np.arange(1,-1,-1)
+        coolingrates = np.arange(1,0,-0.1)
         for j in coolingrates:
             print(j)
             cooling_rate = j
