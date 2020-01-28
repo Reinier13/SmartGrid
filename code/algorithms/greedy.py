@@ -6,6 +6,7 @@ from code.helpers import distance
 
 MAX_DIST = 10000
 
+
 def greedy(grid, method):
     """
     Greedy algorithm that chooses a random battery and connects with houses

@@ -1,6 +1,7 @@
 import random
 from code.helpers import distance
 
+
 def hill_climb(grid, num_houses):
     """
     Hillclimb algorithm iterates a swap in the battery-house-configuration,
