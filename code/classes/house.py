@@ -11,6 +11,7 @@ class House:
         self.distances = []
         self.battery = None
 
+
     def __repr__(self):
         """
         Returns a readable overview when house object is printed

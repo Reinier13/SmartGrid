@@ -10,6 +10,7 @@ class Node:
         self.x = x
         self.y = y
 
+
     def get_distances(self, nodes):
         """
         Returns distance between two nodes.
@@ -18,6 +19,7 @@ class Node:
         for target in nodes:
             distances.append(distance(self, target))
         return distances
+
 
     def get_closest_node(self, nodes):
         """
@@ -29,6 +31,7 @@ class Node:
         if len(nodes) > 1:
             closest = distances.index(np.partition(array, 1)[1])
         return nodes[closest]
+
 
     def __repr__(self):
         """
