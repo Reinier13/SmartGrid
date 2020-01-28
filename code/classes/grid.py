@@ -5,6 +5,7 @@ import csv
 import matplotlib
 import matplotlib.mlab as mlab
 import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 import numpy as np
 import itertools
 
@@ -120,4 +121,8 @@ class Grid:
 
     def histogram(self, x, iterations):
         plt.hist(x, bins=iterations, edgecolor='black', facecolor='blue')
+        plt.show()
+
+    def simanneal_plot(self, x, y, z):
+        Axes3D.plot_surface(x, y, z)
         plt.show()

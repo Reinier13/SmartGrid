@@ -20,7 +20,7 @@ def mst(grid):
 
 
 def optimize(battery, nodes, tree_obj):
-    for i in range(100):
+    for i in range(300):
         house = random.choice(battery.houses)
         for node in house.nodes:
             nodes.remove(node)
