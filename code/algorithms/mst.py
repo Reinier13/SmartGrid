@@ -16,6 +16,8 @@ def mst(grid):
         for branch in battery.tree.nodes:
             for node_obj in branch:
                 battery.nodes.append(node_obj)
+
+        print(battery.nodes)
         break
         # optimize(battery, battery.nodes, battery.tree)
         grid.trees.append(battery.tree.nodes)
