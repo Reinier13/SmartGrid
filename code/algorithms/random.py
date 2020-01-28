@@ -23,4 +23,3 @@ def rand(grid):
         rand(grid)
     else:
         grid.draw()
-

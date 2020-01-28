@@ -4,6 +4,11 @@ from code.classes.grid import Grid
 from code.helpers import distance
 
 def mst(grid, part):
+    """
+    Create nodes for all batteries and houses and let (in order of increasing
+    distance) houses pick their nearest node and connect to it, resulting in a
+    minimum spanning tree based on Prims algorithm.
+    """
     grid.trees = []
     for battery in grid.batteries:
         battery.tree = tree.Tree()
@@ -24,17 +29,18 @@ def mst(grid, part):
 
 
 def optimize(battery, nodes, tree_obj):
-    for i in range(10):
+    for i in range(100):
         house = random.choice(battery.houses)
+        house.node = node.Node(house.x, house.y)
         for node in house.nodes:
             nodes.remove(node)
-        # nodes.remove(house.node)
+        nodes.remove(house.node)
         house.nodes = []
         closest_node = house.node.get_closest_node(nodes)
-        # print(closest_node)
         house.nodes = tree_obj.add_branch(house.node, closest_node)
-        for node_obj in house.nodes:
-            nodes.append(node_obj)
+        for branch in tree_obj.branches:
+            for node_obj in branch:
+                nodes.append(node_obj)
 
 
 def swap(grid):
@@ -76,8 +82,11 @@ def swap(grid):
 
 
 def perform_swap(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2, closest_node_1, closest_node_2):
-    rand_battery_1.tree.branches.pop(rand_battery_1.houses.index(rand_house_1))
-    rand_battery_2.tree.branches.pop(rand_battery_2.houses.index(rand_house_2))
+    # rand_battery_1.tree.branches.pop(rand_battery_1.houses.index(rand_house_1))
+    # rand_battery_2.tree.branches.pop(rand_battery_2.houses.index(rand_house_2))
+    #
+    rand_battery_1.tree.branches.remove(rand_house_1.nodes)
+    rand_battery_2.tree.branches.remove(rand_house_2.nodes)
 
     rand_battery_1.add_house(rand_battery_2.houses.pop(rand_battery_2.houses.index(rand_house_2)))
     rand_battery_2.add_house(rand_battery_1.houses.pop(rand_battery_1.houses.index(rand_house_1)))
