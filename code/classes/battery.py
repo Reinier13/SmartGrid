@@ -14,7 +14,7 @@ class Battery:
 
     def add_house(self, house):
         """
-        Adds a house to the houses that are connected.
+        Adds a house to the houses that are connected to the battery.
         """
         self.houses.append(house)
 
@@ -36,7 +36,7 @@ class Battery:
 
     def clear(self):
         """
-        Clears all the houses and "distances to houses" associated to the battery
+        Clears all the houses and "distances to houses" connected to the battery
         """
         self.houses = []
         self.distances = []

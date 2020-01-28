@@ -126,10 +126,16 @@ class Grid:
 
 
     def histogram(self, x, iterations):
+        """
+        Plot a histogram of costs.
+        """
         plt.hist(x, bins=iterations, edgecolor='black', facecolor='blue')
         plt.show()
 
     def simanneal_plot(self, coord_list):
+        """
+        Plot a heatmap of costs, with different temperatures and cooling rates.
+        """
         x = []
         y = []
         z = []
