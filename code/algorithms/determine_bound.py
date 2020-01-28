@@ -1,6 +1,6 @@
 import random
 import numpy as np
-from code.algorithms.helpers import distance
+from code.helpers import distance
 
 
 def connect_nocap(grid):
