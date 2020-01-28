@@ -21,7 +21,7 @@ def mst(grid, part):
             for node_obj in house.nodes:
                 battery.nodes.append(node_obj)
         optimize(battery, battery.nodes, battery.tree)
-    if part == part4:
+    if part == "pt4":
         swap(grid)
         for battery in grid.batteries:
             grid.trees.append(battery.tree)
