@@ -3,7 +3,13 @@ from code.classes import node, tree
 from code.classes.grid import Grid
 from code.helpers import distance
 
+
 def mst(grid):
+    """
+    Create nodes for all batteries and houses and let (in order of increasing
+    distance) houses pick their nearest node and connect to it, resulting in a
+    minimum spanning tree based on Prims algorithm.
+    """
     grid.trees = []
     for battery in grid.batteries:
         battery.tree = tree.Tree()
@@ -16,24 +22,23 @@ def mst(grid):
             for node_obj in house.nodes:
                 battery.nodes.append(node_obj)
         optimize(battery, battery.nodes, battery.tree)
-    swap(grid)
+    # swap(grid)
     for battery in grid.batteries:
         grid.trees.append(battery.tree)
-        print(grid.calculate_cost())
 
 
 def optimize(battery, nodes, tree_obj):
-    for i in range(10):
+    for i in range(100):
         house = random.choice(battery.houses)
         for node in house.nodes:
             nodes.remove(node)
-        # nodes.remove(house.node)
+        nodes.remove(house.node)
         house.nodes = []
         closest_node = house.node.get_closest_node(nodes)
-        # print(closest_node)
         house.nodes = tree_obj.add_branch(house.node, closest_node)
-        for node_obj in house.nodes:
-            nodes.append(node_obj)
+        for branch in tree_obj.branches:
+            for node_obj in branch:
+                nodes.append(node_obj)
 
 
 def swap(grid):

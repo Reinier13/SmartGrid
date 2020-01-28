@@ -225,7 +225,7 @@
 - mst()
   - Create nodes for all batteries and houses and let (in order of increasing distance) houses pick their nearest node and connect to it, resulting in a minimum spanning tree
 - optimize()
-  - Optimize existing grid by letting a random selected house in a battery choose their closest node a.nd connect to it. This marginally improves the way houses are connected to their tree
+  - Optimize existing grid by letting a random selected house in a battery choose their closest node and connect to it. This marginally improves the way houses are connected to their tree
 - swap()
   - Swaps house with a house in another battery, based on distance.
 
@@ -237,7 +237,7 @@
 
 ##### optimize()
 
-- Per battery, there are 300 random houses picked who get the opportunity to repick their closest node and conenct to it if it is closer than their last one. During this process, their corresponding nodes are removed from the 
+- Per battery, there are 300 random houses picked who get the opportunity to repick their closest node and conenct to it if it is closer than their last one. During this process, their corresponding nodes are removed from the
 
 ##### swap()
 
