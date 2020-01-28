@@ -49,6 +49,8 @@ def swap(grid):
 
         old_distance = len(rand_house_1.nodes) + len(rand_house_2.nodes) - 2
 
+        print(rand_battery_1.nodes)
+        
         for node in rand_house_1.nodes:
             rand_battery_1.nodes.remove(node)
 
@@ -65,7 +67,6 @@ def swap(grid):
 
         if new_distance < old_distance and capacity_fit(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2):
             perform_swap(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2, closest_node_1, closest_node_2)
-            print(1)
 
         else:
             for node_obj in rand_house_1.nodes:

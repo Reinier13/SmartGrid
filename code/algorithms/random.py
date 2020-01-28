@@ -12,9 +12,9 @@ def rand(grid):
     for battery in grid.batteries:
         for house in grid.houses:
             capacity_used = battery.capacity_used()
-            if (battery.capacity > (capacity_used + house.output)) and house.battery == None:
+            if (battery.capacity > (capacity_used + house.output)) and \
+                house not in battery.houses:
                 battery.add_house(house)
-                house.battery = battery
         num_houses += len(battery.houses)
 
     # retry if not all houses get assigned
@@ -23,4 +23,3 @@ def rand(grid):
         rand(grid)
     else:
         grid.draw()
-
