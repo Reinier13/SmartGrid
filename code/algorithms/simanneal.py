@@ -12,8 +12,6 @@ def simanneal(grid):
     batteries. Each improvement is approved and also sometimes it accepts
     solutions that are worse in hope for a better solution later on.
     """
-    coord_list = []
-
     temperature = 1000
     cooling_rate = 0.95
 
