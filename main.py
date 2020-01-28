@@ -12,8 +12,8 @@ def main():
     args = parseArgs()
 
     # specify paths for data to load
-    housePath = "input/wijk" + args.district + "_huizen.csv"
-    batteryPath = "input/wijk" + args.district + "_batterijen.csv"
+    housePath = "data/wijk" + args.district + "_huizen.csv"
+    batteryPath = "data/wijk" + args.district + "_batterijen.csv"
 
     # load in data
     connect_grid = grid.Grid(housePath, batteryPath)

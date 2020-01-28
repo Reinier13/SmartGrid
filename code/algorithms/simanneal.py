@@ -3,7 +3,7 @@ import math
 import copy
 from decimal import Decimal
 from code.classes import tree
-from code.algorithms.helpers import distance
+from code.helpers import distance
 
 def simanneal(grid):
     """

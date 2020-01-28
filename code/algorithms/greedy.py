@@ -1,7 +1,7 @@
 import random
 import numpy as np
 from .mst import mst
-from code.algorithms.helpers import distance
+from code.helpers import distance
 
 
 MAX_DIST = 10000
