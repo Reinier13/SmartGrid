@@ -31,10 +31,8 @@ def mst(grid, part):
 def optimize(battery, nodes, tree_obj):
     for i in range(100):
         house = random.choice(battery.houses)
-        house.node = node.Node(house.x, house.y)
         for node in house.nodes:
             nodes.remove(node)
-        nodes.remove(house.node)
         house.nodes = []
         closest_node = house.node.get_closest_node(nodes)
         house.nodes = tree_obj.add_branch(house.node, closest_node)
