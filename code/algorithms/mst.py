@@ -20,7 +20,8 @@ def mst(grid, part):
             house.nodes = battery.tree.add_branch(house.node, closest_node)
             for node_obj in house.nodes:
                 battery.nodes.append(node_obj)
-        # optimize(battery, battery.nodes, battery.tree)
+        optimize(battery, battery.nodes, battery.tree)
+        grid.trees.append(battery.tree)
     if part == "pt4":
         swap(grid)
         for battery in grid.batteries:
@@ -29,6 +30,11 @@ def mst(grid, part):
 
 
 def optimize(battery, nodes, tree_obj):
+    """
+    Optimize existing grid by letting a random selected house in a battery
+    choose their closest node and connect to it. This marginally improves the
+    way houses are connected to their tree.
+    """
     for i in range(100):
         house = random.choice(battery.houses)
         for node in house.nodes:
@@ -42,6 +48,9 @@ def optimize(battery, nodes, tree_obj):
 
 
 def swap(grid):
+    """
+    Swaps house with a house in another battery, based on distance.
+    """
     for i in range(10000):
         rand_battery_1 = random.choice(grid.batteries)
         rand_battery_2 = random.choice(grid.batteries)
@@ -80,9 +89,9 @@ def swap(grid):
 
 
 def perform_swap(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2, closest_node_1, closest_node_2):
-    # rand_battery_1.tree.branches.pop(rand_battery_1.houses.index(rand_house_1))
-    # rand_battery_2.tree.branches.pop(rand_battery_2.houses.index(rand_house_2))
-    #
+    """
+    Performs the actual swap, same as in the hillclimber.
+    """
     rand_battery_1.tree.branches.remove(rand_house_1.nodes)
     rand_battery_2.tree.branches.remove(rand_house_2.nodes)
 
@@ -100,6 +109,9 @@ def perform_swap(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2, clo
 
 
 def capacity_fit(rand_house_1, rand_house_2, rand_battery_1, rand_battery_2):
+    """
+    Checks if the new configurations hold up to the capacity constraint.
+    """
     capacity_1 = rand_battery_1.capacity_used() - rand_house_1.output + rand_house_1.output
     capacity_2 = rand_battery_2.capacity_used() - rand_house_1.output + rand_house_1.output
 
